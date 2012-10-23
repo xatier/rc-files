@@ -1,0 +1,5 @@
+keymap ESC-q CLOSE_TAB
+keymap x CLOSE_TAB
+keymap C-f NEXT_PAGE
+keymap C-b PREV_PAGE
+keymap F NEXT
