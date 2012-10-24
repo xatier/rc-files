@@ -30,6 +30,8 @@ xmodmap
 -----
 using xmodmap to swap CapsLock and Control\_L
 
+from the EXAMPLE in `man xmodmap`
+
 `Usage:  xmodmap ~/.xmodmap`
 
 srandr
