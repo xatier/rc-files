@@ -48,3 +48,14 @@ modified by xatier
 
 `or simple like this => srander[l|v|lv|vl|m]`
 
+w3m
+-----
+w3m web browser   <http://w3m.sourceforge.net/>
+
+    color favor
+
+    meta-q     CLOSE_TAB                                                          
+    x          CLOSE_TAB                                                              
+    Ctrl-f     NEXT_PAGE                                                            
+    Ctrl-b     PREV_PAGE                                                            
+    F          NEXT
