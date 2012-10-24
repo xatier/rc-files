@@ -175,4 +175,7 @@ au FileType perl nmap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
 " F5 to run a script
 map <F5> :!./%<CR>
 
+" no hightlight search
+nnoremap <silent><c-l> :nohl<cr><c-l>
+
 
