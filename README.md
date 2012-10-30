@@ -60,4 +60,3 @@ w3m web browser   <http://w3m.sourceforge.net/>
     Ctrl-f     NEXT_PAGE                                                            
     Ctrl-b     PREV_PAGE                                                            
     F          NEXT
-    fuck
