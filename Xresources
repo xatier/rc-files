@@ -16,9 +16,9 @@ URxvt*font:xft:Inconsolata:size=16,xft:LiHei ProPC:size=16
 URxvt*internalBorder:   1
 
 ! Extensions
-Urxvt*perl-lib:        /usr/lib/urxvt/perl/
-Urxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard
-Urxvt*matcher.button:  1
+URxvt*perl-lib:        /usr/lib/urxvt/perl/
+URxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard
+URxvt*matcher.button:  1
 
 ! misc
 URxvt*keysym.C-Delete:  perl:matcher:last
