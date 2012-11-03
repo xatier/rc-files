@@ -18,6 +18,7 @@ dropboxd &
 xscreensaver &
 gnome-settings-daemon &
 gnome-sound-applet &
+nm-applet &
 
 
 exec awesome >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
