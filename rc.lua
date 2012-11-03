@@ -11,6 +11,11 @@ require("naughty")
 -- vicious widgets library
 vicious = require("vicious")
 
+-- revelation library
+require("revelation")
+
+-- keydoc script
+local keydoc = require("keydoc")
 
 -- Error handling {{{
 -- Check if awesome encountered an error during startup and fell back to
@@ -74,7 +79,7 @@ layouts =
 -- Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names = {1, 2, 3, 4, 5, 6, 7, 8, 9},
+    names = {"⌨", "☠", "☢", "☣", "☮", "✈", "✍", "♺", "(．＿．?)"},
     layout = { layouts[5], layouts[2], layouts[5], layouts[5], layouts[5],
                layouts[5], layouts[5], layouts[5], layouts[5]}
 }
@@ -232,6 +237,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
+    awful.key({ modkey}, "e", revelation),
+
     awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx( 1)
@@ -245,8 +252,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    keydoc.group("Layout manipulation"),
+    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end, "swap with next window"),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -259,7 +268,8 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    keydoc.group("Misc"),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end, "Spawn a terminal"),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -285,7 +295,10 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- lock
-    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end)
+    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
+
+    -- keydoc
+    awful.key({ modkey, }, "F1", keydoc.display)
 )
 
 clientkeys = awful.util.table.join(
