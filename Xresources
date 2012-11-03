@@ -1,0 +1,32 @@
+! Urxvt {{{
+! color settings
+URxvt*termName:          rxvt-256color
+URxvt*depth:             32
+URxvt*background:        black
+URxvt*foreground:        green
+Urxvt*underlineurls: true
+
+! scroll
+URxvt*scrollstyle:           plain
+URxvt*mouseWheelScrollPage:  1
+URxvt*cursorBlink:           1
+
+! font
+URxvt*font:xft:Inconsolata:size=16,xft:LiHei ProPC:size=16
+URxvt*internalBorder:   1
+
+! Extensions
+Urxvt*perl-lib:        /usr/lib/urxvt/perl/
+Urxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard
+Urxvt*matcher.button:  1
+
+! misc
+URxvt*keysym.C-Delete:  perl:matcher:last
+URxvt*keysym.M-Delete:  perl:matcher:list
+URxvt*keysym.Home:      \033[1~
+URxvt*keysym.End:       \033[4~
+URxvt*saveLines:        4095
+URxvt*urlLauncher:      /usr/bin/chromium
+! }}}
+
+! vim:set fdm=marker:
