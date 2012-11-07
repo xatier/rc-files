@@ -147,12 +147,12 @@ j () {
 }
 
 
-# display current git branch on the prompt                                      
-git_branch () {                                                                 
-    if [ -d ".git" ] ; then                                                     
-        git branch | grep \* | awk '{print "~> on " $2}'                           
-    fi                                                                          
-} 
+# display current git branch on the prompt
+git_branch () {
+    if [ -d ".git" ] ; then
+        git branch | grep \* | awk '{print "~> on " $2}'
+    fi
+}
 
 
 # show distrobution name
