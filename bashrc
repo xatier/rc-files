@@ -165,7 +165,7 @@ distro_name () {
 adddir () {
     last=`tail -n 1 $HOME/.pwd`
     if [ ! -e $HOME/.pwd ] ; then
-        touch $HEOM/.pwd
+        touch $HOME/.pwd
     fi
 
     if [ $last != `pwd` ] ; then
