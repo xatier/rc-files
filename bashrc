@@ -124,7 +124,7 @@ PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
 PS1+=$COLOR_L_PURPLE'$(git_branch)'$COLOR_END          # git branch
 PS1+='\n'                                              # new line
-PS1+='\'$COLOR_L_CYAN'\w '$COLOR_END                   # work directory
+PS1+='\\'$COLOR_L_CYAN'\w '$COLOR_END                   # work directory
 PS1+=$COLOR_PURPLE'[$(distro_name)]\$ '$COLOR_END      # distrobution name
 PS1+='$(update_info)'                                  # update some info.
 
