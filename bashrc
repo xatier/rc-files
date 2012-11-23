@@ -95,6 +95,12 @@ complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh /
 # completion ignore the prefix 'sudo'
 complete -cf sudo
 
+# search history using up/down keys
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+bind '"\C-p":history-search-backward'
+bind '"\C-n":history-search-forward'
+
 
 # color definition
 COLOR_END='\[\e[m\]'
