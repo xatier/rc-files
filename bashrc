@@ -58,6 +58,9 @@ alias l='ls -CF'
 alias rscp='rsync -avPe ssh'
 
 alias WTF='man'
+alias bye='exit'
+alias cd..='cd ..'
+alias vd='vimdiff'
 
 
 # Alias definitions.
