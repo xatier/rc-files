@@ -56,6 +56,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias rscp='rsync -avPe ssh'
+alias telnet="/usr/bin/luit -encoding big5 /usr/bin/telnet"
 
 alias WTF='man'
 alias bye='exit'
