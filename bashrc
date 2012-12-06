@@ -38,6 +38,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
+shopt -s autocd
+shopt -s cdspell
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -98,6 +102,7 @@ complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh /
 
 # completion ignore the prefix 'sudo'
 complete -cf sudo
+complete -cf man
 
 # search history using up/down keys
 bind '"\e[A":history-search-backward'
@@ -128,20 +133,22 @@ COLOR_L_WHITE='\[\e[1;37m\]'
 
 
 # my bash prompt
-PS1='/'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_ENDA             # date
+PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_ENDA             # date
 PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
 PS1+=$COLOR_L_PURPLE'$(git_branch)'$COLOR_END          # git branch
 PS1+='\n'                                              # new line
-PS1+='\\'$COLOR_L_CYAN'\w '$COLOR_END                  # work directory
-PS1+=$COLOR_PURPLE'[$(distro_name)]\$ '$COLOR_END      # distrobution name
+PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END                  # work directory
+PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END      # distrobution name
 PS1+='$(update_info)'                                  # update some info.
 
 
 
 # df check every day!
 perl $HOME/dfCheckEveryday.pl
+cal -3
+fortune
 
 # let me google that for you
 google () {
