@@ -182,7 +182,7 @@ distro_name () {
 adddir () {
     last=`tail -n 1 $HOME/.pwd`
     if [ ! -e $HOME/.pwd ] ; then
-        touch $HOME/.pwd
+        echo `pwd` >> $HOME/.pwd
     fi
 
     if [ $last != `pwd` ] ; then
@@ -202,3 +202,4 @@ cded () {
 update_info () {
     adddir
 }
+
