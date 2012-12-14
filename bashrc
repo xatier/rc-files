@@ -236,10 +236,13 @@ extract () {
       echo "'$1' is not a valid file!"
   fi
 }
-#
+
 
 # mkdir and cd into it
-mkcdr () { mkdir -p -v $1 && cd $1 }
+mkcdr () { 
+    mkdir -p -v $1 
+    cd $1 
+}
 
 # Creates an archive from given directory
 mktar() { tar  cvf "${1%%/}.tar"     "${1%%/}/"; }
