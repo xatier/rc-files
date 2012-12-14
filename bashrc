@@ -42,6 +42,10 @@ fi
 shopt -s autocd
 shopt -s cdspell
 
+# feels good in emacs
+stty -ixon
+
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -67,6 +71,13 @@ alias bye='exit'
 alias cd..='cd ..'
 alias vd='vimdiff'
 
+# lazy cd
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -86,6 +97,8 @@ fi
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# vim rocks
 export EDITOR=vim
 
 
@@ -133,7 +146,7 @@ COLOR_L_WHITE='\[\e[1;37m\]'
 
 
 # my bash prompt
-PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_ENDA             # date
+PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END             # date
 PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
@@ -203,3 +216,32 @@ update_info () {
     adddir
 }
 
+# upload files to imgur.com
+imgur () {
+
+    if [ -z "$1" ] ; then
+        echo "Usage: imgur <filename>"
+        return
+    fi
+
+    if [ ! -f "$1" ] ; then
+        echo "file not Fond"
+        return
+    fi
+
+    echo "uploading $1 ... plz wait"
+    # using my imagur API client ID
+    response=$(curl -H "Authorization: Client-ID cb76f522bf7abf3" \
+                    -F "image=@$1" \
+                    https://api.imgur.com/3/image 2>/dev/null)
+
+    echo -e "\n\nimgur.com returned ...:"
+    echo $response
+
+    echo -ne "\n\e[31m    ==> \e[m"
+    # grep the image url
+    echo $response | 
+        grep -o -E "http:\\\/\\\/i\.imgur.com\\\/.*\.jpg" |
+        sed -e 's/\\//g'
+    echo
+}
