@@ -216,6 +216,52 @@ update_info () {
     adddir
 }
 
+# Easy extract
+extract () {
+  if [ -f $1 ] ; then
+      case $1 in
+          *.tar.bz2)   tar jxvf $1    ;;
+          *.tar.gz)    tar zxvf $1    ;;
+          *.tar)       tar xvf $1     ;;
+          *.tbz2)      tar xvjf $1    ;;
+          *.tgz)       tar xvzf $1    ;;
+          *.bz2)       bunzip2  $1    ;;
+          *.rar)       rar x $1       ;;
+          *.gz)        gunzip $1      ;;
+          *.zip)       unzip $1       ;;
+          *.7z)        7z x $1        ;;
+          *)           echo "don't know how to extract '$1' Q_Q" ;;
+      esac
+  else
+      echo "'$1' is not a valid file!"
+  fi
+}
+#
+
+# mkdir and cd into it
+mkcdr () { mkdir -p -v $1 && cd $1 }
+
+# Creates an archive from given directory
+mktar() { tar  cvf "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar zcvf "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktbz() { tar jcvf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+
+
+# remind me, its important!
+# usage: remindme [z] <time> <text>
+# e.g.: remindme 10m "oh, Fxxk!"
+#       remindme z 10m "oh, Fxxk!"
+
+remindme () {
+    if [ $1 == 'z' ] ; then
+        sleep $2 && zenity --info --text "$3" &
+        echo "@@\""
+    else
+        sleep $1 && echo -e "\a\n******\n$2\n******\n" &
+    fi
+}
+
 # upload files to imgur.com
 imgur () {
 
