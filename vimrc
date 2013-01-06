@@ -161,8 +161,8 @@ map <F7> :if exists("syntax_on") <BAR>
 
 " for C/C++ files
 " F9 to compile, F8 to run, F5 to build
-au FileType c map <F9> :!gcc -std=c99 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
-au FileType cpp map <F9> :!g++ -std=c++0x -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
+au FileType c map <F9> :!gcc -std=c11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
+au FileType cpp map <F9> :!g++ -std=c++11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
 au FileType c,cpp map <F8> :!./%:r<CR>
 au FileType c,cpp map <F5> :w<CR> :make<CR>
 
