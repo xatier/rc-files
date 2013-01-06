@@ -70,6 +70,7 @@ alias WTF='man'
 alias bye='exit'
 alias cd..='cd ..'
 alias vd='vimdiff'
+alias ta='tmux attach'
 
 # lazy cd
 alias ..="cd .."
@@ -292,5 +293,4 @@ imgur () {
     echo $response | 
         grep -o -E "http:\\\/\\\/i\.imgur.com\\\/.*\.jpg" |
         sed -e 's/\\//g'
-    echo
 }
