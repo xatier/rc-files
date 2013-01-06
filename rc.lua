@@ -334,7 +334,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end),
 
     -- lock my screen
-    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end)
+    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
+
+    -- shutter as printscreen tools    http://shutter-project.org/
+    awful.key({ }, "Print", function () awful.util.spawn("/opt/shutter/bin/shutter") end)
 
 )
 
