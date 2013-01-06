@@ -108,8 +108,19 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
+awful.menu.menu_keys = { up    = { "k", "Up" }, down  = { "j", "Down" },
+                         enter = { "Right" }, back  = { "h", "Left" },
+                         exec  = { "l", "Return", "Right" },
+                         close = { "q", "Escape" },
+                       }
+
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "Terminal", terminal },
+                                    { "Vim", "urxvt -e vim" },
+                                    { "emcas", "urxvt -e emacs" },
+                                    { "ranger", "urxvt -e ranger" },
+                                    { "alsamixer", "urxvt -e alsamixer" },
+                                    { "www", "chromium" }
                                   }
                         })
 
@@ -489,8 +500,8 @@ client.connect_signal("manage", function (c, startup)
     end
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity = 1 end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.9 end)
 -- }}}
 
 -- vim:set fdm=marker:
