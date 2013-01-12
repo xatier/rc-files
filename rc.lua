@@ -135,22 +135,26 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- network usage
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9090">⇩${eth0 down_kb}</span> <span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net,
+                '<span color="#CC9090">⇩${eth0 down_kb}</span>' ..
+                '<span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
 
 -- clock
 mytextclock = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 2)
+vicious.register(cpuwidget, vicious.widgets.cpu,
+                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 2)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
+vicious.register(memwidget, vicious.widgets.mem,
+                 '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
 
 -- widget separator
 separator = wibox.widget.textbox()
-separator.text  = " | "
+separator:set_text(" | ")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -232,12 +236,22 @@ for s = 1, screen.count() do
     -- only display systray on screen 1
     if s == 1 then right_layout:add(wibox.widget.systray()) end
 
-    -- add my widgets
-    right_layout:add(netwidget)
-    right_layout:add(separator)
-    right_layout:add(cpuwidget)
-    right_layout:add(separator)
-    right_layout:add(memwidget)
+    -- add my widgets (on screen 2 when i use duel screen)
+    if screen.count() == 2 then
+        if s == 2 then
+            right_layout:add(netwidget)
+            right_layout:add(separator)
+            right_layout:add(cpuwidget)
+            right_layout:add(separator)
+            right_layout:add(memwidget)
+        end
+    else
+        right_layout:add(netwidget)
+        right_layout:add(separator)
+        right_layout:add(cpuwidget)
+        right_layout:add(separator)
+        right_layout:add(memwidget)
+    end
     right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
