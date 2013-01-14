@@ -62,11 +62,11 @@ local layouts =
     awful.layout.suit.tile,               -- 1 (tile.right)
     awful.layout.suit.tile.left,          -- 2
     awful.layout.suit.tile.bottom,        -- 3
-    -- awful.layout.suit.tile.top,           -- 
-    -- awful.layout.suit.fair,               -- 
-    -- awful.layout.suit.fair.horizontal,    -- 
-    -- awful.layout.suit.spiral,             -- 
-    -- awful.layout.suit.spiral.dwindle,     -- 
+    -- awful.layout.suit.tile.top,           --
+    -- awful.layout.suit.fair,               --
+    -- awful.layout.suit.fair.horizontal,    --
+    -- awful.layout.suit.spiral,             --
+    -- awful.layout.suit.spiral.dwindle,     --
     awful.layout.suit.max,                -- 4
     -- awful.layout.suit.max.fullscreen,     --
     -- awful.layout.suit.magnifier,          --
@@ -114,7 +114,8 @@ awful.menu.menu_keys = { up    = { "k", "Up" }, down  = { "j", "Down" },
                          close = { "q", "Escape" },
                        }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu,
+                                        beautiful.awesome_icon },
                                     { "Terminal", terminal },
                                     { "Vim", "urxvt -e vim" },
                                     { "emcas", "urxvt -e emacs" },
@@ -128,10 +129,17 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
+-- Set the terminal for applications that require it
+menubar.utils.terminal = terminal-- }}}
 
 -- {{{ Wibox
+-- return the command output for tooltips below
+local function tooltip_func_text(command)
+    local fd = io.popen(command)
+    local lines = fd:read('*a')
+    fd:close()
+    return command .. ' :\n\n' .. lines
+end
 
 -- network usage
 netwidget = wibox.widget.textbox()
@@ -140,21 +148,55 @@ vicious.register(netwidget, vicious.widgets.net,
                 '<span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
 
 -- clock
-mytextclock = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
+clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
+clockwidget_t = awful.tooltip( {
+    objects = {clockwidget},
+    timer_function = function ()
+        return tooltip_func_text('cal -3')
+    end
+})
+
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
+cpuwidget_t = awful.tooltip( {
+    objects = {cpuwidget},
+    timer_function = function ()
+        return tooltip_func_text('top -b -n 1 | head -n 15')
+    end
+})
 vicious.register(cpuwidget, vicious.widgets.cpu,
                  '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 2)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
+memwidget_t = awful.tooltip( {
+    objects = {memwidget},
+    timer_function = function ()
+        return tooltip_func_text('free -h')
+    end
+})
 vicious.register(memwidget, vicious.widgets.mem,
                  '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
 
 -- battery status
 batwidget = wibox.widget.textbox()
+batwidget_t = awful.tooltip( {
+    objects = {batwidget},
+    timer_function = function ()
+        return tooltip_func_text('acpi -V')
+    end
+})
 vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')
+batwidget:buttons(
+    awful.util.table.join(
+        awful.button({}, 1, function()
+            naughty.notify( {title='Ouch!!',
+                             text="you click me!",
+                             timeout=10})
+        end)
+    )
+)
 
 -- widget separator
 separator = wibox.widget.textbox()
@@ -259,7 +301,7 @@ for s = 1, screen.count() do
     end
     right_layout:add(separator)
     right_layout:add(batwidget)
-    right_layout:add(mytextclock)
+    right_layout:add(clockwidget)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
