@@ -69,9 +69,10 @@ alias telnet="/usr/bin/luit -encoding big5 /usr/bin/telnet"
 alias WTF='man'
 alias bye='exit'
 alias cd..='cd ..'
-alias vd='vimdiff'
 alias ta='tmux attach'
+alias g='grep'
 alias v='vim'
+alias vd='vimdiff'
 alias s='ssh'
 
 # lazy cd
