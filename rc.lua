@@ -152,9 +152,14 @@ memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem,
                  '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
 
+-- battery status
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')
+
 -- widget separator
 separator = wibox.widget.textbox()
 separator:set_text(" | ")
+
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -253,6 +258,7 @@ for s = 1, screen.count() do
         right_layout:add(memwidget)
     end
     right_layout:add(separator)
+    right_layout:add(batwidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
