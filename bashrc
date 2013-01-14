@@ -71,6 +71,8 @@ alias bye='exit'
 alias cd..='cd ..'
 alias vd='vimdiff'
 alias ta='tmux attach'
+alias v='vim'
+alias s='ssh'
 
 # lazy cd
 alias ..="cd .."
