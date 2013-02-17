@@ -1,0 +1,16 @@
+[user]
+	email = xatierlike@gmail.com
+	name = xatier
+[push]
+	default = simple
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+[merge]
+	tool = vimdiff
