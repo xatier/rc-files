@@ -26,6 +26,15 @@ bashrc
 -----
 my bashrc template
 
+    need to install:
+        `luit` for big-5 endocing telnet(Taiwanese BBS)
+        `fortune` for interesting  things
+        `w3m` text-based web browser
+        `curl` for imgur script
+
+    
+
+
 xmodmap
 -------
 using xmodmap to swap CapsLock and Control\_L
@@ -53,6 +62,8 @@ rc.lua
 
 configuration file for the awesome wm <http://awesome.naquadah.org/>
 
+    fit for awesome 3.5 (with Lua 5.2)
+
     disable some layouts
 
     use vim and urxvt for editor and terminal 
@@ -65,6 +76,48 @@ configuration file for the awesome wm <http://awesome.naquadah.org/>
 
     Mod4 + F12 to launch xscreensaver-lock
 
+    Installation
+        vicious widgets
+
+            `cd ~/.config/awesome`
+            `git clone http://git.sysphere.org/vicious`
+        
+        change the path of `theme.lua`  (maybe you can use the default one in /usr/share/awesome)
+
+            `beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")`
+
+        pick up a great wallpaper
+
+            `beautiful.wallpaper = "/home/xatierlike/Pictures/goodbye.jpg"`
+
+        urxvt terminal emulator
+
+            <http://software.schmorp.de/pkg/rxvt-unicode.html>
+
+            `pacman -S rxvt-unicode urxvt-perl`
+
+        ranger file manager
+
+            <http://ranger.nongnu.org/>
+
+        check the battery name of this line
+
+            `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
+
+            to get the battery name (BAT0 or BAT1 for example)
+            `ls /sys/class/power_supply/`
+
+        xdotool
+
+            `pacman -S xdotool`
+
+        shutter-progect <http://shutter-project.org/>
+
+            put it under /opt/shutter
+
+        xcompmgr
+
+            `pacman -S xcompmgr`
 
 xinitrc
 -------
@@ -81,6 +134,7 @@ xinitrc
 Xresources
 ----------
     currently only my urxvt configurations
+
 w3m
 -----
 w3m web browser   <http://w3m.sourceforge.net/>
