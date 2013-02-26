@@ -27,6 +27,34 @@
 ; selection-highlighting
 (transient-mark-mode t)
 
+; no TAB!, use C-q TAB
+(setq indent-tabs-mode nil)
+(setq default-tab-width 4)
+
+; color in shell-mode
+(autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on t)
+
+; always use bash in ansi-term
+(defvar my-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+
+
+; anti idle for BBS
+(defvar antiidle)
+(defun enable-anti-idle ()
+  (interactive)
+    (setq antiidle
+      (run-with-timer 0 180 '(lambda ()
+        (term-send-up)
+          (term-send-down)))))
+
+(defun disable-anti-idle ()
+  (interactive)
+    (cancel-timer antiidle))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; plugins
@@ -48,3 +76,13 @@
 (add-to-list 'load-path "~/.emacs.d/plugins/ido")
 (require 'ido)
 (ido-mode t)
+
+; session
+(add-to-list 'load-path "~/.emacs.d/plugins/session")
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
+
+; desktop
+(load "desktop")
+(desktop-load-default)
+(desktop-read)
