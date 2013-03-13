@@ -119,6 +119,10 @@ configuration file for the awesome wm <http://awesome.naquadah.org/>
 
             `pacman -S xcompmgr`
 
+        dwb
+
+            `pacman -S dwb`
+
 xinitrc
 -------
 
