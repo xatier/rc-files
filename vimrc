@@ -179,3 +179,12 @@ map <F5> :!./%<CR>
 nnoremap <silent><c-l> :nohl<cr><c-l>
 
 
+" remove trailing whitespaces before saving codes
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+au FileType c,perl,python,cpp,ruby au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
