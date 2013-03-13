@@ -167,9 +167,11 @@ au FileType c,cpp map <F8> :!./%:r<CR>
 au FileType c,cpp map <F5> :w<CR> :make<CR>
 
 
+" K to lookup current word in documentations
 " for Perl files
-" K to lookup current word in perldoc
 au FileType perl nmap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
+" for Python files
+au FileType python nmap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
 
 
 " F5 to run a script
