@@ -166,7 +166,7 @@ cpuwidget_t = awful.tooltip( {
     end
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
-                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 2)
+                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 5)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
