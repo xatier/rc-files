@@ -121,7 +121,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu,
                                     { "emcas", "urxvtc -e emacs" },
                                     { "ranger", "urxvtc -e ranger" },
                                     { "alsamixer", "urxvtc -e alsamixer" },
-                                    { "www", "chromium" }
+                                    { "www", "dwb" },
                                   }
                         })
 
