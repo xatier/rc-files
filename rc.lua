@@ -45,7 +45,7 @@ end
 beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")
 
 -- default terminal and editor
-terminal = "urxvt"
+terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 -- modkey
@@ -117,10 +117,10 @@ awful.menu.menu_keys = { up    = { "k", "Up" }, down  = { "j", "Down" },
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu,
                                         beautiful.awesome_icon },
                                     { "Terminal", terminal },
-                                    { "Vim", "urxvt -e vim" },
-                                    { "emcas", "urxvt -e emacs" },
-                                    { "ranger", "urxvt -e ranger" },
-                                    { "alsamixer", "urxvt -e alsamixer" },
+                                    { "Vim", "urxvtc -e vim" },
+                                    { "emcas", "urxvtc -e emacs" },
+                                    { "ranger", "urxvtc -e ranger" },
+                                    { "alsamixer", "urxvtc -e alsamixer" },
                                     { "www", "chromium" }
                                   }
                         })
