@@ -12,21 +12,27 @@ URxvt*mouseWheelScrollPage:  1
 URxvt*cursorBlink:           1
 
 ! font
-URxvt*font:xft:Inconsolata:size=16,xft:LiHei ProPC:size=16
+URxvt*font:xft:Inconsolata:size=16,xft:Terminus:size=16,xft:DejaVu Sans Mono:size=16
 URxvt*internalBorder:   1
 
 ! Extensions
 URxvt*perl-lib:        /usr/lib/urxvt/perl/
-URxvt*perl-ext-common: default,matcher,searchable-scrollback,clipboard
-URxvt*matcher.button:  1
+URxvt*perl-ext-common: default,searchable-scrollback,clipboard,url-select,keyboard-select
 
 ! misc
-URxvt*keysym.C-Delete:  perl:matcher:last
-URxvt*keysym.M-Delete:  perl:matcher:list
+URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.keysym.M-Escape:  perl:keyboard-select:activate
+URxvt.keysym.M-s:       perl:keyboard-select:search
+URxvt.keysym.M-c:       perl:clipboard:copy
+URxvt.keysym.M-v:       perl:clipboard:paste
+URxvt.keysym.M-C-v:     perl:clipboard:paste_escaped
+urxvt*modifier:         alt
 URxvt*keysym.Home:      \033[1~
 URxvt*keysym.End:       \033[4~
 URxvt*saveLines:        4095
-URxvt*urlLauncher:      /usr/bin/chromium
+URxvt*url-launcher:     /usr/bin/chromium
+URxvt*url-select.launcher:  chromium
+URxvt.url-select.underline: true
 ! }}}
 
 ! vim:set fdm=marker:
