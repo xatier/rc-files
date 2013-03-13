@@ -323,6 +323,17 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
+--
+
+local function do_search (_prompt, engine)
+    awful.prompt.run({ prompt = _prompt},
+    mypromptbox[mouse.screen].widget,
+    function (url)
+        awful.util.spawn(string.format("dwb -x O '%s%s'", engine, url))
+    end, nil,
+    awful.util.getdir("cache") .. "/history_search")
+end
+
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -401,6 +412,34 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
+              end),
+
+    -- search engines
+    -- google
+    awful.key({ modkey }, "g",
+              function ()
+                  do_search("google: ", "http://google.com/search?hl=en&q=")
+              end),
+
+    -- wikipedia
+    awful.key({ modkey }, "F5",
+              function ()
+                  do_search("wiki: ", "http://en.wikipedia.org/wiki/Special:Search?search=")
+              end),
+    -- youtube
+    awful.key({ modkey }, "F6",
+              function ()
+                  do_search("Youtube:: ", "http://www.youtube.com/results?hl=en&search_query=")
+              end),
+    -- wolframalpha
+    awful.key({ modkey }, "F7",
+              function ()
+                  do_search("wolframalpha: ", "http://www.wolframalpha.com/input/?i=")
+              end),
+    -- duckduckgo
+    awful.key({ modkey }, "F8",
+              function ()
+                  do_search("ddg: ", "http://duckduckgo.com/?q=")
               end),
 
     -- Menubar
