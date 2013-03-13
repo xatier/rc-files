@@ -70,7 +70,11 @@ alias WTF='man'
 alias bye='exit'
 alias cd..='cd ..'
 alias ta='tmux attach'
+alias a='alsamixer'
 alias g='grep'
+alias r='ranger'
+alias u='urxvt'
+alias uc='urxvtc'
 alias v='vim'
 alias vd='vimdiff'
 alias s='ssh'
@@ -120,6 +124,7 @@ complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh /
 # completion ignore the prefix 'sudo'
 complete -cf sudo
 complete -cf man
+complete -cf proxychains
 
 # search history using up/down keys
 bind '"\e[A":history-search-backward'
