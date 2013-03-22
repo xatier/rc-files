@@ -1,5 +1,5 @@
 ; disable menu-bar-mode
-;(menu-bar-mode nil)
+(menu-bar-mode nil)
 
 ; disable tool-bar-mode
 (tool-bar-mode nil)
@@ -55,6 +55,9 @@
   (interactive)
     (cancel-timer antiidle))
 
+; load flyspell-mode by default
+(flyspell-mode 1)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; plugins
@@ -86,3 +89,9 @@
 (load "desktop")
 (desktop-load-default)
 (desktop-read)
+
+
+;; python-mode
+(add-to-list 'load-path "~/.emacs.d/plugins/python-mode")
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
