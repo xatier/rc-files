@@ -72,11 +72,14 @@ alias cd..='cd ..'
 alias ta='tmux attach'
 alias a='alsamixer'
 alias g='grep'
+alias gerp='grep'
 alias r='ranger'
 alias u='urxvt'
 alias uc='urxvtc'
 alias v='vim'
 alias vd='vimdiff'
+alias ivm='vim'
+alias vmi='vim'
 alias s='ssh'
 
 # lazy cd
@@ -110,6 +113,7 @@ export LC_ALL=en_US.UTF-8
 export EDITOR=vim
 
 
+export LESS="-R"
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -301,4 +305,9 @@ imgur () {
     echo $response | 
         grep -o -E "http:\\\/\\\/i\.imgur.com\\\/.*\.jpg" |
         sed -e 's/\\//g'
+}
+
+
+ips () {
+    ip addr show | grep inet
 }
