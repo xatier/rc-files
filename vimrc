@@ -173,6 +173,8 @@ au FileType c,cpp map <F5> :w<CR> :make<CR>
 au FileType perl nmap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
 " for Python files
 au FileType python nmap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
+" for Ruby files
+au FileType ruby nmap K :!ri <cword><CR><CR>
 
 
 " F5 to run a script
