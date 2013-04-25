@@ -177,7 +177,7 @@ au FileType python nmap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
 au FileType ruby nmap K :!ri <cword><CR><CR>
 
 " set no expandtab in Makefiles
-au FileType make setlocal noexpandtab
+au FileType make setlocal noet
 
 " F5 to run a script
 map <F5> :!./%<CR>
