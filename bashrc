@@ -159,14 +159,15 @@ COLOR_L_WHITE='\[\e[1;37m\]'
 
 
 # my bash prompt
-PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END             # date
+PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
 PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
+PS1+='$(ret_code)'                                     # return code
 PS1+=$COLOR_L_PURPLE'$(git_branch)'$COLOR_END          # git branch
 PS1+='\n'                                              # new line
-PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END                  # work directory
-PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END      # distrobution name
+PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
+PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
 PS1+='$(update_info)'                                  # update some info.
 
 
@@ -189,6 +190,15 @@ j () {
     cat $HOME/.pwd | sort | uniq | grep -i $@
 }
 
+# display return code of previous command
+ret_code () {
+    ret=$?
+    if [ $ret = 0 ]; then
+        echo "^_^ "
+    else
+        echo "@_@ $ret "
+    fi
+}
 
 # display current git branch on the prompt
 git_branch () {
