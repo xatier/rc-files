@@ -123,6 +123,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# from /usr/share/git/completion/
+. ~/.git-prompt.sh
+. ~/.git-completion.bash
 
 # completion for ssh hosts
 complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //'))" ssh
@@ -166,7 +169,8 @@ PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
 PS1+='$(ret_code)'                                     # return code
-PS1+=$COLOR_L_PURPLE'$(git_branch)'$COLOR_END          # git branch
+PS1+=$COLOR_L_PURPLE'$(__git_ps1 "[ ~> on %s ]")'$COLOR_END
+                                                       # git info
 PS1+='\n'                                              # new line
 PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
 PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
@@ -199,13 +203,6 @@ ret_code () {
         echo "^_^ "
     else
         echo "@_@ $ret "
-    fi
-}
-
-# display current git branch on the prompt
-git_branch () {
-    if [ -d ".git" ] ; then
-        git branch | grep \* | awk '{print "~> on " $2}'
     fi
 }
 
