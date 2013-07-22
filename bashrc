@@ -41,6 +41,7 @@ fi
 
 shopt -s autocd
 shopt -s cdspell
+shopt -s extglob
 
 # feels good in emacs
 stty -ixon
@@ -77,6 +78,7 @@ alias r='ranger'
 alias u='urxvt'
 alias uc='urxvtc'
 alias v='vim'
+alias vi='vim'
 alias vd='vimdiff'
 alias ivm='vim'
 alias vmi='vim'
