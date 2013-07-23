@@ -6,11 +6,15 @@
 [color]
 	ui = true
 [alias]
-	co = checkout
 	br = branch
 	ci = commit
+	co = checkout
+	df = diff
+	l = log
+	last = log -1 HEAD
+	ls = ls-files
+	m = merge
 	st = status
 	unstage = reset HEAD --
-	last = log -1 HEAD
 [merge]
 	tool = vimdiff
