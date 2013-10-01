@@ -92,7 +92,7 @@ for s = 1, screen.count() do
         s,
         { layouts[2], layouts[2], layouts[2],
           layouts[2], layouts[2], layouts[2],
-          layouts[5], layouts[5], layouts[2]
+          layouts[2], layouts[2], layouts[2]
         }
     )
 end
@@ -449,7 +449,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     -- shutter as printscreen tools    http://shutter-project.org/
-    awful.key({ }, "Print", function () awful.util.spawn("/opt/shutter/bin/shutter") end)
+    awful.key({ }, "Print", function () awful.util.spawn("/usr/bin/shutter") end)
 
 )
 
@@ -536,6 +536,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "URxvt" },
+      properties = { size_hints_honor = false } },
 }
 -- }}}
 
