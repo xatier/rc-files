@@ -133,6 +133,7 @@ set laststatus=2
 set statusline=\ %F%m%r%y[%{strlen(&fenc)?&fenc:&enc}]%h%w%=[%l,%3v]\ --%p%%--\ \  
 hi  statusline ctermfg=green ctermbg=darkblue
 set wildmenu
+set wildignorecase
 
 
 set cursorline
@@ -192,3 +193,6 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 au FileType c,perl,python,cpp,ruby au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" ctags
+set tags=./tags;/
