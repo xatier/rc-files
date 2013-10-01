@@ -46,11 +46,11 @@ set ambiwidth=double
 
 
 "###########################################################################
-" Gerneral settings
+" General settings
 "###########################################################################
 
 " syntax highlighting
-syntax on
+syntax enable
 
 
 " line number
@@ -180,7 +180,7 @@ au FileType make setlocal noet
 " F5 to run a script
 map <F5> :!./%<CR>
 
-" no hightlight search
+" no highlight search
 nnoremap <silent><c-l> :nohl<cr><c-l>
 
 
