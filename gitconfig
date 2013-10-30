@@ -12,6 +12,8 @@
 	df = diff
 	l = log
 	last = log -1 HEAD
+    lm = log master
+    lp = log -p
 	ls = ls-files
 	m = merge
 	st = status
@@ -20,3 +22,5 @@
 	unstage = reset HEAD --
 [merge]
 	tool = vimdiff
+[help]
+	autocorrect = 30
