@@ -39,9 +39,12 @@ if [[ -n $lvds && -n $vga ]]; then
             eecho "LVDS: $lvds"
             eecho "VGA: $vga"
             ;;
+        'query'|'q'|'?')
+            xrandr --query
+            ;;
         *)
-            eecho "Usage: $(basename $0) [lvds|vga|lvds-vga|vga-lvds|mirror|debug]"
-            eecho "or simple like this => [l|v|lv|vl|m]"
+            eecho "Usage: $(basename $0) [lvds|vga|lvds-vga|vga-lvds|mirror|debug|query]"
+            eecho "or simple like this => [l|v|lv|vl|m|q]"
             ;;
     esac
 else
