@@ -7,8 +7,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=5000
-HISTFILESIZE=5000
+HISTSIZE=50000
+HISTFILESIZE=50000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -73,7 +73,11 @@ alias cd..='cd ..'
 alias ta='tmux attach'
 alias a='alsamixer'
 alias g='grep'
+alias gr='grep -rn'
 alias gerp='grep'
+alias gti='git'
+alias gi='git'
+alias gt='git'
 alias r='ranger'
 alias u='urxvt'
 alias uc='urxvtc'
@@ -126,6 +130,12 @@ fi
 # from /usr/share/git/completion/
 . ~/.git-prompt.sh
 . ~/.git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_DESCRIBE_STYLE="branch"
 
 # completion for ssh hosts
 complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //'))" ssh
