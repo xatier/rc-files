@@ -1,8 +1,5 @@
-; disable menu-bar-mode
-(menu-bar-mode nil)
-
 ; disable tool-bar-mode
-(tool-bar-mode nil)
+(setq tool-bar-mode -1)
 
 ;; cololum and line number on minibuffer
 (setq column-number-mode t)
@@ -55,10 +52,6 @@
   (interactive)
     (cancel-timer antiidle))
 
-; load flyspell-mode by default
-(flyspell-mode 1)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; plugins
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -76,14 +69,8 @@
 (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 ; ido
-(add-to-list 'load-path "~/.emacs.d/plugins/ido")
 (require 'ido)
 (ido-mode t)
-
-; session
-(add-to-list 'load-path "~/.emacs.d/plugins/session")
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
 
 ; desktop
 (load "desktop")
