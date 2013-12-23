@@ -1,0 +1,9 @@
+set show-all-if-ambiguous on
+set visible-stats on
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+set completion-ignore-case on
+set show-all-if-unmodified on
+TAB:menu-complete
