@@ -178,6 +178,15 @@ HOST_COLORS=("$COLOR_L_CYAN"   \
              "$COLOR_L_YELLOW" \
              "$COLOR_L_PURPLE" )
 
+# generate checksum from host name
+STR_HOST=`hostname`
+CHECKSUM=0
+while test -n "$STR_HOST"; do
+   CHAR=${STR_HOST:0:1}
+   N=`printf "%d" "'$CHAR"`
+   CHECKSUM=`expr $CHECKSUM + $N`
+   STR_HOST=${STR_HOST:1}
+done
 
 # my bash prompt
 PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
