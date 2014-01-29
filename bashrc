@@ -171,6 +171,12 @@ COLOR_L_PURPLE='\[\e[1;35m\]'
 COLOR_L_CYAN='\[\e[1;36m\]'
 COLOR_L_WHITE='\[\e[1;37m\]'
 
+# Color set for hostname highlighting
+HOST_COLORS=("$COLOR_L_CYAN"   \
+             "$COLOR_L_RED"    \
+             "$COLOR_L_GREEN"  \
+             "$COLOR_L_YELLOW" \
+             "$COLOR_L_PURPLE" )
 
 
 # my bash prompt
