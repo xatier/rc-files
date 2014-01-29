@@ -171,13 +171,33 @@ COLOR_L_PURPLE='\[\e[1;35m\]'
 COLOR_L_CYAN='\[\e[1;36m\]'
 COLOR_L_WHITE='\[\e[1;37m\]'
 
+# color set for hostname highlighting
+# it's better to choose colors that looks different
+HOST_COLORS=("$COLOR_L_CYAN"   \
+             "$COLOR_L_RED"    \
+             "$COLOR_L_GREEN"  \
+             "$COLOR_L_YELLOW" \
+             "$COLOR_L_PURPLE" )
 
+# generate checksum from host name
+STR_HOST=`hostname`
+CHECKSUM=0
+while test -n "$STR_HOST"; do
+   CHAR=${STR_HOST:0:1}
+   N=`printf "%d" "'$CHAR"`
+   CHECKSUM=`expr $CHECKSUM + $N`
+   STR_HOST=${STR_HOST:1}
+done
+
+# pick a color from set by checksum
+SELECTIONS=${#HOST_COLORS[@]}
+HOST_COLOR=${HOST_COLORS[$(($CHECKSUM % $SELECTIONS))]}
 
 # my bash prompt
 PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
 PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
-PS1+=$COLOR_L_GREEN' \h '$COLOR_END                    # host
+PS1+=$HOST_COLOR' \h '$COLOR_END                    # host
 PS1+='$(ret_code)'                                     # return code
 PS1+=$COLOR_L_PURPLE'$(__git_ps1 "[ ~> on %s ]")'$COLOR_END
                                                        # git info
