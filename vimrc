@@ -177,6 +177,13 @@ au FileType ruby nmap K :!ri <cword><CR><CR>
 " set no expandtab in Makefiles
 au FileType make setlocal noet
 
+" set spell in Markdown notes
+au FileType markdown setlocal spell
+
+" set spell while git committing
+au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
+
+
 " F5 to run a script
 map <F5> :!./%<CR>
 
