@@ -42,7 +42,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")
+beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- default terminal and editor
 terminal = "urxvtc"
@@ -76,7 +76,7 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-beautiful.wallpaper = "/home/xatierlike/Pictures/goodbye.jpg"
+-- beautiful.wallpaper = "/home/xatier/Pictures/goodbye.jpg"
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
@@ -198,6 +198,19 @@ batwidget:buttons(
     )
 )
 
+-- weather status
+weatherwidget = wibox.widget.textbox()
+weatherwidget_t = awful.tooltip( {
+    objects = {weatherwidget},
+    timer_function = function ()
+        return tooltip_func_text(
+            'w3m -dump http://www.cwb.gov.tw/pda/observe/real/46757.htm | ' ..
+            'tail -n +3 | head -n -4')
+    end
+})
+weatherwidget:set_text(" ☔  ")
+
+
 -- widget separator
 separator = wibox.widget.textbox()
 separator:set_text(" | ")
@@ -302,6 +315,7 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(batwidget)
     right_layout:add(clockwidget)
+    right_layout:add(weatherwidget)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
