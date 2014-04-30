@@ -1,5 +1,5 @@
 "###########################
-"   xatier's vimrc         
+"   xatier's vimrc
 "###########################
 
 "###########################################################################
@@ -67,7 +67,7 @@ set shiftwidth=4
 set hlsearch
 set ignorecase
 set smartcase
-set incsearch 
+set incsearch
 
 
 " make < and  > as a pair, useful in C++
