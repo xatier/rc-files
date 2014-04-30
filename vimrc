@@ -146,6 +146,12 @@ au InsertEnter * hi CursorColumn term=none ctermbg=darkblue
 au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 
 
+" highlight trailing whitespaces and spaces before a tab
+hi ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/
+
+
+
 "###########################################################################
 " key mappings
 "###########################################################################
