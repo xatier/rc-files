@@ -146,6 +146,11 @@ au InsertEnter * hi CursorColumn term=none ctermbg=darkblue
 au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 
 
+" fix markdown filetype in vim
+"  details in /usr/share/vim/vim74/filetype.vim
+au BufNewFile,BufRead *.md set filetype=markdown
+
+
 " highlight trailing whitespaces and spaces before a tab
 hi ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
