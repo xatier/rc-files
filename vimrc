@@ -151,9 +151,9 @@ au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 au BufNewFile,BufRead *.md set filetype=markdown
 
 
-" highlight trailing whitespaces and spaces before a tab
+" highlight trailing whitespaces, [spaces]+[tab] and [tab]+[space]
 hi ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t/
+match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
 
 
 
