@@ -12,7 +12,7 @@ URxvt*mouseWheelScrollPage:  1
 URxvt*cursorBlink:           1
 
 ! font
-URxvt*font:xft:Inconsolata:size=16,xft:Terminus:size=16,xft:DejaVu Sans Mono:size=16
+URxvt*font:xft:Inconsolata:size=16,xft:Terminus:size=16,xft:LiHei Pro:size=14:antialias=Ture,xft:DejaVu Sans Mono:size=16
 URxvt*internalBorder:   1
 
 ! Extensions
