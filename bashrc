@@ -354,3 +354,8 @@ imgur () {
 ips () {
     ip addr show | grep inet
 }
+
+# listen to the ICRT radio
+icrt () {
+    mplayer mms://bcr.media.hinet.net/RA000038
+}
