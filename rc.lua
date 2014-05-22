@@ -43,6 +43,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.font = "Inconsolata 14"
 
 -- default terminal and editor
 terminal = "urxvtc"
@@ -544,12 +545,16 @@ awful.rules.rules = {
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
+    { rule = { class = "smplayer" },
+      properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "URxvt" },
       properties = { size_hints_honor = false } },
+    { rule = { instance = "exe" },
+      properties = { floating = true } },
 }
 -- }}}
 
@@ -623,7 +628,7 @@ client.connect_signal("manage", function (c, startup)
 end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity = 1 end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.9 end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.95 end)
 -- }}}
 
 -- vim:set fdm=marker:
