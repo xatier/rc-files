@@ -132,7 +132,7 @@ set bg=dark
 
 set laststatus=2
 set statusline=\ %F%m%r%y[%{strlen(&fenc)?&fenc:&enc}]%h%w%=[%l,%3v]\ --%p%%--\ \  
-hi  statusline ctermfg=green ctermbg=darkblue
+hi  statusline ctermfg=black ctermbg=darkcyan
 set wildmenu
 set wildignorecase
 
