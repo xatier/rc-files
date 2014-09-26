@@ -153,8 +153,8 @@ au BufNewFile,BufRead *.md set filetype=markdown
 
 
 " highlight trailing whitespaces, [spaces]+[tab] and [tab]+[space]
-au bufnewfile,bufread * hi extrawhitespace ctermbg=red guibg=red
-au bufnewfile,bufread * match extrawhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red guibg=red
+au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
 
 
 
