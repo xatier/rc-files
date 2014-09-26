@@ -89,6 +89,7 @@ set autoread
 set showmode
 set autoindent
 set smartindent
+set ttyfast
 
 " keep virtual mode in
 vnoremap > >gv
@@ -131,7 +132,7 @@ set bg=dark
 
 set laststatus=2
 set statusline=\ %F%m%r%y[%{strlen(&fenc)?&fenc:&enc}]%h%w%=[%l,%3v]\ --%p%%--\ \  
-hi  statusline ctermfg=green ctermbg=darkblue
+hi  statusline ctermfg=darkmagenta ctermbg=darkcyan
 set wildmenu
 set wildignorecase
 
@@ -152,8 +153,8 @@ au BufNewFile,BufRead *.md set filetype=markdown
 
 
 " highlight trailing whitespaces, [spaces]+[tab] and [tab]+[space]
-au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red guibg=red
-au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+au bufnewfile,bufread * hi extrawhitespace ctermbg=red guibg=red
+au bufnewfile,bufread * match extrawhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
 
 
 
