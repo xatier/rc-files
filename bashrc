@@ -67,14 +67,18 @@ alias l='ls -CF'
 alias rscp='rsync -avPe ssh'
 alias telnet="/usr/bin/luit -encoding big5 /usr/bin/telnet"
 
-alias WTF='man'
+alias wtf='man'
 alias bye='exit'
 alias cd..='cd ..'
 alias ta='tmux attach -d'
 alias a='alsamixer'
-alias g='grep'
-alias gr='grep -rn'
+alias greprn='grep -rn'
+alias greprni='grep -rni'
+alias greprin='grep -rin'
 alias gerp='grep'
+alias gerprn='grep -rn'
+alias gerprni='grep -rni'
+alias gerprin='grep -rin'
 alias gti='git'
 alias gi='git'
 alias gt='git'
@@ -83,12 +87,10 @@ alias open='xdg-open'
 alias r='ranger'
 alias u='urxvt'
 alias uc='urxvtc'
-alias v='vim'
 alias vi='vim'
 alias vd='vimdiff'
 alias ivm='vim'
 alias vmi='vim'
-alias s='ssh'
 
 # lazy cd
 alias ..="cd .."
@@ -206,7 +208,6 @@ PS1+=$COLOR_L_PURPLE'$(__git_ps1 "[ ~> on %s ]")'$COLOR_END
 PS1+='\n'                                              # new line
 PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
 PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
-PS1+='$(update_info)'                                  # update some info.
 
 
 
@@ -215,18 +216,8 @@ perl $HOME/dfCheckEveryday.pl
 cal -3
 fortune
 
-# let me google that for you
-google () {
-    local tmp=`echo -n $@`
-    w3m "www.google.com/search?hl=en&q=$tmp";
-}
 
 
-# an fake autojump
-# https://github.com/joelthelion/autojump
-j () {
-    cat $HOME/.pwd | sort | uniq | grep -i $@
-}
 
 # display return code of previous command
 ret_code () {
@@ -244,33 +235,6 @@ distro_name () {
     cat /etc/*release | grep ^NAME= | cut -c6- | sed 's/\"//g'
 }
 
-
-# append pwd to ~/.pwd
-adddir () {
-    last=`tail -n 1 $HOME/.pwd`
-    if [ ! -e $HOME/.pwd ] ; then
-        echo `pwd` >> $HOME/.pwd
-    fi
-
-    if [ $last != `pwd` ] ; then
-        echo `pwd` >> $HOME/.pwd
-    fi
-    ret=""
-}
-
-
-# where I've been there
-cded () {
-    tail $HOME/.pwd
-}
-
-
-# update infomations
-update_info () {
-    adddir
-    history -n
-    history -a
-}
 
 # Easy extract
 extract () {
@@ -293,33 +257,6 @@ extract () {
   fi
 }
 
-
-# mkdir and cd into it
-mkcdr () { 
-    mkdir -p -v $1 
-    cd $1 
-}
-
-# Creates an archive from given directory
-mktar() { tar  cvf "${1%%/}.tar"     "${1%%/}/"; }
-mktgz() { tar zcvf "${1%%/}.tar.gz"  "${1%%/}/"; }
-mktbz() { tar jcvf "${1%%/}.tar.bz2" "${1%%/}/"; }
-
-
-
-# remind me, its important!
-# usage: remindme [z] <time> <text>
-# e.g.: remindme 10m "oh, Fxxk!"
-#       remindme z 10m "oh, Fxxk!"
-
-remindme () {
-    if [ $1 == 'z' ] ; then
-        sleep $2 && zenity --info --text "$3" &
-        echo "@@\""
-    else
-        sleep $1 && echo -e "\a\n******\n$2\n******\n" &
-    fi
-}
 
 # upload files to imgur.com
 imgur () {
@@ -345,15 +282,11 @@ imgur () {
 
     echo -ne "\n\e[31m    ==> \e[m"
     # grep the image url
-    echo $response | 
+    echo $response |
         grep -o -E "http:\\\/\\\/i\.imgur.com\\\/.*\.jpg" |
         sed -e 's/\\//g'
 }
 
-
-ips () {
-    ip addr show | grep inet
-}
 
 # listen to the ICRT radio
 icrt () {

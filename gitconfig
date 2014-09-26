@@ -17,7 +17,7 @@
 	ls = ls-files
 	m = merge
 	st = status
-	show-graph = log --graph --abbrev-commit --pretty=oneline
+	show-graph = log --all --graph --oneline --decorate
 	stash-unapply = !git stash show -p | git apply -R
 	unstage = reset HEAD --
 [merge]
