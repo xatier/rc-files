@@ -65,7 +65,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias rscp='rsync -avPe ssh'
-alias telnet="/usr/bin/luit -encoding big5 /usr/bin/telnet"
+#alias telnet="/usr/bin/luit -encoding big5 /usr/bin/telnet"
 
 alias wtf='man'
 alias bye='exit'
@@ -212,9 +212,9 @@ PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
 
 
 # df check every day!
-perl $HOME/dfCheckEveryday.pl
+#perl $HOME/dfCheckEveryday.pl
 cal -3
-fortune
+#fortune
 
 
 
