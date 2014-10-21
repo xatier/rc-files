@@ -7,39 +7,42 @@
 # original script by PkmX
 # modified by xatier
 
-lvds=$(xrandr --query | egrep -om1  '^LVDS[0-9]')
-vga=$(xrandr --query | egrep -om1 '^VGA[0-9]')
+lvds=$(xrandr --query | grep " connected" | egrep -om1  '^LVDS[0-9]')
+vga=$(xrandr --query  | grep " connected" | egrep -om1 '^VGA[0-9]')
+hdmi=$(xrandr --query | grep " connected" | egrep -om1 '^HDMI[0-9]')
 
 eecho()
 {
     echo $@ 2>&1
 }
 
+# for my laptop
 if [[ -n $lvds && -n $vga ]]; then
     [[ -n $2 ]] && mode1="--mode $2" || mode1='--auto'
     [[ -n $3 ]] && mode2="--mode $3" || mode2='--auto'
-            
+
     case $1 in
-        'lvds'|'l')
+        lvds|l)
             xrandr --output "$lvds" $mode1 --output "$vga" --off
             ;;
-        'vga'|'v')
+        vga|v)
             xrandr --output "$lvds" --off  --output "$vga" $mode1
             ;;
-        'lvds-vga'|'lv')
+        lvds-vga|lv)
             xrandr --output "$lvds" $mode1 --output "$vga" $mode2 --right-of "$lvds"
             ;;
-        'vga-lvds'|'vl')
+        vga-lvds|vl)
             xrandr --output "$lvds" $mode1 --output "$vga" $mode2 --left-of "$lvds"
             ;;
-        'mirror'|'m')
+        mirror|m)
             xrandr --output "$lvds" $mode1 --output "$vga" $mode1 --same-as "$lvds"
             ;;
-        'debug'|'d')
+        debug|d)
             eecho "LVDS: $lvds"
             eecho "VGA: $vga"
+            eecho "VGA: $hdmi"
             ;;
-        'query'|'q'|'?')
+        query|q|?)
             xrandr --query
             ;;
         *)
@@ -47,8 +50,12 @@ if [[ -n $lvds && -n $vga ]]; then
             eecho "or simple like this => [l|v|lv|vl|m|q]"
             ;;
     esac
+
 else
-    eecho 'Unable to find lvds or vga display.'
+    # for my desptop
+    xrandr --output "HDMI1" --auto --output "HDMI3" --auto --right-of "HDMI1"
+
     eecho "LVDS: $lvds"
     eecho "VGA: $vga"
+    eecho "HDMI: $hdmi"
 fi
