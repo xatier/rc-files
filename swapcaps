@@ -1,5 +1,7 @@
 #!/bin/sh
 # Swap caps lock and escape
+# this is from EXAMPLES in xmodmap(1)
+
 echo '
 remove Lock = Caps_Lock
 remove Control = Control_L
