@@ -91,6 +91,8 @@ alias vi='vim'
 alias vd='vimdiff'
 alias ivm='vim'
 alias vmi='vim'
+alias keyboardDisable='sudo kextunload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
+alias keyboardEnable='sudo kextload /System/Library/Extensions/AppleUSBTopCase.kext/Contents/PlugIns/AppleUSBTCKeyboard.kext/'
 
 # lazy cd
 alias ..="cd .."
