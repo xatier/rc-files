@@ -7,39 +7,34 @@
 "###########################################################################
 
 if has("multi_byte")
-"set bomb
-set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
-" CJK environment detection and corresponding setting
-if v:lang =~ "^zh_CN"
-" Use cp936 to support GBK, euc-cn == gb2312
-set encoding=cp936
-set termencoding=cp936
-set fileencoding=cp936
-elseif v:lang =~ "^zh_TW"
-" cp950, big5 or euc-tw
-" Are they equal to each other?
-set encoding=big5
-set termencoding=big5
-set fileencoding=big5
-elseif v:lang =~ "^ko"
-" Copied from someone's dotfile, untested
-set encoding=euc-kr
-set termencoding=euc-kr
-set fileencoding=euc-kr
-elseif v:lang =~ "^ja_JP"
-" Copied from someone's dotfile, untested
-set encoding=euc-jp
-set termencoding=euc-jp
-set fileencoding=euc-jp
-endif
-" Detect UTF-8 locale, and replace CJK setting if needed
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
-endif
+    "set bomb
+    set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,latin1
+    " CJK environment detection and corresponding setting
+    if v:lang =~ "^zh_CN"
+        " Use cp936 to support GBK, euc-cn == gb2312
+        set encoding=cp936
+        set termencoding=cp936
+        set fileencoding=cp936
+    elseif v:lang =~ "^zh_TW"
+        " cp950, big5 or euc-tw
+        " Are they equal to each other?
+        set encoding=big5
+        set termencoding=big5
+        set fileencoding=big5
+    elseif v:lang =~ "^ja_JP"
+        " Copied from someone's dotfile, untested
+        set encoding=euc-jp
+        set termencoding=euc-jp
+        set fileencoding=euc-jp
+    endif
+    " Detect UTF-8 locale, and replace CJK setting if needed
+    if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+        set encoding=utf-8
+        set termencoding=utf-8
+        set fileencoding=utf-8
+    endif
 else
-echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+    echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
 endif
 
 set ambiwidth=double
@@ -71,6 +66,7 @@ set incsearch
 
 
 " make < and  > as a pair, useful in C++
+set showmatch
 set matchpairs+=<:>
 
 
@@ -101,8 +97,6 @@ filetype plugin indent on
 set noerrorbells
 set novisualbell
 
-" (?)
-set showmatch
 
 "###########################################################################
 " color settings
@@ -152,9 +146,9 @@ au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 au BufNewFile,BufRead *.md set filetype=markdown
 
 
-" highlight trailing whitespaces, [spaces]+[tab] and [tab]+[space]
-au bufnewfile,bufread * hi extrawhitespace ctermbg=red guibg=red
-au bufnewfile,bufread * match extrawhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+" highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
+au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red guibg=red
+au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
 
 
 
@@ -170,12 +164,12 @@ map <F7> :if exists("syntax_on") <BAR>
 \ endif <CR>
 
 
-" for C/C++ files
+" for C/C++ files (useless)
 " F9 to compile, F8 to run, F5 to build
-au FileType c map <F9> :!gcc -std=c11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
-au FileType cpp map <F9> :!g++ -std=c++11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
-au FileType c,cpp map <F8> :!./%:r<CR>
-au FileType c,cpp map <F5> :w<CR> :make<CR>
+"au FileType c map <F9> :!gcc -std=c11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
+"au FileType cpp map <F9> :!g++ -std=c++11 -Wall -Wextra -pedantic -Ofast % -lm -o %:r<CR>
+"au FileType c,cpp map <F8> :!./%:r<CR>
+"au FileType c,cpp map <F5> :w<CR> :make<CR>
 
 
 " K to lookup current word in documentations
@@ -185,6 +179,7 @@ au FileType perl nmap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
 au FileType python nmap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
 " for Ruby files
 au FileType ruby nmap K :!ri <cword><CR><CR>
+
 
 " set no expandtab in Makefiles
 au FileType make setlocal noet
@@ -197,13 +192,13 @@ au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
 
 " F5 to run a script
-map <F5> :!./%<CR>
+"map <F5> :!./%<CR>
 
-" no highlight search
+" Ctrl-L clear search results highlighting
 nnoremap <silent><c-l> :nohl<cr><c-l>
 
 
-" remove trailing whitespaces before saving codes
+" remove trailing whitespace before saving codes
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
