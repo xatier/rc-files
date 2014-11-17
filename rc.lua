@@ -41,15 +41,15 @@ end
 -- }}}
 
 -- {{{ Variable definitions
--- Themes define colours, icons, and wallpapers
+-- Themes define colours, icons, font and wallpapers.
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 beautiful.font = "Inconsolata 14"
 
--- default terminal and editor
+-- This is used later as the default terminal and editor to run.
 terminal = "urxvtc"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
--- modkey
+
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -58,26 +58,26 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
+-- delete useless layouts
 local layouts =
 {
-    -- delete useless layouts
-    awful.layout.suit.tile,               -- 1 (tile.right)
-    awful.layout.suit.tile.left,          -- 2
-    awful.layout.suit.tile.bottom,        -- 3
-    -- awful.layout.suit.tile.top,           --
-    -- awful.layout.suit.fair,               --
-    -- awful.layout.suit.fair.horizontal,    --
-    -- awful.layout.suit.spiral,             --
-    -- awful.layout.suit.spiral.dwindle,     --
-    awful.layout.suit.max,                -- 4
-    -- awful.layout.suit.max.fullscreen,     --
-    -- awful.layout.suit.magnifier,          --
-    awful.layout.suit.floating            -- 5
+    awful.layout.suit.floating,           -- 1
+    awful.layout.suit.tile,               -- 2 (tile.right)
+    awful.layout.suit.tile.left,          -- 3
+    awful.layout.suit.tile.bottom,        -- 4
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,                -- 5
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
 }
 -- }}}
 
 -- {{{ Wallpaper
--- beautiful.wallpaper = "/home/xatier/Pictures/goodbye.jpg"
+beautiful.wallpaper = "/home/xatier/tmp/oono.jpg"
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
@@ -89,13 +89,9 @@ end
 -- Define a tag table which hold all screen tags.
 tags = {}
 for s = 1, screen.count() do
-    tags[s] = awful.tag(
-        {"⌨", "☠", "☢", "☣", "☮", "✈", "✍", "♺", "(．＿．?)"},
-        s,
-        { layouts[2], layouts[2], layouts[2],
-          layouts[2], layouts[2], layouts[2],
-          layouts[2], layouts[2], layouts[2]
-        }
+    -- Each screen has its own tag table.
+    tags[s] = awful.tag( {"⌨", "☠", "☢", "☣", "☮", "✈", "✍", "♺", "(．＿．?)"},
+        s, layouts[3]
     )
 end
 -- }}}
@@ -145,8 +141,8 @@ end
 -- network usage
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
-                '<span color="#CC9090">⇩${eth0 down_kb}</span>' ..
-                '<span color="#7F9F7F">⇧${eth0 up_kb}</span>', 3)
+                '<span color="#CC9090">⇩${enp4s0 down_kb}</span>' ..
+                '<span color="#7F9F7F">⇧${enp4s0 up_kb}</span>', 3)
 
 -- clock
 clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
@@ -253,7 +249,9 @@ mytasklist.buttons = awful.util.table.join(
                                                   instance:hide()
                                                   instance = nil
                                               else
-                                                  instance = awful.menu.clients({ width=250 })
+                                                  instance = awful.menu.clients({
+                                                      theme = { width = 250 }
+                                                  })
                                               end
                                           end),
                      awful.button({ }, 4, function ()
@@ -366,11 +364,9 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
-    -- Layout manipulation
-    -- these two lines are useless for me XD
+    -- Layout manipulation, useless for me XD
     -- awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     -- awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -389,8 +385,7 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-
-    -- what the fuck?
+    -- useless
     -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
     -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
@@ -399,7 +394,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    -- i can move and click my mouse with hotkeys!!
+    -- move and click my mouse with hotkeys
     awful.key({ modkey, "Shift"   }, "h", function () local mc = mouse.coords()
                 mouse.coords({x = mc.x-15, y = mc.y}) end),
     awful.key({ modkey, "Shift"   }, "j", function () local mc = mouse.coords()
@@ -489,6 +484,7 @@ clientkeys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
+        -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = mouse.screen
@@ -497,6 +493,7 @@ for i = 1, 9 do
                            awful.tag.viewonly(tag)
                         end
                   end),
+        -- Toggle tag.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = mouse.screen
@@ -505,6 +502,7 @@ for i = 1, 9 do
                          awful.tag.viewtoggle(tag)
                       end
                   end),
+        -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -514,6 +512,7 @@ for i = 1, 9 do
                           end
                      end
                   end),
+        -- Toggle tag.
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -535,12 +534,14 @@ root.keys(globalkeys)
 -- }}}
 
 -- {{{ Rules
+-- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
+                     raise = true,
                      keys = clientkeys,
                      buttons = clientbuttons } },
     { rule = { class = "MPlayer" },
@@ -555,6 +556,9 @@ awful.rules.rules = {
       properties = { size_hints_honor = false } },
     { rule = { instance = "exe" },
       properties = { floating = true } },
+    -- Set Firefox to always map on tags number 2 of screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
 
@@ -630,5 +634,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus c.opacity = 1 end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal c.opacity = 0.95 end)
 -- }}}
-
--- vim:set fdm=marker:

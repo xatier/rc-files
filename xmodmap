@@ -1,6 +1,7 @@
 ! swap capslock and control_L for X
-! 
+!
 ! Usage:  xmodmap ~/.xmodmap
+! man xmodmap for more details
 
 remove Lock = Caps_Lock
 remove Control = Control_L
