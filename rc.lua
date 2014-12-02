@@ -159,7 +159,7 @@ cpuwidget = wibox.widget.textbox()
 cpuwidget_t = awful.tooltip( {
     objects = {cpuwidget},
     timer_function = function ()
-        return tooltip_func_text('top -b -n 1 | head -n 15')
+        return tooltip_func_text('top -b -c -o %CPU -n 1 | head -n 20')
     end
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
