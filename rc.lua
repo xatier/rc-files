@@ -200,12 +200,24 @@ weatherwidget = wibox.widget.textbox()
 weatherwidget_t = awful.tooltip( {
     objects = {weatherwidget},
     timer_function = function ()
+        -- HsinChu weather, fetch data from cwb.gov.tw
+        os.execute('wget -U chrome http://www.cwb.gov.tw/V7/observe/24past/temp/46757.png -O /tmp/temp.png')
         return tooltip_func_text(
-            'w3m -dump http://www.cwb.gov.tw/pda/observe/real/46757.htm | ' ..
-            'tail -n +3 | head -n -4')
+            'w3m -dump -cols 120 http://www.cwb.gov.tw/V7/observe/24real/Data/46757.htm' ..
+            ' | head -n 32')
     end
 })
-weatherwidget:set_text(" ☔  ")
+weatherwidget:buttons(
+    awful.util.table.join(
+        awful.button({}, 1, function()
+            naughty.notify( {title='Temperature 24 HR',
+                             icon='/tmp/temp.png',
+                             timeout=10})
+        end)
+    )
+)
+weatherwidget:set_text(" ☀ ☁ ☔ ⛅ ⛈ ")
+
 
 
 -- widget separator
