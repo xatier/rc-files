@@ -197,6 +197,9 @@ au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 " Ctrl-L clear search results highlighting
 nnoremap <silent><c-l> :nohl<cr><c-l>
 
+" start an external command with a single bang
+nnoremap ! :!
+
 
 " remove trailing whitespace before saving codes
 fun! <SID>StripTrailingWhitespaces()
