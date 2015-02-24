@@ -219,6 +219,28 @@ weatherwidget:buttons(
 weatherwidget:set_text(" ☀ ☁ ☔ ⛅ ⛈ ")
 
 
+-- alsabox
+alsaboxwidget = wibox.widget.textbox()
+alsaboxwidget_t = awful.tooltip( {
+    objects = {alsaboxwidget},
+    timer_function = function ()
+        return tooltip_func_text('amixer get Master')
+    end
+})
+alsaboxwidget:buttons(
+    awful.util.table.join(
+        awful.button({}, 1, function()
+            awful.util.spawn('amixer set Master toggle', false)
+        end),
+        awful.button({}, 4, function()
+            awful.util.spawn('amixer set Master 1+', false)
+        end),
+        awful.button({}, 5, function()
+            awful.util.spawn('amixer set Master 1-', false)
+        end)
+    )
+)
+alsaboxwidget:set_text(" 🔊 ")
 
 -- widget separator
 separator = wibox.widget.textbox()
@@ -325,6 +347,9 @@ for s = 1, screen.count() do
     end
     right_layout:add(separator)
     right_layout:add(batwidget)
+    right_layout:add(separator)
+    right_layout:add(alsaboxwidget)
+    right_layout:add(separator)
     right_layout:add(clockwidget)
     right_layout:add(weatherwidget)
     right_layout:add(mylayoutbox[s])
