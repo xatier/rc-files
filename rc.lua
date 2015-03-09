@@ -201,9 +201,9 @@ weatherwidget_t = awful.tooltip( {
     objects = {weatherwidget},
     timer_function = function ()
         -- HsinChu weather, fetch data from cwb.gov.tw
-        awful.util.spawn('wget -U chrome http://www.cwb.gov.tw/V7/observe/24past/temp/46757.png -O /tmp/temp.png')
+        awful.util.spawn('wget -U chrome http://www.cwb.gov.tw/V7/observe/24past/temp/C0F9M.png -O /tmp/temp.png')
         return tooltip_func_text(
-            'w3m -dump -cols 120 http://www.cwb.gov.tw/V7/observe/24real/Data/46757.htm' ..
+            'w3m -dump -cols 120 http://www.cwb.gov.tw/V7/observe/24real/Data/C0F9M.htm' ..
             ' | head -n 32')
     end
 })
@@ -212,7 +212,7 @@ weatherwidget:buttons(
         awful.button({}, 1, function()
             naughty.notify( {title='Temperature 24 HR',
                              icon='/tmp/temp.png',
-                             timeout=10})
+                             timeout=20})
         end)
     )
 )
