@@ -214,7 +214,7 @@ PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
 
 
 # df check every day!
-#perl $HOME/dfCheckEveryday.pl
+#perl $HOME/bin/dfCheckEveryday.pl
 cal -3
 #fortune
 
