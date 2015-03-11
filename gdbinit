@@ -7,3 +7,4 @@ set print array on
 set print array-indexes on
 set print vtbl on
 set disassembly-flavor intel
+#source ~/peda/peda.py
