@@ -14,9 +14,7 @@ urxvtd -q -o -f
 
 hime &
 chromium &
-dwb -r &
 pcmanx &
-dropboxd &
 xscreensaver &
 
 
