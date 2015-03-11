@@ -5,6 +5,7 @@ export XMODIFIERS="@im=hime"
 export GTK_IM_MODULE=hime
 export QT_IM_MODULE=hime
 export QT4_IM_MODULE=hime
+export QT5_IM_MODULE=hime
 
 xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
