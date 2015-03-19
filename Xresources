@@ -12,7 +12,7 @@ URxvt*mouseWheelScrollPage:  1
 URxvt*cursorBlink:           1
 
 ! font
-URxvt*font:xft:Inconsolata:size=16,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono
+URxvt*font:xft:Inconsolata:size=16,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono,xft:Symbola
 URxvt*internalBorder:   1
 
 ! Extensions
