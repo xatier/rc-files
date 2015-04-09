@@ -237,30 +237,6 @@ distro_name () {
 }
 
 
-# Easy extract
-extract () {
-  if [ -f $1 ] ; then
-      case $1 in
-          *.tar.bz2)   tar jxvf $1    ;;
-          *.tar.gz)    tar zxvf $1    ;;
-          *.tar)       tar xvf $1     ;;
-          *.tbz2)      tar xvjf $1    ;;
-          *.tgz)       tar xvzf $1    ;;
-          *.bz2)       bunzip2  $1    ;;
-          *.rar)       rar x $1       ;;
-          *.gz)        gunzip $1      ;;
-          *.zip)       unzip $1       ;;
-          *.7z)        7z x $1        ;;
-          *)           echo "don't know how to extract '$1' Q_Q" ;;
-      esac
-  else
-      echo "'$1' is not a valid file!"
-  fi
-}
-
-
-
-
 # colorize man pages
 man () {
     env LESS_TERMCAP_mb=$'\E[1;31m' \
