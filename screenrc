@@ -10,7 +10,7 @@ startup_message off
 nethack on
 shell $SHELL
 
-# using Ctrl+Left & Ctrl+Right 
+# using Ctrl+Left & Ctrl+Right
 bindkey ^[[1;5D prev
 bindkey ^[[1;5C next
 bindkey \033[D prev
@@ -22,17 +22,12 @@ bind b encoding big5 utf8
 bind u encoding utf8 utf8
 defbce on # erase background with current bg color
 cjkwidth off
-caption always "%{=u .M}%-w%<%{=ub C}%n %t%{=u .M}%+w%-09="                    
+caption always "%{=u .M}%-w%<%{=ub C}%n %t%{=u .M}%+w%-09="
 hardstatus alwayslastline "%{ kk}%{g}%e%<%=%{Y} %D%c:%s %a%{R} %M %d/%m/%Y %=[%{G}@%H %{M}Load: %l %{w}%{R}]"
 
-screen -t htop 0
-screen -t root 1
+screen -t irssi 0
+screen -t bash 1
 screen -t bash 2
 screen -t bash 3
 screen -t bash 4
-screen -t tmp 5
-screen -t TODO 6
-screen -t w3m 7
-screen -t circbot 8
-screen -t irssi 9
-screen -t turses 10
+screen -t bash 5
