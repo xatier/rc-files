@@ -3,151 +3,165 @@ my rcfiles
 
 usage
 -----
-using soft link generate config files under your home directory
 
-`ln -s ${DIR}/rc-files/xxx ~/.xxx`
+clone the repo and add links to the files
+
+```
+git clone git@github.com:xatier/rc-files.git
+ln -s rc-files/xxx ~/.xxx
+```
 
 vimrc
 -----
+
 my vimrc
 
 
 screenrc
 -----
-play with nethack(?)
+
+use `Ctrl-a` as prefix key
+
+my status line and pre-opened windows
+
+use `Ctrl + <-/->` to switch windows
+
 
 tmux.conf
 -----
-using C-b as prefix key
 
-vi-like key binding
+use `Ctrl-b` as prefix key
+
+vi-like key bindings
+
+use `Shift + <-/->` to switch windows
 
 bashrc
 -----
-my bashrc template
 
-    need to install:
-        `luit` for big-5 endocing telnet(Taiwanese BBS)
-        `fortune` for interesting  things
-        `w3m` text-based web browser
-        `curl` for imgur script
-
-    
-
+my settings and aliases
 
 xmodmap
 -------
-using xmodmap to swap CapsLock and Control\_L
 
-from the EXAMPLE in `man xmodmap`
+swap `CapsLock` and `Control\_L`
 
 `Usage:  xmodmap ~/.xmodmap`
 
+or run `bin/swapcaps`
+
 srandr
 ------
+
 Simple xrandr
 
 A dirty script to manage my notebook's screen output using xrandr.
 
 
-original script by PkmX (<https://github.com/PkmX>)
+original script by @PkmX (<https://github.com/PkmX>)
 
-modified by xatier
+modified by @xatier
 
-    Usage: srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]
-    or simple like this => srander[l|v|lv|vl|m]
+Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
+
+or simple like this => `srander[l|v|lv|vl|m]`
+
 
 rc.lua
 ------
 
-configuration file for the awesome wm <http://awesome.naquadah.org/>
+configuration file for the [awesome wm](http://awesome.naquadah.org/)
 
-    fit for awesome 3.5 (with Lua 5.2)
+- for awesome 3.5 (with Lua 5.2)
 
-    disable some layouts
+- disable some layouts
 
-    use vim and urxvt for editor and terminal 
+- use vim and urxvt as editor and terminal
 
-    add some widgets 
-        network usage
-        text clock
-        CPU usage
-        memory usage
+- add some widgets
 
-    Mod4 + F12 to launch xscreensaver-lock
+  +network usage
+  +text clock
+  +CPU usage
+  +memory usage
 
-    Installation
-        vicious widgets
+- `Mod4 + F12` to launch xscreensaver-lock
 
-            `cd ~/.config/awesome`
-            `git clone http://git.sysphere.org/vicious`
-        
-        change the path of `theme.lua`  (maybe you can use the default one in /usr/share/awesome)
+- Installation
 
-            `beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")`
+    + vicious widgets
 
-        pick up a great wallpaper
+        ```
+        cd ~/.config/awesome
+        git clone http://git.sysphere.org/vicious/
+        ```
 
-            `beautiful.wallpaper = "/home/xatierlike/Pictures/goodbye.jpg"`
+    + change the path of `theme.lua`  (you can use the default one in `/usr/share/awesome`)
 
-        urxvt terminal emulator
+        ```
+        beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")
+        ```
 
-            <http://software.schmorp.de/pkg/rxvt-unicode.html>
+    + pick up a great wallpaper
 
-            `pacman -S rxvt-unicode urxvt-perl`
+        ```
+        beautiful.wallpaper = "/home/xatierlike/Pictures/goodbye.jpg"
+        ```
 
-        ranger file manager
+    + urxvt terminal emulator
 
-            <http://ranger.nongnu.org/>
+        - http://software.schmorp.de/pkg/rxvt-unicode.html
 
-        check the battery name of this line
+        ```
+        pacman -S rxvt-unicode urxvt-perl
+        ```
 
-            `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
+    + ranger file manager
 
-            to get the battery name (BAT0 or BAT1 for example)
-            `ls /sys/class/power_supply/`
+        - http://ranger.nongnu.org/
 
-        xdotool
+        ```
+        pacman -S rxvt-unicode urxvt-perl
+        ```
 
-            `pacman -S xdotool`
+    + check the battery name of this line
 
-        shutter-progect <http://shutter-project.org/>
+        `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
-            put it under /opt/shutter
+        to get the battery name (BAT0 or BAT1 for example)
 
-        xcompmgr
+        ```
+        ls /sys/class/power_supply/
+        ```
 
-            `pacman -S xcompmgr`
 
-        dwb
+    + [shutter-progect](http://shutter-project.org/)
 
-            `pacman -S dwb`
+        ```
+        pacman -S shutter
+        ```
+
+    + xcompmgr
+
+        ```
+        pacman -S xcompmgr
+        ```
+
 
 xinitrc
 -------
 
-    use HIME for imput method <http://hime.luna.com.tw/>
+- [HIME for imput method](http://hime.luna.com.tw/)
 
-    xmodmap to swap Capslock and Ctrl
+- xmodmap to swap Capslock and Ctrl
 
-    launch some applicatoins
+- launch some applications
 
-    launch the awesome wm and keep logs
+- launch the awesome wm and keep logs
 
 
 Xresources
 ----------
-    currently only my urxvt configurations
 
-w3m
------
-w3m web browser   <http://w3m.sourceforge.net/>
-
-    color favor
-
-    meta-q     CLOSE_TAB                                                          
-    x          CLOSE_TAB                                                              
-    Ctrl-f     NEXT_PAGE                                                            
-    Ctrl-b     PREV_PAGE                                                            
-    F          NEXT
+currently only my urxvt configurations
 
