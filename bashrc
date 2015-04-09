@@ -259,34 +259,6 @@ extract () {
 }
 
 
-# upload files to imgur.com
-imgur () {
-
-    if [ -z "$1" ] ; then
-        echo "Usage: imgur <filename>"
-        return
-    fi
-
-    if [ ! -f "$1" ] ; then
-        echo "file not Fond"
-        return
-    fi
-
-    echo "uploading $1 ... plz wait"
-    # using my imagur API client ID
-    response=$(curl -H "Authorization: Client-ID cb76f522bf7abf3" \
-                    -F "image=@$1" \
-                    https://api.imgur.com/3/image 2>/dev/null)
-
-    echo -e "\n\nimgur.com returned ...:"
-    echo $response
-
-    echo -ne "\n\e[31m    ==> \e[m"
-    # grep the image url
-    echo $response |
-        grep -o -E "http:\\\/\\\/i\.imgur.com\\\/.*\.jpg" |
-        sed -e 's/\\//g'
-}
 
 
 # colorize man pages
