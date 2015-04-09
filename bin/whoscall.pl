@@ -7,7 +7,7 @@ my $number = join "", @ARGV;
 chomp $number;
 
 $number =~ s/\s+//g;
-$number =~ s/^09/886/;
+$number =~ s/^09/8869/;
 $number =~ s/\+886/886/;
 
 say $number;
