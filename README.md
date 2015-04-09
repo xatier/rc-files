@@ -36,7 +36,7 @@ vi-like key bindings
 
 use `Shift + <-/->` to switch windows
 
-bashrc
+bashrc & inputrc
 -----
 
 my settings and aliases
