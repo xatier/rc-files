@@ -289,12 +289,6 @@ imgur () {
 }
 
 
-# listen to the ICRT radio
-icrt () {
-    mplayer mms://bcr.media.hinet.net/RA000038
-}
-
-
 # colorize man pages
 man () {
     env LESS_TERMCAP_mb=$'\E[1;31m' \
