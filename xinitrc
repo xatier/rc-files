@@ -14,7 +14,7 @@ urxvtd -q -o -f
 
 
 hime &
-chromium &
+chromium --disk-cache-dir=/tmp/cache &
 pcmanx &
 xscreensaver &
 
