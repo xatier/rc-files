@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+
+use 5.018;
+
+#####################################################
+##
+## How does Oxford pronounce the word
+##
+## a little script to grab pronunciations from Oxford online dictionary
+##
+## Usage: ./oxford.pl meteorological
+##
+## Author: @xatierlikelee
+## License: GPL
+######################################################
+#
+# the uri of the pronunciation should be like this:
+#
+# http://www.oxforddictionaries.com/media/american_english/us_pron/e/ent/entre/entrepreneur__us_2.mp3
+# http://www.oxforddictionaries.com/media/american_english/us_pron/r/rem/remon/remonstrate__us_1.mp3
+# http://www.oxforddictionaries.com/media/american_english/us_pron/l/lau/laud_/laud__us_1.mp3
+#
+# note, there're still some exceptions don't follow the above format :(
+
+my $base = "http://www.oxforddictionaries.com/media/american_english/us_pron/";
+
+my $word = $ARGV[0];
+
+my $query = (join "/", ((substr $word, 0, 1),
+                        (substr $word, 0, 3),
+                        (length $word < 5 ? $word . "_"x(5 - length $word) :
+                                            substr $word, 0, 5),
+                         $word)) . "__us_1.mp3";
+
+say "=> http://www.oxforddictionaries.com/definition/american_english/$word";
+system "mplayer -really-quiet -nolirc -user-agent chrome -prefer-ipv4 $base$query";
+
+=foo
+ $ oxford meticulous
+=> http://www.oxforddictionaries.com/definition/american_english/meticulous
+┌─[ Thu Apr 09-22:54:07 ] xatier @ walla ^_^
+└─[~]-[Arch Linux] $ oxford fledgling
+=> http://www.oxforddictionaries.com/definition/american_english/fledgling
+┌─[ Thu Apr 09-22:54:24 ] xatier @ walla ^_^
+└─[~]-[Arch Linux] $ oxford egoism
+=> http://www.oxforddictionaries.com/definition/american_english/egoism
+
+=cut
