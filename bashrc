@@ -217,6 +217,7 @@ cal -3
 #fortune
 
 
+PATH=$PATH:/home/xatier/bin
 
 
 # display return code of previous command
