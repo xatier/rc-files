@@ -12,6 +12,7 @@
 	df = diff
 	l = log
 	last = log -1 HEAD
+    lg = log -g
     lm = log master
     lp = log -p
 	ls = ls-files
