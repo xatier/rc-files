@@ -33,7 +33,17 @@ my $query = (join "/", ((substr $word, 0, 1),
                          $word)) . "__us_1.mp3";
 
 say "=> http://www.oxforddictionaries.com/definition/american_english/$word";
-system "mplayer -really-quiet -nolirc -user-agent chrome -prefer-ipv4 $base$query";
+open(ERR, "mplayer -quiet -nolirc -user-agent chrome -prefer-ipv4 $base$query 2>&1 |");
+while (<ERR>) {
+    if (/404:Not Found/) {
+        # for the exceptional ones
+        my $mp3 = `wget -q -U chrome http://www.oxforddictionaries.com/definition/american_english/$word -O - | grep data-src-mp3`;
+        $mp3 = ($mp3 =~ /\"(.*?)\"/)[0];
+        system "mplayer -really-quiet -nolirc -user-agent chrome -prefer-ipv4 $mp3";
+        last;
+    }
+}
+
 
 =foo
  $ oxford meticulous
