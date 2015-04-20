@@ -10,6 +10,9 @@ Urxvt*underlineurls:         true
 URxvt*scrollstyle:           plain
 URxvt*mouseWheelScrollPage:  1
 URxvt*cursorBlink:           1
+URxvt*scrollTtyOutput:       false
+URxvt*scrollWithBuffer:      true
+URxvt*scrollTtyKeypress:     true
 
 ! font
 URxvt*font:xft:Inconsolata:size=16,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono,xft:Symbola
