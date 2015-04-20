@@ -29,7 +29,7 @@ URxvt.keysym.M-C-v:     perl:clipboard:paste_escaped
 urxvt*modifier:         alt
 URxvt*keysym.Home:      \033[1~
 URxvt*keysym.End:       \033[4~
-URxvt*saveLines:        4095
+URxvt*saveLines:        65535
 URxvt*url-launcher:     /usr/bin/chromium
 URxvt*url-select.launcher:  chromium
 URxvt.url-select.underline: true
