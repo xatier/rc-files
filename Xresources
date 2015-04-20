@@ -1,10 +1,10 @@
 ! Urxvt {{{
 ! color settings
-URxvt*termName:          rxvt-256color
-URxvt*depth:             0
-URxvt*background:        black
-URxvt*foreground:        green
-Urxvt*underlineurls: true
+URxvt*termName:              rxvt-256color
+URxvt*depth:                 0
+URxvt*background:            black
+URxvt*foreground:            green
+Urxvt*underlineurls:         true
 
 ! scroll
 URxvt*scrollstyle:           plain
@@ -13,26 +13,26 @@ URxvt*cursorBlink:           1
 
 ! font
 URxvt*font:xft:Inconsolata:size=16,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono,xft:Symbola
-URxvt*internalBorder:   1
+URxvt*internalBorder:        1
 
 ! Extensions
-URxvt*perl-lib:        /usr/lib/urxvt/perl/
-URxvt*perl-ext-common: default,searchable-scrollback,clipboard,url-select,keyboard-select
+URxvt*perl-lib:              /usr/lib/urxvt/perl/
+URxvt*perl-ext-common:       default,searchable-scrollback,clipboard,url-select,keyboard-select
 
 ! misc
-URxvt.keysym.M-u:       perl:url-select:select_next
-URxvt.keysym.M-Escape:  perl:keyboard-select:activate
-URxvt.keysym.M-s:       perl:keyboard-select:search
-URxvt.keysym.M-c:       perl:clipboard:copy
-URxvt.keysym.M-v:       perl:clipboard:paste
-URxvt.keysym.M-C-v:     perl:clipboard:paste_escaped
-urxvt*modifier:         alt
-URxvt*keysym.Home:      \033[1~
-URxvt*keysym.End:       \033[4~
-URxvt*saveLines:        65535
-URxvt*url-launcher:     /usr/bin/chromium
-URxvt*url-select.launcher:  chromium
-URxvt.url-select.underline: true
+URxvt.keysym.M-u:            perl:url-select:select_next
+URxvt.keysym.M-Escape:       perl:keyboard-select:activate
+URxvt.keysym.M-s:            perl:keyboard-select:search
+URxvt.keysym.M-c:            perl:clipboard:copy
+URxvt.keysym.M-v:            perl:clipboard:paste
+URxvt.keysym.M-C-v:          perl:clipboard:paste_escaped
+urxvt*modifier:              alt
+URxvt*keysym.Home:           \033[1~
+URxvt*keysym.End:            \033[4~
+URxvt*saveLines:             65535
+URxvt*url-launcher:          /usr/bin/chromium
+URxvt*url-select.launcher:   chromium
+URxvt.url-select.underline:  true
 ! }}}
 
 ! vim:set fdm=marker:
