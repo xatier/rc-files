@@ -4,11 +4,12 @@
 [push]
 	default = simple
 [color]
-	ui = true
+	ui = auto
 [alias]
 	br = branch
 	ci = commit
 	co = checkout
+    dc = diff --cached
 	df = diff
 	l = log
 	last = log -1 HEAD
