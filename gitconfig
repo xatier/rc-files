@@ -11,6 +11,8 @@
 	co = checkout
 	dc = diff --cached
 	df = diff
+	gist = "!xdg-open https://gist.github.com"
+	github = "!xdg-open https://github.com/xatier?tab=repositories"
 	l = log
 	last = log -1 HEAD
 	lg = log -g
