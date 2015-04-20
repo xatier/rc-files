@@ -1,7 +1,7 @@
 ! Urxvt {{{
 ! color settings
 URxvt*termName:          rxvt-256color
-URxvt*depth:             32
+URxvt*depth:             0
 URxvt*background:        black
 URxvt*foreground:        green
 Urxvt*underlineurls: true
