@@ -9,13 +9,13 @@
 	br = branch
 	ci = commit
 	co = checkout
-    dc = diff --cached
+	dc = diff --cached
 	df = diff
 	l = log
 	last = log -1 HEAD
-    lg = log -g
-    lm = log master
-    lp = log -p
+	lg = log -g
+	lm = log master
+	lp = log -p
 	ls = ls-files
 	m = merge
 	st = status
