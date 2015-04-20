@@ -11,8 +11,12 @@
 	co = checkout
 	dc = diff --cached
 	df = diff
-	gist = "!xdg-open https://gist.github.com"
-	github = "!xdg-open https://github.com/xatier?tab=repositories"
+	gist = !xdg-open https://gist.github.com
+	github = !xdg-open `git rev-parse 2>/dev/null && \
+                        git config --get remote.origin.url | \
+                        sed -e 's/:/\\//' -e 's/git@/https:\\/\\//' || \
+                        echo "https://github.com/xatier?tab=repositories"`
+	hub = !git github
 	l = log
 	last = log -1 HEAD
 	lg = log -g
