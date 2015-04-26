@@ -11,6 +11,14 @@ git clone git@github.com:xatier/rc-files.git
 ln -s rc-files/xxx ~/.xxx
 ```
 
+license
+-------
+
+All codes are under their own license(s) from the original projects.
+
+Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html).
+
+
 vimrc
 -----
 
