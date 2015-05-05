@@ -2,6 +2,9 @@ set disassembly-flavor intel
 set pagination off
 set step-mode on
 
+set history filename ~/.gdb_history
+set history save
+
 set print array on
 set print array-indexes on
 set print asm-demangle on
