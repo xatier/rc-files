@@ -1,4 +1,6 @@
 set disassembly-flavor intel
+set disassemble-next-line auto
+
 set pagination off
 set step-mode on
 
