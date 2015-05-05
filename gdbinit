@@ -20,8 +20,41 @@ set print vtbl on
 
 set prompt \001\033[1;31m\002\n(^q^) \001\033[0m\002
 
+# helpers
+define chr
+  printf "[%c]", $arg0
+end
+
 define hex
   printf "0x%x", $arg0
+end
+
+define ord
+  printf "[%d]", $arg0
+end
+
+define bin
+  p/t $arg0
+end
+
+# aliases
+define px
+  p/x $arg0
+end
+define ps
+  p/s $arg0
+end
+define pu
+  p/u $arg0
+end
+define pb
+  p/t $arg0
+end
+define py
+  python-interactive
+end
+define pc
+  x/8i $pc-10
 end
 
 #source ~/peda/peda.py
