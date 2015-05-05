@@ -12,6 +12,6 @@ set print symbol-filename on
 set print thread-events off
 set print vtbl on
 
-set prompt \033[1;31m\n(^q^) \033[0m
+set prompt \001\033[1;31m\002\n(^q^) \001\033[0m\002
 
 #source ~/peda/peda.py
