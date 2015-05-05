@@ -5,6 +5,7 @@ set step-mode on
 set print array on
 set print array-indexes on
 set print asm-demangle on
+set print demangle on
 set print object on
 set print pretty on
 set print static-members on
