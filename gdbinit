@@ -18,4 +18,8 @@ set print vtbl on
 
 set prompt \001\033[1;31m\002\n(^q^) \001\033[0m\002
 
+define hex
+  printf "0x%x", $arg0
+end
+
 #source ~/peda/peda.py
