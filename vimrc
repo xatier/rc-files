@@ -69,6 +69,9 @@ set incsearch
 set showmatch
 set matchpairs+=<:>
 
+" highlight tabs
+set list listchars=tab:>>
+
 
 " don't do auto indent while pasting
 "set paste
