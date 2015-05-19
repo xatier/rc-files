@@ -43,7 +43,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.font = "Inconsolata 14"
+beautiful.font = "Inconsolata 16"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvtc"
@@ -129,25 +129,25 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
+
 -- {{{ Wibox
 -- return the command output for tooltips below
 local function tooltip_func_text(command)
-    local fd = io.popen(command)
-    local lines = fd:read('*a')
-    fd:close()
-    return command .. ' :\n\n' .. lines
+    return command .. ' :\n\n' .. awful.util.pread(command)
 end
+
 
 -- network usage
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
                 '<span color="#CC9090">⇩${enp4s0 down_kb}</span>' ..
-                '<span color="#7F9F7F">⇧${enp4s0 up_kb}</span>', 3)
+                '<span color="#7F9F7F">⇧${enp4s0 up_kb}</span>', 1)
+
 
 -- clock
 clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
-clockwidget_t = awful.tooltip( {
-    objects = {clockwidget},
+clockwidget_t = awful.tooltip({
+    objects = { clockwidget },
     timer_function = function ()
         return tooltip_func_text('cal -3')
     end
@@ -156,30 +156,31 @@ clockwidget_t = awful.tooltip( {
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
-cpuwidget_t = awful.tooltip( {
-    objects = {cpuwidget},
+cpuwidget_t = awful.tooltip({
+    objects = { cpuwidget },
     timer_function = function ()
         return tooltip_func_text('top -b -c -o %CPU -n 1 | head -n 20')
     end
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
-                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]' , 5)
+                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]', 2)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
-memwidget_t = awful.tooltip( {
-    objects = {memwidget},
+memwidget_t = awful.tooltip({
+    objects = { memwidget },
     timer_function = function ()
         return tooltip_func_text('free -h')
     end
 })
 vicious.register(memwidget, vicious.widgets.mem,
-                 '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
+                 '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 2)
+
 
 -- battery status
 batwidget = wibox.widget.textbox()
-batwidget_t = awful.tooltip( {
-    objects = {batwidget},
+batwidget_t = awful.tooltip({
+    objects = { batwidget },
     timer_function = function ()
         return tooltip_func_text('acpi -V')
     end
@@ -187,7 +188,7 @@ batwidget_t = awful.tooltip( {
 vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')
 batwidget:buttons(
     awful.util.table.join(
-        awful.button({}, 1, function()
+        awful.button({}, 1, function ()
             naughty.notify( {title='Ouch!!',
                              text="you click me!",
                              timeout=10})
@@ -195,52 +196,67 @@ batwidget:buttons(
     )
 )
 
+
 -- weather status
 weatherwidget = wibox.widget.textbox()
-weatherwidget_t = awful.tooltip( {
-    objects = {weatherwidget},
+weatherwidget_t = awful.tooltip({
+    objects = { weatherwidget },
     timer_function = function ()
-        -- HsinChu weather, fetch data from cwb.gov.tw
-        awful.util.spawn('wget -U chrome http://www.cwb.gov.tw/V7/observe/24past/temp/C0F9M.png -O /tmp/temp.png')
-        return tooltip_func_text(
-            'w3m -dump -cols 120 http://www.cwb.gov.tw/V7/observe/24real/Data/C0F9M.htm' ..
-            ' | head -n 32')
+        -- Taichung weather, fetch data from cwb.gov.tw
+        url = 'http://www.cwb.gov.tw/V7/observe/'
+        awful.util.spawn('wget -U chrome ' .. url .. '24past/temp/C0F9M.png -O /tmp/temp.png')
+        return tooltip_func_text('w3m -dump -cols 120 ' .. url .. '24real/Data/C0F9M.htm | head -n 32')
     end
 })
 weatherwidget:buttons(
     awful.util.table.join(
-        awful.button({}, 1, function()
+        awful.button({}, 1, function ()
             naughty.notify( {title='Temperature 24 HR',
                              icon='/tmp/temp.png',
                              timeout=20})
         end)
     )
 )
-weatherwidget:set_text(" ☀ ☁ ☔ ⛅ ⛈ ")
+-- dynamically change the text of the weather widget
+local update_temp = function()
+    url = 'http://www.cwb.gov.tw/V7/observe/'
+    command = 'w3m -dump -cols 120 ' .. url .. '24real/Data/C0F9M.htm | ' ..
+              'tail -n +3 | head -n 1 | awk \'{ print $3 }\''
+    return '☀ ☁ ☔ [' .. string.gsub(awful.util.pread(command), "\n", "") .. ' C ] '
+end
+
+weatherwidget:set_text(update_temp())
+
+-- update every 10 minutes
+mytimer = timer({ timeout = 600 })
+mytimer:connect_signal("timeout", function()
+    weatherwidget:set_text(update_temp())
+end)
+mytimer:start()
 
 
 -- alsabox
 alsaboxwidget = wibox.widget.textbox()
-alsaboxwidget_t = awful.tooltip( {
-    objects = {alsaboxwidget},
+alsaboxwidget_t = awful.tooltip({
+    objects = { alsaboxwidget },
     timer_function = function ()
         return tooltip_func_text('amixer get Master')
     end
 })
+vicious.register(alsaboxwidget, vicious.widgets.volume, '$2 [$1%]', 1, 'Master')
 alsaboxwidget:buttons(
     awful.util.table.join(
-        awful.button({}, 1, function()
+        awful.button({}, 1, function ()
             awful.util.spawn('amixer set Master toggle', false)
         end),
-        awful.button({}, 4, function()
+        awful.button({}, 4, function ()
             awful.util.spawn('amixer set Master 1+', false)
         end),
-        awful.button({}, 5, function()
+        awful.button({}, 5, function ()
             awful.util.spawn('amixer set Master 1-', false)
         end)
     )
 )
-alsaboxwidget:set_text(" 🔊 ")
 
 -- widget separator
 separator = wibox.widget.textbox()
@@ -325,8 +341,6 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-
-    -- only display systray on screen 1
     if s == 1 then right_layout:add(wibox.widget.systray()) end
 
     -- add my widgets (on screen 2 when i use duel screen)
@@ -346,11 +360,12 @@ for s = 1, screen.count() do
         right_layout:add(memwidget)
     end
     right_layout:add(separator)
-    right_layout:add(batwidget)
-    right_layout:add(separator)
+    -- right_layout:add(batwidget)
+    -- right_layout:add(separator)
     right_layout:add(alsaboxwidget)
     right_layout:add(separator)
     right_layout:add(clockwidget)
+    right_layout:add(separator)
     right_layout:add(weatherwidget)
     right_layout:add(mylayoutbox[s])
 
