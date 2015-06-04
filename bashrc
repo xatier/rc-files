@@ -117,6 +117,8 @@ fi
 #export LC_CTYPE=zh_TW.UTF-8
 #export LC_ALL=zh_TW.UTF-8
 
+export PERL5LIB=/home/xatier/perl5/lib/perl5/
+
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -219,7 +221,8 @@ cal -3
 #fortune
 
 
-PATH=$PATH:/home/xatier/bin
+GOPATH=~/home/xatier/go
+PATH=$PATH:/home/xatier/bin:/home/xatier/go/bin
 
 
 # display return code of previous command
