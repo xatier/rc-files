@@ -153,6 +153,9 @@ clockwidget_t = awful.tooltip({
     end
 })
 
+-- central time zone
+clockCTwidget = wibox.widget.textbox()
+
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
@@ -225,12 +228,18 @@ local update_temp = function()
     return '☀ ☁ ☔ [' .. string.gsub(awful.util.pread(command), "\n", "") .. ' C ] '
 end
 
-weatherwidget:set_text(update_temp())
+local update_CT = function()
+    return '[' .. string.gsub(awful.util.pread('TZ=US/Central date "+%R %p"'), "\n", '') .. ']'
+end
 
--- update every 10 minutes
-mytimer = timer({ timeout = 600 })
+weatherwidget:set_text(update_temp())
+clockCTwidget:set_text(update_CT())
+
+-- update every minutes
+mytimer = timer({ timeout = 60 })
 mytimer:connect_signal("timeout", function()
     weatherwidget:set_text(update_temp())
+    clockCTwidget:set_text(update_CT())
 end)
 mytimer:start()
 
@@ -365,6 +374,7 @@ for s = 1, screen.count() do
     right_layout:add(alsaboxwidget)
     right_layout:add(separator)
     right_layout:add(clockwidget)
+    right_layout:add(clockCTwidget)
     right_layout:add(separator)
     right_layout:add(weatherwidget)
     right_layout:add(mylayoutbox[s])
