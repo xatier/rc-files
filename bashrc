@@ -103,22 +103,8 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-
-# we love UTF-8 environment!
-#export LANG=zh_TW.UTF-8
-#export LC_CTYPE=zh_TW.UTF-8
-#export LC_ALL=zh_TW.UTF-8
-
-export PERL5LIB=/home/xatier/perl5/lib/perl5/
+# Environment variables
+export PERL5LIB=$HOME/perl5/lib/perl5/
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -127,24 +113,36 @@ export LC_ALL=en_US.UTF-8
 # vim rocks
 export EDITOR=vim
 
-
 export LESS="-R"
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+
+GOPATH=$HOME/go
+PATH=$HOME/bin:$HOME/go/bin:$PATH
+
+# use brew apps and GNU coreutils on OS X
+if [ `uname` == "Darwin" ] ; then
+  PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
-# from /usr/share/git/completion/
-. ~/.git-prompt.sh
-. ~/.git-completion.bash
+# git completion
+# Archlinux from /usr/share/git/completion/
+if [ -d /usr/share/git/completion/ ] ; then
+  . /usr/share/git/completion/git-completion.bash
+  . /usr/share/git/completion/git-prompt.sh
+fi
+
+# OS X from /usr/local/etc/bash_completion.d/
+if [ -d /usr/local/etc/bash_completion.d/ ] ; then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
+  . /usr/local/etc/bash_completion.d/git-prompt.sh
+fi
+
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWCOLORHINTS=1
 
 # completion for ssh hosts
 complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //'))" ssh
@@ -207,9 +205,8 @@ PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
 PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
 PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$HOST_COLOR' \h '$COLOR_END                       # host
-PS1+='$(ret_code)'                                     # return code
-PS1+=$COLOR_L_PURPLE'$(__git_ps1 "[ ~> on %s ]")'$COLOR_END
-                                                       # git info
+PS1+='$(ret_code)'$COLOR_END                           # return code
+PS1+='$(__git_ps1 "[ ~> on %s ]")'                     # git info
 PS1+='\n'                                              # new line
 PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
 PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
@@ -222,8 +219,6 @@ cal -3
 #fortune
 
 
-GOPATH=~/home/xatier/go
-PATH=$PATH:/home/xatier/bin:/home/xatier/go/bin
 
 
 # display return code of previous command
