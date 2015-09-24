@@ -150,6 +150,10 @@ cmap w!! w !sudo tee %
 map q: :q
 
 
+" open a new tab on gf
+map gf <c-w>gf
+
+
 " keep virtual mode in
 vnoremap > >gv
 vnoremap < <gv
