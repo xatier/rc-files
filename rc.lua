@@ -118,7 +118,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu,
                                     { "emcas", "urxvtc -e emacs" },
                                     { "ranger", "urxvtc -e ranger" },
                                     { "alsamixer", "urxvtc -e alsamixer" },
-                                    { "www", "dwb" },
+                                    { "www", "chromium" },
                                   }
                         })
 
@@ -156,6 +156,30 @@ clockwidget_t = awful.tooltip({
 -- central time zone
 clockCTwidget = wibox.widget.textbox()
 
+-- from http://awesome.naquadah.org/wiki/Conky_HUD
+function get_conky()
+    local clients = client.get()
+    local conky = nil
+    local i = 1
+    while clients[i] do
+        if clients[i].class == "Conky" then
+            conky = clients[i]
+        end
+        i = i + 1
+    end
+    return conky
+end
+
+function toggle_conky()
+    local conky = get_conky()
+    if conky then
+        if conky.ontop then
+            conky.ontop = false
+        else
+            conky.ontop = true
+        end
+    end
+end
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
@@ -167,6 +191,11 @@ cpuwidget_t = awful.tooltip({
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
                  '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]', 2)
+cpuwidget:buttons(
+    awful.util.table.join(
+        awful.button({}, 1, toggle_conky)
+    )
+)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
@@ -220,25 +249,18 @@ weatherwidget:buttons(
         end)
     )
 )
--- dynamically change the text of the weather widget
-local update_temp = function()
-    url = 'http://www.cwb.gov.tw/V7/observe/'
-    command = 'w3m -dump -cols 120 ' .. url .. '24real/Data/C0F9M.htm | ' ..
-              'tail -n +3 | head -n 1 | awk \'{ print $3 }\''
-    return '☀ ☁ ☔ [' .. string.gsub(awful.util.pread(command), "\n", "") .. ' C ] '
-end
 
 local update_CT = function()
     return '[' .. string.gsub(awful.util.pread('TZ=US/Central date "+%R %p"'), "\n", '') .. ']'
 end
 
-weatherwidget:set_text(update_temp())
+weatherwidget:set_text(' ☀ ')
 clockCTwidget:set_text(update_CT())
 
 -- update every minutes
 mytimer = timer({ timeout = 60 })
 mytimer:connect_signal("timeout", function()
-    weatherwidget:set_text(update_temp())
+--    weatherwidget:set_text(update_temp())
     clockCTwidget:set_text(update_CT())
 end)
 mytimer:start()
@@ -404,7 +426,7 @@ local function do_search (_prompt, engine)
     awful.prompt.run({ prompt = _prompt},
     mypromptbox[mouse.screen].widget,
     function (url)
-        awful.util.spawn(string.format("dwb -x O '%s%s'", engine, url))
+        awful.util.spawn(string.format("chromium -x O '%s%s'", engine, url))
     end, nil,
     awful.util.getdir("cache") .. "/history_search")
 end
@@ -426,9 +448,9 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
-    -- Layout manipulation, useless for me XD
-    -- awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    -- awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    -- Layout manipulation
+    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -447,28 +469,13 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-    -- useless
-    -- awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-    -- awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-    -- awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-    -- awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-
+    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
+    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
-    -- move and click my mouse with hotkeys
-    awful.key({ modkey, "Shift"   }, "h", function () local mc = mouse.coords()
-                mouse.coords({x = mc.x-15, y = mc.y}) end),
-    awful.key({ modkey, "Shift"   }, "j", function () local mc = mouse.coords()
-                mouse.coords({x = mc.x, y = mc.y+15}) end),
-    awful.key({ modkey, "Shift"   }, "k", function () local mc = mouse.coords()
-                mouse.coords({x = mc.x, y = mc.y-15}) end),
-    awful.key({ modkey, "Shift"   }, "l", function () local mc = mouse.coords()
-                mouse.coords({x = mc.x+15, y = mc.y}) end),
-    awful.key({ modkey, "Shift"   }, "u", function () awful.util.spawn("xdotool click 1") end),
-    awful.key({ modkey, "Shift"   }, "i", function () awful.util.spawn("xdotool click 3") end),
-
-    -- restore the minimized client
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
@@ -490,24 +497,14 @@ globalkeys = awful.util.table.join(
               end),
 
     -- wikipedia
-    awful.key({ modkey }, "F5",
+    awful.key({ modkey }, "w",
               function ()
                   do_search("wiki: ", "http://en.wikipedia.org/wiki/Special:Search?search=")
               end),
     -- youtube
-    awful.key({ modkey }, "F6",
+    awful.key({ modkey }, "y",
               function ()
                   do_search("Youtube:: ", "http://www.youtube.com/results?hl=en&search_query=")
-              end),
-    -- wolframalpha
-    awful.key({ modkey }, "F7",
-              function ()
-                  do_search("wolframalpha: ", "http://www.wolframalpha.com/input/?i=")
-              end),
-    -- duckduckgo
-    awful.key({ modkey }, "F8",
-              function ()
-                  do_search("ddg: ", "http://duckduckgo.com/?q=")
               end),
 
     -- Menubar
@@ -517,7 +514,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
 
     -- shutter as printscreen tools    http://shutter-project.org/
-    awful.key({ }, "Print", function () awful.util.spawn("/usr/bin/shutter") end)
+    awful.key({ }, "Print", function () awful.util.spawn("/usr/bin/shutter") end),
+
+    awful.key({}, "F12", function () toggle_conky() end)
 
 )
 
@@ -618,6 +617,14 @@ awful.rules.rules = {
       properties = { size_hints_honor = false } },
     { rule = { instance = "exe" },
       properties = { floating = true } },
+    { rule = { class = "Conky" },
+      properties = {
+          floating = true,
+          sticky = true,
+          ontop = false,
+          focusable = false,
+          size_hints = {"program_position", "program_size"}
+      } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },

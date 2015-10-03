@@ -17,6 +17,7 @@ hime &
 chromium --disk-cache-dir=/tmp/cache &
 pcmanx &
 xscreensaver &
+conky &
 
 
 exec awesome >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
