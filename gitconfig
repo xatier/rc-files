@@ -19,7 +19,7 @@
 	hub = !git github
 	l = log
 	last = log -1 HEAD
-	lg = log -g
+	lg = log --all --graph --pretty='%C(yellow)%h%C(reset)%C(bold yellow)%d%C(reset)%C(green) %an%C(reset)%C(dim white) (%ar)%C(reset) %n        %s%n'
 	lm = log master
 	lp = log -p
 	ls = ls-files
@@ -32,3 +32,5 @@
 	tool = vimdiff
 [help]
 	autocorrect = 30
+[core]
+	excludesfile = ~/.gitignore
