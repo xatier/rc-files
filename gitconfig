@@ -34,3 +34,4 @@
 	autocorrect = 30
 [core]
 	excludesfile = ~/.gitignore
+	pager = less -x1,5
