@@ -182,6 +182,20 @@ endfun
 au FileType c,cpp,perl,python au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
+" zdict dictionary
+fun! <SID>zdict_lookup()
+    if expand("%")=="dict-tmp-5566" | q! | return | endif
+    let zdict="~/tmp/zdict/bin/zdict "
+    let query=system(zdict . " " . expand("<cword>"))
+    bel 20sp dict-tmp-5566
+    setl noswapfile buftype=nofile
+    silent 0put =query | 1
+endfun
+
+" toggle zdict
+map <silent><F2> :call <SID>zdict_lookup()<CR>
+
+
 
 "###########################################################################
 " multi-encoding setting
