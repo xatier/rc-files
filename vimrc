@@ -159,8 +159,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 
-" set no expandtab in Makefiles
-au FileType make setlocal noet
+" set no expandtab in Makefiles and Go
+au FileType make,go setlocal noet
 
 
 " set spell in Markdown notes
