@@ -426,7 +426,7 @@ local function do_search (_prompt, engine)
     awful.prompt.run({ prompt = _prompt},
     mypromptbox[mouse.screen].widget,
     function (url)
-        awful.util.spawn(string.format("chromium -x O '%s%s'", engine, url))
+        awful.util.spawn(string.format("chromium '%s%s'", engine, url))
     end, nil,
     awful.util.getdir("cache") .. "/history_search")
 end
