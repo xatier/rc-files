@@ -27,7 +27,7 @@ except ImportError as e:
 t = Terminal()
 
 def query(keyword):
-    url = 'http://share.dmhy.org/topics/rss'
+    url = 'https://share.dmhy.org/topics/rss'
     params = urllib.parse.urlencode(dict(keyword=keyword))
     print('[+] {}?{}'.format(url, params))
     req = urllib.request.Request('{}?{}'.format(url, params))
