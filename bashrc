@@ -251,14 +251,3 @@ man () {
     LESS_TERMCAP_ue=$'\E[0m' \
     man "$@"
 }
-
-cppman () {
-    env LESS_TERMCAP_mb=$'\E[1;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[0;7;32m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[0;33m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    cppman "$@"
-}
