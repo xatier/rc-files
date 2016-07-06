@@ -140,8 +140,8 @@ end
 -- network usage
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
-                '<span color="#CC9090">⇩${enp4s0 down_kb}</span>' ..
-                '<span color="#7F9F7F">⇧${enp4s0 up_kb}</span>', 1)
+                '<span color="#CC9090">⇩${enp5s0 down_kb}</span>' ..
+                '<span color="#7F9F7F">⇧${enp5s0 up_kb}</span>', 1)
 
 
 -- clock
