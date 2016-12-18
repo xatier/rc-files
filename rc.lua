@@ -145,7 +145,7 @@ vicious.register(netwidget, vicious.widgets.net,
 
 
 -- clock
-clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
+clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S %p ", 1)
 clockwidget_t = awful.tooltip({
     objects = { clockwidget },
     timer_function = function ()
