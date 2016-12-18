@@ -615,6 +615,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "URxvt" },
       properties = { size_hints_honor = false } },
+    { rule = { instance = "crx_knipolnnllmklapflnccelgolnpehhpl"},
+      properties = { sticky = false } },
     { rule = { instance = "exe" },
       properties = { floating = true } },
     { rule = { class = "Conky" },
