@@ -114,8 +114,6 @@ awful.menu.menu_keys = { up    = { "k", "Up" }, down  = { "j", "Down" },
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu,
                                         beautiful.awesome_icon },
                                     { "Terminal", terminal },
-                                    { "Vim", "urxvtc -e vim" },
-                                    { "emcas", "urxvtc -e emacs" },
                                     { "ranger", "urxvtc -e ranger" },
                                     { "alsamixer", "urxvtc -e alsamixer" },
                                     { "www", "chromium" },
@@ -128,7 +126,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
-
 
 -- {{{ Wibox
 -- return the command output for tooltips below
@@ -156,31 +153,6 @@ clockwidget_t = awful.tooltip({
 -- central time zone
 clockCTwidget = wibox.widget.textbox()
 
--- from http://awesome.naquadah.org/wiki/Conky_HUD
-function get_conky()
-    local clients = client.get()
-    local conky = nil
-    local i = 1
-    while clients[i] do
-        if clients[i].class == "Conky" then
-            conky = clients[i]
-        end
-        i = i + 1
-    end
-    return conky
-end
-
-function toggle_conky()
-    local conky = get_conky()
-    if conky then
-        if conky.ontop then
-            conky.ontop = false
-        else
-            conky.ontop = true
-        end
-    end
-end
-
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
 cpuwidget_t = awful.tooltip({
@@ -191,11 +163,17 @@ cpuwidget_t = awful.tooltip({
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
                  '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]', 2)
-cpuwidget:buttons(
-    awful.util.table.join(
-        awful.button({}, 1, toggle_conky)
-    )
-)
+
+-- thermal widget
+-- /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input
+thermalwidget  = wibox.widget.textbox()
+thermalwidget_t = awful.tooltip({
+    objects = { thermalwidget },
+    timer_function = function ()
+        return tooltip_func_text('sensors')
+    end
+})
+vicious.register(thermalwidget, vicious.widgets.thermal, " $1°C", 2, { "coretemp.0/hwmon/hwmon1", "core"} )
 
 -- memory usage
 memwidget = wibox.widget.textbox()
@@ -228,39 +206,25 @@ batwidget:buttons(
     )
 )
 
-
 -- weather status
 weatherwidget = wibox.widget.textbox()
 weatherwidget_t = awful.tooltip({
     objects = { weatherwidget },
     timer_function = function ()
-        -- Taichung weather, fetch data from cwb.gov.tw
-        url = 'http://www.cwb.gov.tw/V7/observe/'
-        awful.util.spawn('wget -U chrome ' .. url .. '24past/temp/C0F9M.png -O /tmp/temp.png')
-        return tooltip_func_text('w3m -dump -cols 120 ' .. url .. '24real/Data/C0F9M.htm | head -n 32')
+        return tooltip_func_text('bash /home/xatier/bin/weather')
     end
 })
-weatherwidget:buttons(
-    awful.util.table.join(
-        awful.button({}, 1, function ()
-            naughty.notify( {title='Temperature 24 HR',
-                             icon='/tmp/temp.png',
-                             timeout=20})
-        end)
-    )
-)
 
 local update_CT = function()
-    return '[' .. string.gsub(awful.util.pread('TZ=US/Central date "+%R %p"'), "\n", '') .. ']'
+    return '[' .. string.gsub(awful.util.pread('TZ=Asia/Taipei date "+%R %p"'), "\n", '') .. ']'
 end
 
-weatherwidget:set_text(' ☀ ')
+weatherwidget:set_text('  ☀  ')
 clockCTwidget:set_text(update_CT())
 
 -- update every minutes
 mytimer = timer({ timeout = 60 })
 mytimer:connect_signal("timeout", function()
---    weatherwidget:set_text(update_temp())
     clockCTwidget:set_text(update_CT())
 end)
 mytimer:start()
@@ -380,6 +344,7 @@ for s = 1, screen.count() do
             right_layout:add(netwidget)
             right_layout:add(separator)
             right_layout:add(cpuwidget)
+            right_layout:add(thermalwidget)
             right_layout:add(separator)
             right_layout:add(memwidget)
         end
@@ -420,17 +385,6 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
---
-
-local function do_search (_prompt, engine)
-    awful.prompt.run({ prompt = _prompt},
-    mypromptbox[mouse.screen].widget,
-    function (url)
-        awful.util.spawn(string.format("chromium '%s%s'", engine, url))
-    end, nil,
-    awful.util.getdir("cache") .. "/history_search")
-end
-
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
@@ -488,36 +442,11 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
-
-    -- search engines
-    -- google
-    awful.key({ modkey }, "g",
-              function ()
-                  do_search("google: ", "http://google.com/search?hl=en&q=")
-              end),
-
-    -- wikipedia
-    awful.key({ modkey }, "w",
-              function ()
-                  do_search("wiki: ", "http://en.wikipedia.org/wiki/Special:Search?search=")
-              end),
-    -- youtube
-    awful.key({ modkey }, "y",
-              function ()
-                  do_search("Youtube:: ", "http://www.youtube.com/results?hl=en&search_query=")
-              end),
-
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
 
-    -- lock my screen
-    awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command -lock") end),
-
     -- shutter as printscreen tools    http://shutter-project.org/
-    awful.key({ }, "Print", function () awful.util.spawn("/usr/bin/shutter") end),
-
-    awful.key({}, "F12", function () toggle_conky() end)
-
+    awful.key({ }, "Print", function () awful.util.spawn("/usr/bin/shutter") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -619,14 +548,6 @@ awful.rules.rules = {
       properties = { sticky = false } },
     { rule = { instance = "exe" },
       properties = { floating = true } },
-    { rule = { class = "Conky" },
-      properties = {
-          floating = true,
-          sticky = true,
-          ontop = false,
-          focusable = false,
-          size_hints = {"program_position", "program_size"}
-      } }
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
