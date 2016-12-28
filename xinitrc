@@ -13,11 +13,9 @@ xcompmgr &
 urxvtd -q -o -f
 
 
-hime &
-chromium --disk-cache-dir=/tmp/cache &
-pcmanx &
-xscreensaver &
-conky &
+#hime &
+#chromium --disk-cache-dir=/tmp/cache &
+#pcmanx &
 
 
 exec awesome >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr

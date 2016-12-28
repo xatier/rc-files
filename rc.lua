@@ -77,7 +77,7 @@ local layouts =
 -- }}}
 
 -- {{{ Wallpaper
-beautiful.wallpaper = "/home/xatier/tmp/oono.jpg"
+-- beautiful.wallpaper = "/home/xatier/tmp/oono.jpg"
 if beautiful.wallpaper then
     for s = 1, screen.count() do
         gears.wallpaper.maximized(beautiful.wallpaper, s, true)
