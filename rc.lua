@@ -137,8 +137,8 @@ end
 -- network usage
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
-                '<span color="#CC9090">⇩${enp0s31f6 down_kb}</span>' ..
-                '<span color="#7F9F7F">⇧${enp0s31f6 up_kb}</span>', 1)
+                '<span color="#CC9090">⇩${enp0s31f6 down_mb}</span>' ..
+                '<span color="#7F9F7F">⇧${enp0s31f6 up_mb}</span> MB/s', 1)
 
 
 -- clock
@@ -184,7 +184,7 @@ memwidget_t = awful.tooltip({
     end
 })
 vicious.register(memwidget, vicious.widgets.mem,
-                 '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 2)
+                 '$2/$3 MB (<span color="#00EE00">$1%</span>)', 2)
 
 
 -- battery status
