@@ -53,7 +53,7 @@ if [[ -n $lvds && -n $vga ]]; then
 
 else
     # for my desptop
-    xrandr --output "HDMI1" --auto --output "HDMI3" --auto --right-of "HDMI1"
+    xrandr --output "HDMI2" --auto --output "HDMI1" --auto --left-of "HDMI2"
 
     eecho "LVDS: $lvds"
     eecho "VGA: $vga"
