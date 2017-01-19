@@ -17,6 +17,9 @@ no warnings;
 use LWP::Simple;
 use MIME::Base64;
 
+# output filename
+my $name = shift @ARGV;
+
 # you can find other mirrors here: https://github.com/waylau/vpngate-mirrors
 my $API_url = 'http://www.vpngate.net/api/iphone/';
 my @servers = split /\n/, get($API_url);
@@ -47,10 +50,11 @@ my $input = <>;
 chomp($input);
 
 if ($input =~ /^vpn\d+$/) {
-  open F, '>', "$input.ovpn";
+  $name //= $input;
+  open F, '>', "$name.ovpn";
   my $config = config_b64((grep { hostname($_) eq $input } @servers)[0]);
   print F decode_base64($config);
-  say "save OpenVPN config to $input.ovpn ->  sudo openvpn $input.ovpn";
+  say "save OpenVPN config to $name.ovpn ->  sudo openvpn $name.ovpn";
   close F;
 }
 
