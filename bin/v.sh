@@ -20,6 +20,9 @@ REGULAR_USER=xatier
 
 SHADOWSOCKS_CONFIG=""
 
+# path to rc-files/bin/vpngate
+VPNGATE=""
+
 # shadowsocks local port
 PROXY_SERVER="socks5://127.0.0.1:1080"
 
@@ -29,7 +32,7 @@ PROFILE=`sudo -u $REGULAR_USER mktemp -d`
 # set cache to ramdisk
 CACHE=`sudo -u $REGULAR_USER mktemp -d`
 
-CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER --disable-sync-preferences --incognito --disk-cache-dir=$CACHE --user-data-dir=$PROFILE --disable-reading-from-canvas"
+CHROMIUM_FLAGS="--disable-sync-preferences --incognito --disk-cache-dir=$CACHE --user-data-dir=$PROFILE --disable-reading-from-canvas"
 # ---------------------------------------------
 
 
@@ -41,6 +44,7 @@ if [ $USER != "root" ]; then
 fi
 
 start_vpn() {
+    VPN=$1
     set -x
     echo "[+] Adding network interface"
 
@@ -76,22 +80,45 @@ start_vpn() {
     # Check our VPN@NS is working
     $NS_EXEC ping -c 3 www.google.com
 
-    # XXX(xatier): try vpngate?
-    # # start OpenVPN in the namespace
-    # $NS_EXEC openvpn --config $NS_NAME.conf &
-    # # wait for the tunnel interface to come up
-    # while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1 ; do sleep .5 ; done
+    if [ $VPN == "ovpn" ]; then
+        # select a server from vpngate project
+        $NS_EXEC $VPNGATE $NS_NAME
 
-    $NS_EXEC sudo -u $REGULAR_USER sslocal -c $SHADOWSOCKS_CONFIG &
+        # start OpenVPN in the namespace
+        $NS_EXEC openvpn --config $NS_NAME.ovpn &
+
+        # wait for the tunnel interface to come up
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1 ; do
+            sleep .5
+        done
+
+    elif [ $VPN == "ss" ]; then
+        # start shadowdocks in the namespace
+        $NS_EXEC sudo -u $REGULAR_USER sslocal -c $SHADOWSOCKS_CONFIG &
+        CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER $CHROMIUM_FLAGS"
+    else
+        echo "[-] no vpn is set?! Are you sure?"
+    fi
+
+    # start chromium
     $NS_EXEC sudo -u $REGULAR_USER chromium $CHROMIUM_FLAGS &
 }
 
 stop_vpn() {
     set -x
 
+    if [ ! -f "/var/run/netns/$NS_NAME" ]; then
+        echo "[-] no such NS named $NS_NAME"
+        exit 1
+    fi
+
     echo "[+] Killing applications"
-    ip netns pids $NS_NAME | xargs -rd'\n' kill
-    sleep 5
+
+    NS_PIDS="ip netns pids $NS_NAME"
+    while [ ! -z "$($NS_PIDS | xargs)" ]; do
+        $NS_PIDS | xargs -rd'\n' kill
+        sleep .5
+    done
 
     # clear NAT
     echo "[+] Cleaning IPv4 NAT on $NS_NAME"
@@ -101,6 +128,7 @@ stop_vpn() {
 
     echo "[+] Deleting network interface"
     rm -rf /etc/netns/$NS_NAME
+    rm -f $NS_NAME.ovpn
     ip netns delete $NS_NAME
     ip link delete vpn0
 }
@@ -109,11 +137,12 @@ stop_vpn() {
 
 if [ $1 == "start" ]; then
     echo "[+] Starting VPN"
-    start_vpn
+    start_vpn $2
 elif [ $1 == "stop" ]; then
     echo "[+] Stopping VPN"
     stop_vpn
 else
-    echo "Usage: sudo v.sh start|stop"
+    echo "Usage: sudo v.sh start ss|ovpn"
+    echo "       sudo v.sh stop"
 fi
 
