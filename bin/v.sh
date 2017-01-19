@@ -19,6 +19,7 @@ NS_EXEC="ip netns exec $NS_NAME"
 REGULAR_USER=xatier
 
 SHADOWSOCKS_CONFIG=""
+OPENVPN_CONFIG=""
 
 # path to rc-files/bin/vpngate
 VPNGATE=""
@@ -81,8 +82,12 @@ start_vpn() {
     $NS_EXEC ping -c 3 www.google.com
 
     if [ $VPN == "ovpn" ]; then
-        # select a server from vpngate project
-        $NS_EXEC $VPNGATE $NS_NAME
+        if [ ! -z "$OPENVPN_CONFIG" ] ; then
+            cp $OPENVPN_CONFIG $NS_NAME.ovpn
+        else
+            # select a server from vpngate project
+            $NS_EXEC $VPNGATE $NS_NAME
+        fi
 
         # start OpenVPN in the namespace
         $NS_EXEC openvpn --config $NS_NAME.ovpn &
