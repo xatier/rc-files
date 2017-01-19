@@ -14,6 +14,7 @@
 # ------------ adjust values below ------------
 # network namespace
 NS_NAME=foo
+NS_SUBNET="10.200.200"
 NS_EXEC="ip netns exec $NS_NAME"
 REGULAR_USER=xatier
 
@@ -58,9 +59,9 @@ start_vpn() {
     ip link set vpn0 up
     ip link set vpn1 netns $NS_NAME up
 
-    ip addr add 10.200.200.1/24 dev vpn0
-    $NS_EXEC ip addr add 10.200.200.2/24 dev vpn1
-    $NS_EXEC ip route add default via 10.200.200.1 dev vpn1
+    ip addr add $NS_SUBNET.1/24 dev vpn0
+    $NS_EXEC ip addr add $NS_SUBNET.2/24 dev vpn1
+    $NS_EXEC ip route add default via $NS_SUBNET.1 dev vpn1
 
     # Configure the nameserver to use inside the namespace
     mkdir -p /etc/netns/$NS_NAME
@@ -68,8 +69,8 @@ start_vpn() {
 
     # IPv4 NAT
     echo "[+] Setting IPv4 NAT on $NS_NAME"
-    iptables -A INPUT \! -i vpn0 -s 10.200.200.0/24 -j DROP
-    iptables -t nat -A POSTROUTING -o en+ -s 10.200.200.0/24 -j MASQUERADE
+    iptables -A INPUT \! -i vpn0 -s $NS_SUBNET.0/24 -j DROP
+    iptables -t nat -A POSTROUTING -o en+ -s $NS_SUBNET.0/24 -j MASQUERADE
     sysctl -q net.ipv4.ip_forward=1
 
     # Check our VPN@NS is working
@@ -94,8 +95,8 @@ stop_vpn() {
 
     # clear NAT
     echo "[+] Cleaning IPv4 NAT on $NS_NAME"
-    iptables -D INPUT \! -i vpn0 -s 10.200.200.0/24 -j DROP
-    iptables -t nat -D POSTROUTING -o en+ -s 10.200.200.0/24 -j MASQUERADE
+    iptables -D INPUT \! -i vpn0 -s $NS_SUBNET.0/24 -j DROP
+    iptables -t nat -D POSTROUTING -o en+ -s $NS_SUBNET.0/24 -j MASQUERADE
     sysctl -q net.ipv4.ip_forward=0
 
     echo "[+] Deleting network interface"
