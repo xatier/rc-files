@@ -652,11 +652,11 @@ awful.rules.rules = {
 
     -- Google Hangouts chrome extension
     { rule = { instance = "crx_knipolnnllmklapflnccelgolnpehhpl"},
-      properties = { sticky = false, screen = 2} },
+      properties = { sticky = false, screen = 1 } },
 
-    -- Set Chromium always on screen 2
+    -- Set Chromium always on screen 1
     { rule = { class = "Chromium" },
-      properties = { screen = 2 } },
+      properties = { screen = 1 } },
 
     -- Set PCManX always on screen 1
     { rule = { class = "PCManX" },
