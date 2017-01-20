@@ -9,7 +9,6 @@ export QT5_IM_MODULE=hime
 
 xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
-xcompmgr &
 urxvtd -q -o -f
 
 
