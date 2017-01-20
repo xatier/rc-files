@@ -1,17 +1,17 @@
 my rcfiles
 ==========
 
-usage
+Usage
 -----
 
-clone the repo and add links to the files
+Clone the repo and add links to the files
 
 ```
 git clone git@github.com:xatier/rc-files.git
-ln -s rc-files/xxx ~/.xxx
+cp rc-files/xxx ~/.xxx
 ```
 
-license
+License
 -------
 
 All codes are under their own license(s) from the original projects.
@@ -22,41 +22,34 @@ Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html)
 vimrc
 -----
 
-my vimrc
-
-
-screenrc
------
-
-use `Ctrl-a` as prefix key
-
-my status line and pre-opened windows
-
-use `Ctrl + <-/->` to switch windows
+my vimrc, simple stuff
 
 
 tmux.conf
 -----
 
-use `Ctrl-b` as prefix key
+- use `Ctrl-b` as prefix key
 
-vi-like key bindings
+- vi-like key bindings
 
-use `Shift + <-/->` to switch windows
+- use `Shift + <-/->` to switch windows
+
 
 bashrc & inputrc
 -----
 
-my settings and aliases
+My settings and aliases
+
 
 xmodmap
 -------
 
 swap `CapsLock` and `Control\_L`
 
-`Usage:  xmodmap ~/.xmodmap`
+Usage:  `xmodmap ~/.xmodmap`
 
-or run `bin/swapcaps`
+    - or run `bin/swapcaps`
+
 
 srandr
 ------
@@ -65,74 +58,61 @@ Simple xrandr
 
 A dirty script to manage my notebook's screen output using xrandr.
 
-
-original script by @PkmX (<https://github.com/PkmX>)
-
-modified by @xatier
+Original script by [@PkmX](https://github.com/PkmX), modified by @xatier
 
 Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 
-or simple like this => `srander[l|v|lv|vl|m]`
+    - or simple like this => `srander[l|v|lv|vl|m]`
 
 
 rc.lua
 ------
 
-configuration file for the [awesome wm](http://awesome.naquadah.org/)
+Configuration file for the [awesome wm](https://awesomewm.org/)
 
-- for awesome 3.5 (with Lua 5.2)
+- for awesome 4.0
 
 - disable some layouts
 
-- use vim and urxvt as editor and terminal
+- use vim and urxvt as editor and terminal (with urxvt daemon)
 
 - add some widgets
 
-  +network usage
-  +text clock
-  +CPU usage
-  +memory usage
-
-- `Mod4 + F12` to launch xscreensaver-lock
+  + network usage
+  + text clock
+  + CPU usage
+  + memory usage
+  + and so on ...
 
 - Installation
 
-    + vicious widgets
+    + [vicious widgets](http://git.sysphere.org/vicious/log/)
 
         ```
-        cd ~/.config/awesome
-        git clone http://git.sysphere.org/vicious/
-        ```
-
-    + change the path of `theme.lua`  (you can use the default one in `/usr/share/awesome`)
-
-        ```
-        beautiful.init("/home/xatierlike/.config/awesome/themes/default/theme.lua")
+        pacman -S vicious
         ```
 
     + pick up a great wallpaper
 
         ```
-        beautiful.wallpaper = "/home/xatierlike/Pictures/goodbye.jpg"
+        beautiful.wallpaper = "/home/xatierlike/Pictures/something.jpg"
         ```
 
-    + urxvt terminal emulator
-
-        - http://software.schmorp.de/pkg/rxvt-unicode.html
+    + [urxvt terminal emulator](http://software.schmorp.de/pkg/rxvt-unicode.html)
 
         ```
         pacman -S rxvt-unicode urxvt-perl
         ```
 
-    + ranger file manager
+        - add `urxvtd -q -o -f` to your `.xinitrc`
 
-        - http://ranger.nongnu.org/
+    + [ranger file manager](https://github.com/ranger/ranger)
 
         ```
-        pacman -S rxvt-unicode urxvt-perl
+        pacman -S ranger
         ```
 
-    + check the battery name of this line
+    + check the battery name
 
         `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
@@ -147,12 +127,6 @@ configuration file for the [awesome wm](http://awesome.naquadah.org/)
 
         ```
         pacman -S shutter
-        ```
-
-    + xcompmgr
-
-        ```
-        pacman -S xcompmgr
         ```
 
 
@@ -171,5 +145,16 @@ xinitrc
 Xresources
 ----------
 
-currently only my urxvt configurations
+Currently only my urxvt configurations
 
+
+vpngate and v.sh
+----------------
+
+- VPN scripts
+
+- requirements
+
+```
+pacman -S perl perl-libwww openvpn shadowsocks chromium
+```
