@@ -496,6 +496,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
+    -- lock
+    awful.key({ modkey }, "F12", function () awful.spawn("xscreensaver-command -lock") end,
+              {description = "screen lock", group = "screen"}),
+
     -- shutter as printscreen tools    http://shutter-project.org/
     awful.key({ }, "Print", function () awful.spawn("/usr/bin/shutter") end,
               {description = "Screenshot", group = "screen"})
@@ -638,6 +642,7 @@ awful.rules.rules = {
           "exe",
           "Arandr",
           "Gpick",
+          "Minecraft 1.11.2",
           "Kruler",
           "MessageWin",  -- kalarm.
           "Sxiv",
