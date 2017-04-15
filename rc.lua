@@ -182,7 +182,7 @@ thermalwidget_t = awful.tooltip({
         return tooltip_func_text("sensors")
     end
 })
-vicious.register(thermalwidget, vicious.widgets.thermal, " $1°C", 2, { "coretemp.0/hwmon/hwmon1", "core"} )
+vicious.register(thermalwidget, vicious.widgets.thermal, " $1°C", 2, { "coretemp.0/hwmon/hwmon2", "core"} )
 
 -- memory usage
 memwidget = wibox.widget.textbox()
