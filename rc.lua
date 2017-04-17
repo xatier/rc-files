@@ -506,6 +506,30 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
+    -- align windows vertically
+    awful.key({ modkey,           }, "v",
+        function (c)
+            -- screen boundary
+            -- clients to be rearranged
+            -- divide the width evenly
+            local screen_geom = c.screen.workarea
+            local cls = c.screen.clients
+            local width = screen_geom.width / #cls
+
+            for i, c in pairs(cls) do
+                -- make it float
+                c.floating = true
+
+                -- rearrange the geomery of this client
+                local geom = c:geometry()
+                geom.x = width * (i - 1)
+                geom.y = screen_geom.y
+                geom.height = screen_geom.height
+                geom.width = width
+                c:geometry(geom)
+            end
+        end,
+              {description = "tile-vertically", group = "client"}),
     awful.key({ modkey,           }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
