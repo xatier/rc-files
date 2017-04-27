@@ -34,20 +34,12 @@ set showmatch
 set matchpairs+=<:>
 
 
-" highlight tabs
-set list listchars=tab:>>
-
-
 " don't do auto indent while pasting
 "set paste
 
 
 " automatically read the file again when it changed outside vim
 set autoread
-
-
-" always show current position (replace this with statusline)
-"set ruler
 
 
 set autoindent
@@ -106,11 +98,6 @@ au InsertLeave * hi CursorLine term=none cterm=none ctermbg=none
 au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 
 
-" fix markdown filetype in vim
-"  details in /usr/share/vim/vim74/filetype.vim
-au BufNewFile,BufRead *.md set filetype=markdown
-
-
 " highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
 au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red guibg=red
 au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
@@ -154,13 +141,17 @@ map q: :q
 map gf <c-w>gf
 
 
+" increase tab page max
+set tabpagemax=99
+
+
 " keep virtual mode in
 vnoremap > >gv
 vnoremap < <gv
 
 
 " set no expandtab in Makefiles and Go
-au FileType make,go setlocal noet
+au FileType make,go setlocal noexpandtab
 
 
 " set spell in Markdown notes
@@ -182,18 +173,8 @@ endfun
 au FileType c,cpp,perl,python au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
-" zdict dictionary
-fun! <SID>zdict_lookup()
-    if expand("%")=="dict-tmp-5566" | q! | return | endif
-    let zdict="~/tmp/zdict/bin/zdict "
-    let query=system(zdict . " " . expand("<cword>"))
-    bel 20sp dict-tmp-5566
-    setl noswapfile buftype=nofile
-    silent 0put =query | 1
-endfun
-
-" toggle zdict
-map <silent><F2> :call <SID>zdict_lookup()<CR>
+" highlight tabs
+au FileType c,cpp,perl,python setlocal list listchars=tab:>>
 
 
 
