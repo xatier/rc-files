@@ -6,7 +6,7 @@ Usage
 
 Clone the repo and add links to the files
 
-```
+```bash
 git clone git@github.com:xatier/rc-files.git
 cp rc-files/xxx ~/.xxx
 ```
@@ -22,16 +22,14 @@ Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html)
 vimrc
 -----
 
-my vimrc, simple stuff
+My vimrc, simple stuff
 
 
 tmux.conf
 -----
 
-- use `Ctrl-b` as prefix key
-
+- use `Ctrl-b` for prefix key
 - vi-like key bindings
-
 - use `Shift + <-/->` to switch windows
 
 
@@ -44,25 +42,25 @@ My settings and aliases
 xmodmap
 -------
 
-swap `CapsLock` and `Control\_L`
+Swap `CapsLock` and `Control\_L`
 
 Usage:  `xmodmap ~/.xmodmap`
 
-    - or run `bin/swapcaps`
+- or run `bin/swapcaps`
 
 
 srandr
 ------
 
-Simple xrandr
+Simple `xrandr`
 
 A dirty script to manage my notebook's screen output using xrandr.
 
-Original script by [@PkmX](https://github.com/PkmX), modified by @xatier
+Original script is from [@PkmX](https://github.com/PkmX)
 
 Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 
-    - or simple like this => `srander[l|v|lv|vl|m]`
+- or like this => `srander[l|v|lv|vl|m]`
 
 
 rc.lua
@@ -70,11 +68,11 @@ rc.lua
 
 Configuration file for the [awesome wm](https://awesomewm.org/)
 
-- for awesome 4.0
+- awesome 4.0
 
 - disable some layouts
 
-- use vim and urxvt as editor and terminal (with urxvt daemon)
+- use `vim` and `urxvt` as editor and terminal (with urxvt daemon)
 
 - add some widgets
 
@@ -112,11 +110,9 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
         pacman -S ranger
         ```
 
-    + check the battery name
+    + check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
-        `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
-
-        to get the battery name (BAT0 or BAT1 for example)
+        To get the battery name (`BAT0` or `BAT1` for example)
 
         ```
         ls /sys/class/power_supply/
