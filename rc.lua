@@ -10,8 +10,9 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
--- Enable VIM help for hotkeys widget when client with matching name is opened:
-require("awful.hotkeys_popup.keys.vim")
+-- Enable hotkeys help widget for VIM and other apps
+-- when client with a matching name is opened:
+require("awful.hotkeys_popup.keys")
 
 -- vicious widgets library
 local vicious = require("vicious")
@@ -44,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 beautiful.font = "Inconsolata 12"
 
 -- This is used later as the default terminal and editor to run.
@@ -171,7 +172,7 @@ cpuwidget_t = awful.tooltip({
     end
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
-                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5]', 2)
+                 '<span color="#CC0000">$1% </span>[$2:$3:$4:$5:$6:$7:$8:$9]', 2)
 
 -- thermal widget
 -- /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input
@@ -223,6 +224,16 @@ weatherwidget_t = awful.tooltip({
         return tooltip_func_text("bash /home/xatier/bin/weather")
     end
 })
+
+weatherwidget:buttons(
+    awful.util.table.join(
+        awful.button({}, 1, function ()
+            naughty.notify( {title='Temperature 24 HR',
+                             icon='/tmp/temp.png',
+                             timeout=20})
+        end)
+    )
+)
 
 local update_TW = function()
     return "[" .. string.gsub(mypread('TZ=Asia/Taipei date "+%R %p"'), "\n", "") .. "]"
@@ -335,7 +346,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(gears.table.join(
@@ -364,7 +375,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             (screen.count() == 1 or s.index == 2) and netwidget,
@@ -695,11 +706,11 @@ awful.rules.rules = {
 
     -- Google Hangouts chrome extension
     { rule = { instance = "crx_knipolnnllmklapflnccelgolnpehhpl"},
-      properties = { sticky = false, screen = 1 } },
+      properties = { sticky = false, screen = 2} },
 
-    -- Set Chromium always on screen 1
+    -- Set Chromium always on screen 2
     { rule = { class = "Chromium" },
-      properties = { screen = 1 } },
+      properties = { screen = 2 } },
 
     -- Set PCManX always on screen 1
     { rule = { class = "PCManX" },
