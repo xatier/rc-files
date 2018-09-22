@@ -1,0 +1,2 @@
+curl -s wttr.in/99999_tq.png > /tmp/temp.png
+curl 'wttr.in/Somewhere,CA' | sed -r "s:\x1B\[[0-9;]*[mK]::g"
