@@ -168,6 +168,7 @@ PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
 PS1+=$HOST_COLOR' \h '$COLOR_END                       # host
 PS1+='$(ret_code)'$COLOR_END                           # return code
 PS1+='$(__git_ps1 "[ ~> on %s ]")'                     # git info
+PS1+=$COLOR_L_BLACK'$(svn_info)'$COLOR_END             # svn info
 PS1+='\n'                                              # new line
 PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
 PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
@@ -196,6 +197,11 @@ ret_code () {
 # show distrobution name
 distro_name () {
     cat /etc/*release | grep ^NAME= | cut -c6- | sed 's/\"//g'
+}
+
+# show svn info
+svn_info () {
+    echo "$(svn info 2>&1 | grep URL)"
 }
 
 # colorize man pages
