@@ -215,3 +215,8 @@ man () {
     LESS_TERMCAP_ue=$'\E[0m' \
     man "$@"
 }
+
+qr () {
+    qrencode $1 -o /tmp/qr.png && eog /tmp/qr.png
+}
+
