@@ -220,3 +220,33 @@ qr () {
     qrencode $1 -o /tmp/qr.png && eog /tmp/qr.png
 }
 
+style-check() {
+    # pip install yapf
+    . $HOME/work/pip/bin/activate
+    yapf --style='{dedent_closing_brackets: true, split_before_logical_operator: false}' $1
+    deactivate
+}
+
+style-diff() {
+    vimdiff -c 'set syntax=python' <(style-check $1) $1
+}
+
+
+pep8-check() {
+    # pip install flake8 flake8-bugbear flake8-comprehensions flake8-import-order pep8-naming
+    . $HOME/work/pip/bin/activate
+    flake8 --import-order-style=google $1
+    deactivate
+}
+
+pylint-check() {
+    # pip install pylint
+    . $HOME/work/pip/bin/activate
+    pylint $1
+    deactivate
+}
+
+upgrade-pips() {
+    which pip
+    pip install -r <(pip freeze) --upgrade
+}
