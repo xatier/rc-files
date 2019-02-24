@@ -79,6 +79,10 @@ export LESS="-R"
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$HOME/go/bin:$PATH
 
+# load a key to ssh agent
+# eval `ssh-agent`
+# ssh-add ~/.ssh/<key to be added>
+
 # use brew apps and GNU coreutils on OS X
 if [ `uname` == "Darwin" ] ; then
   export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
