@@ -248,5 +248,5 @@ pylint-check() {
 
 upgrade-pips() {
     which pip
-    pip install -r <(pip freeze) --upgrade
+    pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
 }
