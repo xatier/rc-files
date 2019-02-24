@@ -93,8 +93,8 @@ fi
 
 # OS X from /usr/local/etc/bash_completion.d/
 if [ -d /usr/local/etc/bash_completion.d/ ] ; then
-  . /usr/local/etc/bash_completion.d/git-completion.bash
-  . /usr/local/etc/bash_completion.d/git-prompt.sh
+  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+  source "/usr/local/share/bash-completion/bash_completion"
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=1
