@@ -224,6 +224,7 @@ qr () {
     qrencode $1 -o /tmp/qr.png && eog /tmp/qr.png
 }
 
+# python hacks
 style-check() {
     # pip install yapf
     . $HOME/work/pip/bin/activate
@@ -234,7 +235,6 @@ style-check() {
 style-diff() {
     vimdiff -c 'set syntax=python' <(style-check $1) $1
 }
-
 
 pep8-check() {
     # pip install flake8 flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
