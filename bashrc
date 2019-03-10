@@ -224,6 +224,11 @@ qr () {
     qrencode $1 -o /tmp/qr.png && eog /tmp/qr.png
 }
 
+# convert unix timestamp (epoch) to date
+unixtime() {
+    date -d "@$1"
+}
+
 # python hacks
 style-check() {
     # pip install yapf
