@@ -1,6 +1,7 @@
 [user]
 	email = xatierlike@gmail.com
 	name = xatier
+	signingkey = EE2C5C1F7D756A33
 [push]
 	default = simple
 [color]
