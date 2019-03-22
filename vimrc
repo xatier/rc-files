@@ -192,3 +192,24 @@ else
     echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
 endif
 
+
+"###########################################################################
+" plugins
+"###########################################################################
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
+
+
+" run ALE manually with :lint
+let g:ale_lint_on_enter = 0
+cabbrev lint ALELint
+
+" flake8 settings
+au FileType python let b:ale_linters = ['flake8']
+au FileType python let b:ale_python_flake8_executable = '/home/xatier/work/pip/bin/flake8'
+au FileType python let b:ale_python_flake8_auto_pipenv = 1
+au FileType python let b:ale_python_flake8_options = '--ignore C408,D1 --show-source --import-order-style=google'
