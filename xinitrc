@@ -7,15 +7,22 @@ export QT_IM_MODULE=hime
 export QT4_IM_MODULE=hime
 export QT5_IM_MODULE=hime
 
+#export XMODIFIERS="@im=fcitx"
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
+
+./bin/srandr
+
 xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
 urxvtd -q -o -f
 
 
-#hime &
-#chromium --disk-cache-dir=/tmp/cache &
-#pcmanx &
-
+# hime &
+# chromium --disk-cache-dir=/tmp/cache &
+# pcmanx &
+# flameshot &
+# xscreensaver &
 
 exec awesome >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
 
