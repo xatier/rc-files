@@ -84,7 +84,7 @@ export PATH=$HOME/bin:$HOME/go/bin:$PATH
 # ssh-add ~/.ssh/<key to be added>
 
 # use brew apps and GNU coreutils on OS X
-if [ `uname` == "Darwin" ] ; then
+if [ "$(uname)" == "Darwin" ] ; then
   export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
@@ -152,18 +152,18 @@ HOST_COLORS=("$COLOR_L_CYAN"   \
              "$COLOR_L_PURPLE" )
 
 # generate checksum from host name
-STR_HOST=`hostname`
+STR_HOST=$(hostname)
 CHECKSUM=0
 while test -n "$STR_HOST"; do
    CHAR=${STR_HOST:0:1}
-   N=`printf "%d" "'$CHAR"`
-   CHECKSUM=`expr $CHECKSUM + $N`
+   N=$(printf "%d" "'$CHAR")
+   CHECKSUM=$(expr $CHECKSUM + "$N")
    STR_HOST=${STR_HOST:1}
 done
 
 # pick a color from set by checksum
 SELECTIONS=${#HOST_COLORS[@]}
-HOST_COLOR=${HOST_COLORS[$(($CHECKSUM % $SELECTIONS))]}
+HOST_COLOR=${HOST_COLORS[$((CHECKSUM % SELECTIONS))]}
 
 # my bash prompt
 PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
@@ -205,7 +205,7 @@ distro_name () {
 
 # show svn info
 svn_info () {
-    echo "$(svn info 2>&1 | grep URL)"
+    cmd "$(svn info 2>&1 | grep URL)"
 }
 
 # colorize man pages
@@ -233,25 +233,25 @@ unixtime() {
 style-check() {
     # pip install yapf
     . $HOME/work/pip/bin/activate
-    yapf --style='{dedent_closing_brackets: true, split_before_logical_operator: false}' $1
+    yapf --style='{dedent_closing_brackets: true, split_before_logical_operator: false}' "$1"
     deactivate
 }
 
 style-diff() {
-    vimdiff -c 'set syntax=python' <(style-check $1) $1
+    vimdiff -c 'set syntax=python' <(style-check "$1") "$1"
 }
 
 pep8-check() {
     # pip install flake8 flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
     . $HOME/work/pip/bin/activate
-    flake8 --ignore C408,D1 --show-source --import-order-style=google $1
+    flake8 --ignore C408,D1 --show-source --import-order-style=google "$1"
     deactivate
 }
 
 pylint-check() {
     # pip install pylint
     . $HOME/work/pip/bin/activate
-    pylint $1
+    pylint "$1"
     deactivate
 }
 
