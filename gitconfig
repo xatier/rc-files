@@ -36,3 +36,5 @@
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -x1,5
+[commit]
+	gpgSign = true
