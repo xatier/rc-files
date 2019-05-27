@@ -205,7 +205,7 @@ distro_name () {
 
 # show svn info
 svn_info () {
-    cmd "$(svn info 2>&1 | grep URL)"
+    svn info 2>&1 | grep URL
 }
 
 # colorize man pages
