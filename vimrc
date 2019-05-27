@@ -56,6 +56,10 @@ set noerrorbells
 set novisualbell
 
 
+" increase tab page max
+set tabpagemax=99
+
+
 
 "###########################################################################
 " color settings
@@ -74,6 +78,18 @@ set bg=dark
 " line break
 set colorcolumn=80
 hi ColorColumn ctermbg=red
+
+
+" highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
+au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red
+au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+
+
+" diff highlight
+highlight DiffAdd    cterm=bold ctermfg=green ctermbg=17
+highlight DiffDelete cterm=bold ctermfg=red ctermbg=17
+highlight DiffChange cterm=bold ctermfg=green ctermbg=17
+highlight DiffText   cterm=bold ctermfg=green ctermbg=88
 
 
 
@@ -96,11 +112,6 @@ au InsertEnter * hi CursorLine term=none cterm=underline
 au InsertEnter * hi CursorColumn term=none ctermbg=darkblue
 au InsertLeave * hi CursorLine term=none cterm=none ctermbg=none
 au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
-
-
-" highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
-au BufNewFile,BufRead * hi ExtraWhitespace ctermbg=red guibg=red
-au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
 
 
 
@@ -141,10 +152,6 @@ map q: :q
 map gf <c-w>gf
 
 
-" increase tab page max
-set tabpagemax=99
-
-
 " keep virtual mode in
 vnoremap > >gv
 vnoremap < <gv
@@ -162,6 +169,14 @@ au FileType markdown setlocal spell
 au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
 
+" highlight tabs
+au FileType c,cpp,perl,python setlocal list listchars=tab:>>
+
+
+" yaml
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+
 " remove trailing whitespace before saving codes
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -169,14 +184,7 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-
 au FileType c,cpp,perl,python,go au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-
-" highlight tabs
-au FileType c,cpp,perl,python setlocal list listchars=tab:>>
-
-
 
 "###########################################################################
 " multi-encoding setting
@@ -207,6 +215,7 @@ silent! helptags ALL
 " run ALE manually with :lint
 let g:ale_lint_on_enter = 0
 cabbrev lint ALELint
+
 
 " flake8 settings
 au FileType python let b:ale_linters = ['flake8']
