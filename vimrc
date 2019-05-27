@@ -170,7 +170,7 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-au FileType c,cpp,perl,python au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+au FileType c,cpp,perl,python,go au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
 " highlight tabs
