@@ -1,56 +1,47 @@
-my rcfiles
-==========
+# my rcfiles
 
-Usage
------
 
-Clone the repo and add links to the files
+## Usage
+
+Clone the repo and put the config files to proper locations.
 
 ```bash
 git clone git@github.com:xatier/rc-files.git
 cp rc-files/xxx ~/.xxx
 ```
 
-License
--------
+
+# License(s)
 
 All codes are under their own license(s) from the original projects.
 
 Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html).
 
-
-vimrc
------
-
-My vimrc, simple stuff
+# Config files
 
 
-tmux.conf
------
+## bashrc & inputrc
 
-- use `Ctrl-b` for prefix key
-- vi-like key bindings
-- use `Shift + <-/->` to switch windows
+My settings and aliases for bash and readline.
 
 
-bashrc & inputrc
------
+## bin
 
-My settings and aliases
-
-
-xmodmap
--------
-
-Swap `CapsLock` and `Control\_L`
-
-Usage:  `xmodmap ~/.xmodmap`
-
-- or run `bin/swapcaps`
+My collections of little programs
 
 
-srandr
-------
+### vpngate and v.sh
+
+- VPN scripts
+
+- requirements
+
+```
+pacman -S perl perl-libwww openvpn shadowsocks chromium
+```
+
+
+### srandr
 
 Simple `xrandr`
 
@@ -63,8 +54,38 @@ Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 - or like this => `srander[l|v|lv|vl|m]`
 
 
-rc.lua
-------
+
+## conky.conf
+
+Conky configuration.
+
+
+## emacs & prelude-modules.el
+
+Emacs stuff
+
+
+## gdbinit
+
+[GDB](https://www.gnu.org/software/gdb/) debugger settings
+
+
+## gitconfig
+
+Global [git](https://git-scm.com/) config
+
+
+## mpv
+
+[MPV Media player](https://github.com/mpv-player/mpv)
+
+
+## ranger
+
+[ranger file manager](https://github.com/ranger/ranger)
+
+
+## rc.lua
 
 Configuration file for the [awesome wm](https://awesomewm.org/)
 
@@ -104,12 +125,6 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
 
         - add `urxvtd -q -o -f` to your `.xinitrc`
 
-    + [ranger file manager](https://github.com/ranger/ranger)
-
-        ```
-        pacman -S ranger
-        ```
-
     + check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
         To get the battery name (`BAT0` or `BAT1` for example)
@@ -118,16 +133,30 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
         ls /sys/class/power_supply/
         ```
 
-
     + [shutter-progect](http://shutter-project.org/)
 
         ```
         pacman -S shutter
         ```
 
+## screenrc
 
-xinitrc
--------
+Screen settings, didn't use screen for a long long while.
+
+
+## tmux.conf
+
+- use `Ctrl-b` for prefix key
+- vi-like key bindings
+- use `Shift + <-/->` to switch windows
+
+
+## vimrc
+
+My vimrc, simple stuff
+
+
+## xinitrc
 
 - [HIME for imput method](http://hime.luna.com.tw/)
 
@@ -138,19 +167,20 @@ xinitrc
 - launch the awesome wm and keep logs
 
 
-Xresources
-----------
+## xmodmap
 
-Currently only my urxvt configurations
+Swap `CapsLock` and `Control\_L`
+
+Usage:  `xmodmap ~/.xmodmap`
+
+- or run `bin/swapcaps`
 
 
-vpngate and v.sh
-----------------
+## Xresources
 
-- VPN scripts
+[rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html) configurations
 
-- requirements
 
-```
-pacman -S perl perl-libwww openvpn shadowsocks chromium
-```
+## yamllint
+
+[ymllint](https://github.com/adrienverge/yamllint) configurations
