@@ -1,11 +1,3 @@
-[user]
-	email = xatierlike@gmail.com
-	name = xatier
-	signingkey = EE2C5C1F7D756A33
-[push]
-	default = simple
-[color]
-	ui = auto
 [alias]
 	br = branch
 	ci = commit -v
@@ -29,15 +21,23 @@
 	stash-unapply = !git stash show -p | git apply -R
 	st = status
 	unstage = reset HEAD --
-[merge]
-	tool = vimdiff
-[help]
-	autocorrect = 30
+[color]
+	ui = auto
+[commit]
+	gpgSign = true
 [core]
 	excludesfile = ~/.gitignore
 	pager = less -x1,5
-    preloadindex = yes
-[commit]
-	gpgSign = true
+	preloadindex = yes
+[help]
+	autocorrect = 30
+[merge]
+	tool = vimdiff
+[push]
+	default = simple
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[user]
+	email = xatierlike@gmail.com
+	name = xatier
+	signingkey = EE2C5C1F7D756A33
