@@ -233,7 +233,8 @@ unixtime() {
 style-check() {
     # pip install yapf
     . $HOME/work/pip/bin/activate
-    yapf --style='{dedent_closing_brackets: true, split_before_logical_operator: false}' "$1"
+    local style='{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}'
+    yapf --style="$style" "$1"
     deactivate
 }
 
