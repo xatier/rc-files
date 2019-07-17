@@ -260,3 +260,24 @@ upgrade-pips() {
     which pip
     pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
 }
+
+# quickly setup a magic-wormhole
+# https://github.com/warner/magic-wormhole
+# https://magic-wormhole.readthedocs.io/en/latest/welcome.html
+wormhole-setup() {
+    local venv_name
+    venv_name="$(mktemp -u)"
+    python3 -m venv "$venv_name"
+    . "$venv_name/bin/activate"
+    pip install --upgrade magic-wormhole pip
+    echo "Activating venv: $VIRTUAL_ENV"
+    echo "Usage: \$ wormhole send <filename>"
+}
+
+wormhole-kill() {
+    local venv_name
+    venv_name="$VIRTUAL_ENV"
+    # delete magic-wormhole venv
+    deactivate
+    rm -rf "$venv_name"
+}
