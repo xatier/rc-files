@@ -55,6 +55,8 @@ alias vi='vim'
 alias vd='vimdiff'
 alias ivm='vim'
 alias vmi='vim'
+# pip install pyyaml
+alias y2j='python3 -c "import yaml,sys,json; print json.dump(yaml.safe_load(sys.stdin), sys.stdout)"'
 
 # lazy cd
 alias ..="cd .."
