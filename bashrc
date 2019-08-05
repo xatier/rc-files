@@ -289,3 +289,8 @@ wormhole-kill() {
     deactivate
     rm -rf "$venv_name"
 }
+
+screenshot() {
+    # https://github.com/lupoDharkael/flameshot
+    flameshot gui -d 3000
+}
