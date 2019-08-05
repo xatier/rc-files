@@ -29,6 +29,9 @@
 	excludesfile = ~/.gitignore
 	pager = less -x1,5
 	preloadindex = yes
+[diff]
+	# algorithm = patience
+	algorithm = histogram
 [help]
 	autocorrect = 30
 [merge]
