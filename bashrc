@@ -242,6 +242,13 @@ style-diff() {
     vimdiff -c 'set syntax=python' <(style-check "$1") "$1"
 }
 
+black-check() {
+    # pip install black
+    . $HOME/work/pip/bin/activate
+    black --diff "$1"
+    deactivate
+}
+
 pep8-check() {
     # pip install flake8 flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
     . $HOME/work/pip/bin/activate
