@@ -266,7 +266,7 @@ pylint-check() {
 }
 
 upgrade-pips() {
-    which pip
+    command -v pip
     pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
 }
 
