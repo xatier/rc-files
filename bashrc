@@ -292,6 +292,11 @@ wormhole-kill() {
     rm -rf "$venv_name"
 }
 
+shell-check() {
+    # https://github.com/koalaman/shellcheck
+    docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
