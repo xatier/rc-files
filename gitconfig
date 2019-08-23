@@ -38,6 +38,8 @@
 	tool = vimdiff
 [push]
 	default = simple
+[status]
+	showUntrackedFiles = all
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
