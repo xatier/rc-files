@@ -61,6 +61,10 @@ set novisualbell
 set tabpagemax=99
 
 
+" undo
+set undofile
+set undodir=~/.vim/undo
+
 
 "###########################################################################
 " color settings
