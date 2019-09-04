@@ -246,7 +246,7 @@ style-diff() {
     vimdiff -c 'set syntax=python' <(style-check "$1") "$1"
 }
 
-black-check() {
+black-diff() {
     # pip install black
     . $HOME/work/pip/bin/activate
     black --diff "$1"
