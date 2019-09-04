@@ -89,20 +89,20 @@ export PATH=$HOME/bin:$HOME/go/bin:$PATH
 
 # use brew apps and GNU coreutils on OS X
 if [ "$(uname)" == "Darwin" ] ; then
-  export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
+    export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
 # git completion
 # Archlinux from /usr/share/git/completion/
 if [ -d /usr/share/git/completion/ ] ; then
-  source /usr/share/git/completion/git-completion.bash
-  source /usr/share/git/completion/git-prompt.sh
+    source /usr/share/git/completion/git-completion.bash
+    source /usr/share/git/completion/git-prompt.sh
 fi
 
 # OS X from /usr/local/etc/bash_completion.d/
 if [ -d /usr/local/etc/bash_completion.d/ ] ; then
-  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-  source "/usr/local/share/bash-completion/bash_completion"
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+    source "/usr/local/share/bash-completion/bash_completion"
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -159,10 +159,10 @@ HOST_COLORS=("$COLOR_L_CYAN"   \
 STR_HOST=$(hostname)
 CHECKSUM=0
 while test -n "$STR_HOST"; do
-   CHAR=${STR_HOST:0:1}
-   N=$(printf "%d" "'$CHAR")
-   CHECKSUM=$(expr $CHECKSUM + "$N")
-   STR_HOST=${STR_HOST:1}
+    CHAR=${STR_HOST:0:1}
+    N=$(printf "%d" "'$CHAR")
+    CHECKSUM=$(expr $CHECKSUM + "$N")
+    STR_HOST=${STR_HOST:1}
 done
 
 # pick a color from set by checksum
