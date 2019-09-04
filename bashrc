@@ -95,8 +95,8 @@ fi
 # git completion
 # Archlinux from /usr/share/git/completion/
 if [ -d /usr/share/git/completion/ ] ; then
-  . /usr/share/git/completion/git-completion.bash
-  . /usr/share/git/completion/git-prompt.sh
+  source /usr/share/git/completion/git-completion.bash
+  source /usr/share/git/completion/git-prompt.sh
 fi
 
 # OS X from /usr/local/etc/bash_completion.d/
@@ -236,7 +236,7 @@ unixtime() {
 # python hacks
 style-check() {
     # pip install yapf
-    . $HOME/work/pip/bin/activate
+    source $HOME/work/pip/bin/activate
     local style='{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}'
     yapf --style="$style" "$1"
     deactivate
@@ -248,21 +248,21 @@ style-diff() {
 
 black-diff() {
     # pip install black
-    . $HOME/work/pip/bin/activate
+    source $HOME/work/pip/bin/activate
     black --diff "$1"
     deactivate
 }
 
 pep8-check() {
     # pip install flake8 flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
-    . $HOME/work/pip/bin/activate
+    source $HOME/work/pip/bin/activate
     flake8 --ignore C408,D1 --show-source --import-order-style=google "$1"
     deactivate
 }
 
 pylint-check() {
     # pip install pylint
-    . $HOME/work/pip/bin/activate
+    source $HOME/work/pip/bin/activate
     pylint "$1"
     deactivate
 }
@@ -280,7 +280,7 @@ wormhole-setup() {
     local venv_name
     venv_name="$(mktemp -u)"
     python3 -m venv "$venv_name"
-    . "$venv_name/bin/activate"
+    source "$venv_name/bin/activate"
     pip install --upgrade magic-wormhole pip
     echo "Activating venv: $VIRTUAL_ENV"
     echo "Usage: \$ wormhole send <filename>"
