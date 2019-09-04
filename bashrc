@@ -114,7 +114,7 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWCOLORHINTS=1
 
 # completion for ssh hosts
-complete -W "$(echo $(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //'))" ssh
+complete -W "$(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //')" ssh
 
 # completion ignore the prefix 'sudo'
 complete -cf sudo
@@ -236,7 +236,7 @@ unixtime() {
 # python hacks
 style-check() {
     # pip install yapf
-    source $HOME/work/pip/bin/activate
+    source "$HOME/work/pip/bin/activate"
     local style='{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}'
     yapf --style="$style" "$1"
     deactivate
@@ -248,21 +248,21 @@ style-diff() {
 
 black-diff() {
     # pip install black
-    source $HOME/work/pip/bin/activate
+    source "$HOME/work/pip/bin/activate"
     black --diff "$1"
     deactivate
 }
 
 pep8-check() {
     # pip install flake8 flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
-    source $HOME/work/pip/bin/activate
+    source "$HOME/work/pip/bin/activate"
     flake8 --ignore C408,D1 --show-source --import-order-style=google "$1"
     deactivate
 }
 
 pylint-check() {
     # pip install pylint
-    source $HOME/work/pip/bin/activate
+    source "$HOME/work/pip/bin/activate"
     pylint "$1"
     deactivate
 }
