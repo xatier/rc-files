@@ -124,6 +124,10 @@ au InsertLeave * hi CursorColumn term=none cterm=none ctermbg=none
 " key mapping and autocmd
 "###########################################################################
 
+" allow backspacing over autoindent, EOL, and start of insert
+set backspace=indent,eol,start
+
+
 " F7 to close syntax high-lighting
 map <F7> :if exists("syntax_on") <BAR>
 \ syntax off <BAR><CR>
