@@ -57,4 +57,8 @@ define pc
   x/8i $pc-10
 end
 
-#source ~/peda/peda.py
+# https://github.com/longld/peda
+# source ~/work/peda.py
+
+# https://github.com/hugsy/gef
+# source ~/work/gef/gef.py
