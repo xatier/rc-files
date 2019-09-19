@@ -204,7 +204,7 @@ ret_code () {
 
 # show distrobution name
 distro_name () {
-    cat /etc/*release | grep ^NAME= | cut -c6- | sed 's/\"//g'
+    grep ^NAME= /etc/os-release | cut -c6- | tr -d '"'
 }
 
 # show svn info
