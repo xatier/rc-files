@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ -z "$PS1" ]] && return
 
 HISTCONTROL=ignoredups:ignorespace
 
@@ -22,7 +22,7 @@ stty -ixon
 
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [[ -x /usr/bin/dircolors ]]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
 fi
@@ -88,19 +88,19 @@ export PATH=$HOME/bin:$HOME/go/bin:$PATH
 # ssh-add ~/.ssh/<key to be added>
 
 # use brew apps and GNU coreutils on OS X
-if [ "$(uname)" == "Darwin" ] ; then
+if [[ "$(uname)" == "Darwin" ]] ; then
     export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
 fi
 
 # git completion
 # Archlinux from /usr/share/git/completion/
-if [ -d /usr/share/git/completion/ ] ; then
+if [[ -d /usr/share/git/completion/ ]] ; then
     source /usr/share/git/completion/git-completion.bash
     source /usr/share/git/completion/git-prompt.sh
 fi
 
 # OS X from /usr/local/etc/bash_completion.d/
-if [ -d /usr/local/etc/bash_completion.d/ ] ; then
+if [[ -d /usr/local/etc/bash_completion.d/ ]] ; then
     export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
     source "/usr/local/share/bash-completion/bash_completion"
 fi
@@ -194,7 +194,7 @@ cal -3
 # display return code of previous command
 ret_code () {
     ret=$?
-    if [ $ret = 0 ]; then
+    if [[ "$ret" == "0" ]]; then
         echo "^_^ "
     else
         echo "@_@ $ret "
