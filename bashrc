@@ -158,7 +158,7 @@ HOST_COLORS=("$COLOR_L_CYAN"   \
 # generate checksum from host name
 STR_HOST=$(hostname)
 CHECKSUM=0
-while test -n "$STR_HOST"; do
+while [[ -n "$STR_HOST" ]]; do
     CHAR=${STR_HOST:0:1}
     N=$(printf "%d" "'$CHAR")
     CHECKSUM=$(expr $CHECKSUM + "$N")
