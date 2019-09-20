@@ -121,6 +121,14 @@ complete -cf sudo
 complete -cf man
 complete -cf proxychains
 
+# fzf completion and bindings
+if [[ -d /usr/share/fzf/ ]]; then
+    source /usr/share/fzf/key-bindings.bash
+    source /usr/share/fzf/completion.bash
+fi
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_OPTS='--border --layout=reverse --prompt="(´・ω・`) "'
+
 # search history using up/down keys
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
