@@ -5,12 +5,15 @@ set pagination off
 set step-mode on
 
 set history filename ~/.gdb_history
-set history save
+set history save on
+set history size unlimited
+set history expansion on
 
-set print array on
 set print array-indexes on
+set print array on
 set print asm-demangle on
 set print demangle on
+set print frame-arguments all
 set print object on
 set print pretty on
 set print static-members on
