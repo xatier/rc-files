@@ -81,7 +81,7 @@ start_vpn() {
     # Check our VPN@NS is working
     $NS_EXEC ping -c 3 www.google.com
 
-    if [ "$VPN" == "ovpn" ]; then
+    if [ "$VPN" = "ovpn" ]; then
         if [ -n "$OPENVPN_CONFIG" ] ; then
             cp $OPENVPN_CONFIG $NS_NAME.ovpn
         else
@@ -97,7 +97,7 @@ start_vpn() {
             sleep .5
         done
 
-    elif [ "$VPN" == "ss" ]; then
+    elif [ "$VPN" = "ss" ]; then
         # start shadowdocks in the namespace
         $NS_EXEC sudo -u $REGULAR_USER sslocal -c $SHADOWSOCKS_CONFIG &
         CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER $CHROMIUM_FLAGS"
@@ -140,10 +140,10 @@ stop_vpn() {
 
 
 
-if [ "$1" == "start" ]; then
+if [ "$1" = "start" ]; then
     echo "[+] Starting VPN"
     start_vpn "$2"
-elif [ "$1" == "stop" ]; then
+elif [ "$1" = "stop" ]; then
     echo "[+] Stopping VPN"
     stop_vpn
 else
