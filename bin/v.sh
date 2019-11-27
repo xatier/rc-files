@@ -28,10 +28,10 @@ VPNGATE=""
 PROXY_SERVER="socks5://127.0.0.1:1080"
 
 # don't load user profile
-PROFILE=`sudo -u $REGULAR_USER mktemp -d`
+PROFILE=$(sudo -u $REGULAR_USER mktemp -d)
 
 # set cache to ramdisk
-CACHE=`sudo -u $REGULAR_USER mktemp -d`
+CACHE=$(sudo -u $REGULAR_USER mktemp -d)
 
 CHROMIUM_FLAGS="--disable-sync-preferences --incognito --disk-cache-dir=$CACHE --user-data-dir=$PROFILE --disable-reading-from-canvas"
 # ---------------------------------------------
@@ -39,7 +39,7 @@ CHROMIUM_FLAGS="--disable-sync-preferences --incognito --disk-cache-dir=$CACHE -
 
 set -ueo pipefail
 
-if [ $USER != "root" ]; then
+if [ "$USER" != "root" ]; then
     echo "[-] This must be run as root."
     exit 1
 fi
@@ -81,8 +81,8 @@ start_vpn() {
     # Check our VPN@NS is working
     $NS_EXEC ping -c 3 www.google.com
 
-    if [ $VPN == "ovpn" ]; then
-        if [ ! -z "$OPENVPN_CONFIG" ] ; then
+    if [ "$VPN" == "ovpn" ]; then
+        if [ -n "$OPENVPN_CONFIG" ] ; then
             cp $OPENVPN_CONFIG $NS_NAME.ovpn
         else
             # select a server from vpngate project
@@ -97,7 +97,7 @@ start_vpn() {
             sleep .5
         done
 
-    elif [ $VPN == "ss" ]; then
+    elif [ "$VPN" == "ss" ]; then
         # start shadowdocks in the namespace
         $NS_EXEC sudo -u $REGULAR_USER sslocal -c $SHADOWSOCKS_CONFIG &
         CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER $CHROMIUM_FLAGS"
@@ -106,7 +106,7 @@ start_vpn() {
     fi
 
     # start chromium
-    $NS_EXEC sudo -u $REGULAR_USER chromium $CHROMIUM_FLAGS &
+    $NS_EXEC sudo -u $REGULAR_USER chromium "$CHROMIUM_FLAGS" &
 }
 
 stop_vpn() {
@@ -120,7 +120,7 @@ stop_vpn() {
     echo "[+] Killing applications"
 
     NS_PIDS="ip netns pids $NS_NAME"
-    while [ ! -z "$($NS_PIDS | xargs)" ]; do
+    while [ -n "$($NS_PIDS | xargs)" ]; do
         $NS_PIDS | xargs -rd'\n' kill
         sleep .5
     done
@@ -140,10 +140,10 @@ stop_vpn() {
 
 
 
-if [ $1 == "start" ]; then
+if [ "$1" == "start" ]; then
     echo "[+] Starting VPN"
-    start_vpn $2
-elif [ $1 == "stop" ]; then
+    start_vpn "$2"
+elif [ "$1" == "stop" ]; then
     echo "[+] Stopping VPN"
     stop_vpn
 else
