@@ -164,7 +164,7 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
                  '<span color="#CC0000">$1% </span>[$2:$3:$4:$5:$6:$7:$8:$9]', 2)
 
 -- thermal widget
--- /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input
+-- /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
 thermalwidget  = wibox.widget.textbox()
 thermalwidget_t = awful.tooltip({
     objects = { thermalwidget },
@@ -172,7 +172,16 @@ thermalwidget_t = awful.tooltip({
         return tooltip_func_text("sensors")
     end
 })
-vicious.register(thermalwidget, vicious.widgets.thermal, " $1°C", 2, "thermal_zone0" )
+vicious.register(
+    thermalwidget,
+    vicious.widgets.thermal,
+    " $1°C", 2,
+    {
+        "coretemp.0/hwmon/hwmon3",
+        "core",
+        "temp1_input"
+    }
+)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
