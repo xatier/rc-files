@@ -1,0 +1,42 @@
+{
+    "editor.find.autoFindInSelection": "always",
+    "editor.fontSize": 16,
+    "editor.suggestSelection": "first",
+    "files.trimFinalNewlines": true,
+    "go.autocompleteUnimportedPackages": true,
+    "go.useLanguageServer": true,
+    "python.autoComplete.addBrackets": true,
+    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--ignore C408,D1",
+        "--import-order-style=google"
+    ],
+    "python.linting.mypyEnabled": true,
+    "python.linting.mypyArgs": [
+        "--follow-imports=silent",
+        "--ignore-missing-imports",
+        "--no-strict-optional",
+        "--show-column-numbers"
+    ],
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "files.exclude": {
+        "**/*.pyc": true
+    },
+    "python.insidersChannel": "weekly",
+    "python.jediEnabled": false,
+    "search.smartCase": true,
+    "search.collapseResults": "alwaysExpand",
+    "workbench.editor.highlightModifiedTabs": true
+}
