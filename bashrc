@@ -111,10 +111,11 @@ if [[ -d /usr/share/git/completion/ ]]; then
     source /usr/share/git/completion/git-prompt.sh
 fi
 
-# OS X from /usr/local/etc/bash_completion.d/
-if [[ -d /usr/local/etc/bash_completion.d/ ]]; then
-    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    source "/usr/local/share/bash-completion/bash_completion"
+BREW_PREFIX="$(brew --prefix)"
+# OS X from ${BREW_PREFIX}/etc/bash_completion.d/
+if [[ -d "$BREW_PREFIX/etc/bash_completion.d/" ]]; then
+    export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
+    source "$BREW_PREFIX/share/bash-completion/bash_completion"
 fi
 
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -137,6 +138,10 @@ complete -cf proxychains
 if [[ -d /usr/share/fzf/ ]]; then
     source /usr/share/fzf/key-bindings.bash
     source /usr/share/fzf/completion.bash
+fi
+if [[ -d "$BREW_PREFIX/opt/fzf/" ]]; then
+    source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
+    source "$BREW_PREFIX/opt/fzf/shell/completion.bash"
 fi
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='--border --layout=reverse --prompt="(´・ω・`) "'
