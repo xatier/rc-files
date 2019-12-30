@@ -49,6 +49,7 @@ alias taiwan='TZ=Asia/Taipei date'
 # alias weather='curl wttr.in/Urbana,IL'
 alias ta='tmux attach -d'
 alias a='alsamixer'
+alias d='deactivate'
 alias gerp='grep'
 alias gti='git'
 alias gi='git'
@@ -90,6 +91,9 @@ export LESS="-R"
 
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$HOME/go/bin:$PATH
+
+# disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # load a key to ssh agent
 # eval `ssh-agent`
@@ -193,6 +197,7 @@ PS1+=$HOST_COLOR' \h '$COLOR_END                       # host
 PS1+='$(ret_code)'$COLOR_END                           # return code
 PS1+='$(__git_ps1 "[ ~> on %s ]")'                     # git info
 PS1+=$COLOR_L_BLACK'$(svn_info)'$COLOR_END             # svn info
+PS1+=$COLOR_YELLOW'$(venv_abspath)'$COLOR_END          # venv absolute path
 PS1+='\n'                                              # new line
 PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
 PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
@@ -226,6 +231,11 @@ distro_name () {
 # show svn info
 svn_info () {
     svn info 2>&1 | grep URL
+}
+
+# show venv absolute path
+venv_abspath () {
+    [[ -n "${VIRTUAL_ENV:-}" ]] && echo "[ py=$VIRTUAL_ENV ]" || echo ""
 }
 
 # colorize man pages
