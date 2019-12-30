@@ -37,6 +37,7 @@ set matchpairs+=<:>
 
 " don't do auto indent while pasting
 "set paste
+set pastetoggle=<F3>
 
 
 " automatically read the file again when it changed outside vim
