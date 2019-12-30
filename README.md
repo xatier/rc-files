@@ -1,6 +1,5 @@
 # my rcfiles
 
-
 ## Usage
 
 Clone the repo and put the config files to proper locations.
@@ -10,7 +9,6 @@ git clone git@github.com:xatier/rc-files.git
 cp rc-files/xxx ~/.xxx
 ```
 
-
 # License(s)
 
 All codes are under their own license(s) from the original projects.
@@ -19,16 +17,13 @@ Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html)
 
 # Config files
 
-
 ## bashrc & inputrc
 
 My settings and aliases for bash and readline.
 
-
 ## bin
 
 My collections of little programs
-
 
 ### vpngate and v.sh
 
@@ -39,7 +34,6 @@ My collections of little programs
 ```
 pacman -S perl perl-libwww openvpn shadowsocks chromium
 ```
-
 
 ### srandr
 
@@ -53,37 +47,29 @@ Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 
 - or like this => `srander[l|v|lv|vl|m]`
 
-
-
 ## conky.conf
 
 Conky configuration.
-
 
 ## emacs & prelude-modules.el
 
 Emacs stuff
 
-
 ## gdbinit
 
 [GDB](https://www.gnu.org/software/gdb/) debugger settings
-
 
 ## gitconfig
 
 Global [git](https://git-scm.com/) config
 
-
 ## mpv
 
 [MPV Media player](https://github.com/mpv-player/mpv)
 
-
 ## ranger
 
 [ranger file manager](https://github.com/ranger/ranger)
-
 
 ## rc.lua
 
@@ -143,18 +129,15 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
 
 Screen settings, didn't use screen for a long long while.
 
-
 ## tmux.conf
 
 - use `Ctrl-b` for prefix key
 - vi-like key bindings
 - use `Shift + <-/->` to switch windows
 
-
 ## vimrc
 
 My vimrc, simple stuff
-
 
 ## xinitrc
 
@@ -166,7 +149,6 @@ My vimrc, simple stuff
 
 - launch the awesome wm and keep logs
 
-
 ## xmodmap
 
 Swap `CapsLock` and `Control\_L`
@@ -175,11 +157,9 @@ Usage:  `xmodmap ~/.xmodmap`
 
 - or run `bin/swapcaps`
 
-
 ## Xresources
 
 [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html) configurations
-
 
 ## yamllint
 
