@@ -139,6 +139,51 @@ Screen settings, didn't use screen for a long long while.
 
 My vimrc, simple stuff
 
+## VS Code
+
+- settings locations
+
+```bash
+# Linux
+~/.config/Code\ -\ OSS/User/settings.json
+
+# Mac
+~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
+
+# Linux remote
+~/.vscode-server-insiders/data/Machine/settings.json
+```
+
+- list installed extensions
+
+```bash
+$ code --list-extensions --show-versions
+CoenraadS.bracket-pair-colorizer@1.0.61
+DavidAnson.vscode-markdownlint@0.33.0
+docsmsft.docs-yaml@0.2.4
+DotJoshJohnson.xml@2.5.0
+eamodio.gitlens@10.2.0
+lextudio.restructuredtext@116.0.0
+ms-pyright.pyright@1.1.16
+ms-python.python@2020.1.56281-dev
+ms-vscode-remote.remote-containers@0.94.0
+ms-vscode-remote.remote-ssh@0.48.0
+ms-vscode-remote.remote-ssh-edit@0.48.0
+ms-vscode-remote.remote-wsl@0.41.6
+ms-vscode-remote.vscode-remote-extensionpack@0.19.0
+ms-vscode.azure-account@0.8.7
+ms-vscode.cpptools@0.26.2
+ms-vscode.Go@0.11.9
+ms-vsonline.vsonline@1.0.1424
+redhat.vscode-xml@0.10.1
+redhat.vscode-yaml@0.6.1
+timonwong.shellcheck@0.9.0
+VisualStudioExptTeam.vscodeintellicode@1.2.2
+vscode-icons-team.vscode-icons@9.7.0
+vscodevim.vim@1.12.4
+Yukai.vscode-ptt@0.3.2
+```
+
 ## xinitrc
 
 - [HIME for imput method](http://hime.luna.com.tw/)
