@@ -5,10 +5,11 @@ HISTCONTROL=ignoredups:ignorespace
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+shopt -s histreedit
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=50000
-HISTFILESIZE=50000
+HISTSIZE=500000
+HISTFILESIZE=500000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -16,6 +17,9 @@ shopt -s checkwinsize
 shopt -s autocd
 shopt -s cdspell
 shopt -s extglob
+shopt -s cmdhist
+shopt -s lithist
+shopt -s checkhash
 
 # feels good in emacs
 stty -ixon
