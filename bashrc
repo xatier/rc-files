@@ -256,7 +256,8 @@ man () {
 }
 
 qr () {
-    qrencode "${1:-/dev/stdin}" -o /tmp/qr.png && eog /tmp/qr.png
+    # Usage: echo "blah" | qr
+    qrencode -r /dev/stdin -o /tmp/qr.png && eog /tmp/qr.png
 }
 
 # convert unix timestamp (epoch) to date
