@@ -265,6 +265,28 @@ unixtime() {
     date -d "@$1"
 }
 
+clamav-home() {
+    # start clamav daemon for multi-threading
+    # see https://wiki.archlinux.org/index.php/ClamAV
+    sudo systemctl start clamav-daemon.service
+    sudo systemctl status clamav-daemon.service -l
+
+    clamdscan --infected --verbose --allmatch --multiscan --fdpass "$HOME"
+
+    sudo systemctl stop clamav-daemon.socket
+    sudo systemctl stop clamav-daemon.service
+    sudo systemctl status clamav-daemon.service -l
+}
+
+system-audit() {
+    # https://cisofy.com/lynis/
+    sudo lynis audit system
+
+    # https://wiki.archlinux.org/index.php/Rkhunter
+    sudo rkhunter --update
+    sudo rkhunter --check
+}
+
 # python hacks
 style-check() {
     # pip install yapf
