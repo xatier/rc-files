@@ -16,6 +16,7 @@ HISTFILESIZE=500000
 shopt -s checkwinsize
 shopt -s autocd
 shopt -s cdspell
+shopt -s dirspell
 shopt -s extglob
 shopt -s cmdhist
 shopt -s lithist
