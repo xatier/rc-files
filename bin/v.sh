@@ -15,6 +15,8 @@
 # network namespace
 NS_NAME=foo
 NS_SUBNET="10.200.200"
+OUT_IF="${NS_NAME}0"
+IN_IF="${NS_NAME}1"
 NS_EXEC="ip netns exec $NS_NAME"
 REGULAR_USER=xatier
 
@@ -58,15 +60,15 @@ start_vpn() {
 
     # Create virtual network interfaces that will let OpenVPN (in the
     # namespace) access the real network, and configure the interface in the
-    # namespace (vpn1) to use the interface out of the namespace (vpn0) as its
+    # namespace (NS_NAME1) to use the interface out of the namespace (NS_NAME0) as its
     # default gateway
-    ip link add vpn0 type veth peer name vpn1
-    ip link set vpn0 up
-    ip link set vpn1 netns $NS_NAME up
+    ip link add $OUT_IF type veth peer name $IN_IF
+    ip link set $OUT_IF up
+    ip link set $IN_IF netns $NS_NAME up
 
-    ip addr add $NS_SUBNET.1/24 dev vpn0
-    $NS_EXEC ip addr add $NS_SUBNET.2/24 dev vpn1
-    $NS_EXEC ip route add default via $NS_SUBNET.1 dev vpn1
+    ip addr add $NS_SUBNET.1/24 dev $OUT_IF
+    $NS_EXEC ip addr add $NS_SUBNET.2/24 dev $IN_IF
+    $NS_EXEC ip route add default via $NS_SUBNET.1 dev $IN_IF
 
     # Configure the nameserver to use inside the namespace
     mkdir -p /etc/netns/$NS_NAME
@@ -74,7 +76,7 @@ start_vpn() {
 
     # IPv4 NAT
     echo "[+] Setting IPv4 NAT on $NS_NAME"
-    iptables -A INPUT \! -i vpn0 -s $NS_SUBNET.0/24 -j DROP
+    iptables -A INPUT \! -i $OUT_IF -s $NS_SUBNET.0/24 -j DROP
     iptables -t nat -A POSTROUTING -o en+ -s $NS_SUBNET.0/24 -j MASQUERADE
     sysctl -q net.ipv4.ip_forward=1
 
@@ -106,7 +108,7 @@ start_vpn() {
     fi
 
     # start chromium
-    $NS_EXEC sudo -u $REGULAR_USER chromium "$CHROMIUM_FLAGS" &
+    $NS_EXEC sudo -u $REGULAR_USER chromium $CHROMIUM_FLAGS &
 }
 
 stop_vpn() {
@@ -127,7 +129,7 @@ stop_vpn() {
 
     # clear NAT
     echo "[+] Cleaning IPv4 NAT on $NS_NAME"
-    iptables -D INPUT \! -i vpn0 -s $NS_SUBNET.0/24 -j DROP
+    iptables -D INPUT \! -i $OUT_IF -s $NS_SUBNET.0/24 -j DROP
     iptables -t nat -D POSTROUTING -o en+ -s $NS_SUBNET.0/24 -j MASQUERADE
     sysctl -q net.ipv4.ip_forward=0
 
@@ -135,7 +137,7 @@ stop_vpn() {
     rm -rf /etc/netns/$NS_NAME
     rm -f $NS_NAME.ovpn
     ip netns delete $NS_NAME
-    ip link delete vpn0
+    ip link delete $OUT_IF
 }
 
 
