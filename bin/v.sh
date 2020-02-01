@@ -29,6 +29,10 @@ VPNGATE=""
 # shadowsocks local port
 PROXY_SERVER="socks5://127.0.0.1:1080"
 
+# OpenConnect settings
+OC_VPN_ENDPOINT=""
+OC_VPN_USER=""
+
 # don't load user profile
 PROFILE=$(sudo -u $REGULAR_USER mktemp -d)
 
@@ -103,6 +107,29 @@ start_vpn() {
         # start shadowdocks in the namespace
         $NS_EXEC sudo -u $REGULAR_USER sslocal -c $SHADOWSOCKS_CONFIG &
         CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER $CHROMIUM_FLAGS"
+
+    elif [ "$VPN" = "openconnect" ]; then
+
+        # patch resolv.conf with private nameservers
+        cat <<EOF >> /etc/netns/$NS_NAME/resolv.conf
+EOF
+        # patch hosts for go links
+        cat <<EOF >> /etc/netns/$NS_NAME/hosts
+        10.xxx.xxx.xxx go
+EOF
+        # OpenConnect requires smaller MTU
+        $NS_EXEC ip link set dev $IN_IF mtu 1320
+
+        # read VPN password
+        read -p "VPN Password: " VPN_PASS
+
+        # start OpenConnect in the namespace
+        echo -e "${VPN_PASS}\ny" |  $NS_EXEC /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
+
+        # wait for the tunnel interface to come up
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1 ; do
+            sleep .5
+        done
     else
         echo "[-] no vpn is set?! Are you sure?"
     fi
@@ -149,7 +176,7 @@ elif [ "$1" = "stop" ]; then
     echo "[+] Stopping VPN"
     stop_vpn
 else
-    echo "Usage: sudo v.sh start ss|ovpn"
+    echo "Usage: sudo v.sh start ss|ovpn|openconnect"
     echo "       sudo v.sh stop"
 fi
 
