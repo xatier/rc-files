@@ -32,7 +32,7 @@ My collections of little programs
 - requirements
 
 ```
-pacman -S perl perl-libwww openvpn shadowsocks chromium
+pacman -S perl perl-libwww openvpn shadowsocks chromium openconnect
 ```
 
 ### srandr
