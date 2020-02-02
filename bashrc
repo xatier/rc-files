@@ -77,7 +77,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-
 # Environment variables
 export PERL5LIB=$HOME/perl5/lib/perl5/
 
@@ -153,7 +152,6 @@ bind '"\e[B":history-search-forward'
 bind '"\C-p":history-search-backward'
 bind '"\C-n":history-search-forward'
 
-
 # color definition
 COLOR_END='\[\e[m\]'
 COLOR_BLACK='\[\e[0;30m\]'
@@ -215,11 +213,8 @@ PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
 cal -3
 #fortune
 
-
-
-
 # display return code of previous command
-ret_code () {
+ret_code() {
     ret=$?
     if [[ "$ret" == "0" ]]; then
         echo "^_^ "
@@ -228,35 +223,34 @@ ret_code () {
     fi
 }
 
-
 # show distrobution name
-distro_name () {
+distro_name() {
     grep ^NAME= /etc/os-release | cut -c6- | tr -d '"'
 }
 
 # show svn info
-svn_info () {
+svn_info() {
     svn info 2>&1 | grep URL
 }
 
 # show venv absolute path
-venv_abspath () {
+venv_abspath() {
     [[ -n "${VIRTUAL_ENV:-}" ]] && echo "[ py=$VIRTUAL_ENV ]" || echo ""
 }
 
 # colorize man pages
-man () {
+man() {
     env LESS_TERMCAP_mb=$'\E[1;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[0;7;32m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[0;33m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    man "$@"
+        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+        LESS_TERMCAP_me=$'\E[0m' \
+        LESS_TERMCAP_so=$'\E[0;7;32m' \
+        LESS_TERMCAP_se=$'\E[0m' \
+        LESS_TERMCAP_us=$'\E[0;33m' \
+        LESS_TERMCAP_ue=$'\E[0m' \
+        man "$@"
 }
 
-qr () {
+qr() {
     # Usage: echo "blah" | qr
     qrencode -r /dev/stdin -o /tmp/qr.png && eog /tmp/qr.png
 }
