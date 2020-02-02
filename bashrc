@@ -282,6 +282,12 @@ system-audit() {
     sudo rkhunter --check
 }
 
+shfmt-diff() {
+    # https://github.com/mvdan/sh
+    # GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
+    vimdiff "$1" <(shfmt -i 4 -ci "$1")
+}
+
 # python hacks
 style-check() {
     # pip install yapf
