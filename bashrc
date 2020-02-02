@@ -360,6 +360,10 @@ diffoscope() {
     docker run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" docker.pkg.github.com/xatier/diffoscope-arch/diffoscope-arch:latest "$1" "$2"
 }
 
+golangci-lint() {
+    docker run --rm -v "$(pwd):/app" -w /app golangci/golangci-lint:v1.22.2 golangci-lint run -v
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
