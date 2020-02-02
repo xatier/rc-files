@@ -38,5 +38,8 @@
     "python.jediEnabled": false,
     "search.smartCase": true,
     "search.collapseResults": "alwaysExpand",
-    "workbench.editor.highlightModifiedTabs": true
+    "workbench.editor.highlightModifiedTabs": true,
+    "vim.vimrc.enable": true,
+    "vim.hlsearch": true,
+    "vim.foldfix": true
 }
