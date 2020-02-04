@@ -24,5 +24,4 @@ urxvtd -q -o -f
 # flameshot &
 # xscreensaver &
 
-exec awesome >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
-
+exec awesome -a >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
