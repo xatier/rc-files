@@ -107,6 +107,7 @@ set laststatus=2
 set statusline=\ %F%m%r%y[%{strlen(&fenc)?&fenc:&enc}]%h%w%=[%l,%3v]\ --%p%%--\ \  
 hi  statusline ctermfg=darkmagenta ctermbg=darkcyan
 set wildmenu
+set wildignore=*.o,*~,*.pyc
 set wildignorecase
 
 
