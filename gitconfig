@@ -41,6 +41,8 @@
 	tool = vimdiff
 [push]
 	default = simple
+[stash]
+	showPatch = true
 [status]
 	showUntrackedFiles = all
 [url "git@github.com:"]
