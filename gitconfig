@@ -22,6 +22,8 @@
 	stash-unapply = !git stash show -p | git apply -R
 	st = status
 	unstage = reset HEAD --
+[blame]
+	coloring = repeatedLines
 [color]
 	ui = auto
 [commit]
