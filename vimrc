@@ -168,6 +168,10 @@ vnoremap > >gv
 vnoremap < <gv
 
 
+" open terminal on bottom right
+cnoreabbrev terminal botright terminal
+
+
 " set no expandtab in Makefiles and Go
 au FileType make,go setlocal noexpandtab
 
