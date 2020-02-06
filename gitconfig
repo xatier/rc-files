@@ -3,8 +3,10 @@
 	br = branch
 	ci = commit -v
 	co = checkout
+	co-tracking-from-master = "!f() { git checkout -t -b ${1-patch} master; }; f"
 	dc = diff --cached
 	df = diff
+	format-patch-from-master  = format-patch --base=auto --cover-letter -o outgoing/ master
 	gist = !xdg-open https://gist.github.com
 	github = !xdg-open `git rev-parse 2>/dev/null && \
                         git config --get remote.origin.url | \
