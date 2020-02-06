@@ -45,9 +45,7 @@ alias rscp='rsync -avzPe ssh'
 alias wtf='man'
 alias bye='exit'
 alias cd..='cd ..'
-alias chicago='TZ=US/Central date'
 alias taiwan='TZ=Asia/Taipei date'
-# alias weather='curl wttr.in/Urbana,IL'
 alias ta='tmux attach -d'
 alias a='alsamixer'
 alias d='deactivate'
@@ -79,8 +77,10 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Environment variables
+# Perl libraries
 export PERL5LIB=$HOME/perl5/lib/perl5/
 
+# locale environment variables
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -119,6 +119,7 @@ if [[ -n "$BREW_PREFIX" && -d "$BREW_PREFIX/etc/bash_completion.d/" ]]; then
     source "$BREW_PREFIX/share/bash-completion/bash_completion"
 fi
 
+# GIT_PS1 controls, used in __git_ps1 below
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -127,13 +128,8 @@ GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWCOLORHINTS=1
 
-# completion for ssh hosts
-complete -W "$(grep '^ssh ' $HOME/.bash_history | sort -u | sed 's/^ssh //')" ssh
-
 # completion ignore the prefix 'sudo'
 complete -cf sudo
-complete -cf man
-complete -cf proxychains
 
 # fzf completion and bindings
 if [[ -d /usr/share/fzf/ ]]; then
