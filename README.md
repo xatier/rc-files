@@ -45,7 +45,7 @@ Original script is from [@PkmX](https://github.com/PkmX)
 
 Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 
-- or like this => `srander[l|v|lv|vl|m]`
+- or like this => `srandr[l|v|lv|vl|m]`
 
 ## conky.conf
 
@@ -119,7 +119,7 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
         ls /sys/class/power_supply/
         ```
 
-    + [shutter-progect](http://shutter-project.org/)
+    + [shutter-project](http://shutter-project.org/)
 
         ```
         pacman -S shutter
@@ -186,7 +186,7 @@ Yukai.vscode-ptt@0.3.2
 
 ## xinitrc
 
-- [HIME for imput method](http://hime.luna.com.tw/)
+- [HIME for input method](http://hime.luna.com.tw/)
 
 - xmodmap to swap Capslock and Ctrl
 
@@ -208,4 +208,4 @@ Usage:  `xmodmap ~/.xmodmap`
 
 ## yamllint
 
-[ymllint](https://github.com/adrienverge/yamllint) configurations
+[yamllint](https://github.com/adrienverge/yamllint) configurations
