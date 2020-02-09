@@ -1,5 +1,5 @@
 [alias]
-	amend = commit --amend
+	amend = commit --amend -v
 	br = branch
 	ci = commit -v
 	co = checkout
