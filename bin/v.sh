@@ -117,6 +117,10 @@ EOF
         cat <<EOF >> /etc/netns/$NS_NAME/hosts
 10.xxx.xxx.xxx go
 EOF
+        # copy nsswitch.conf inside network namespace to avoid using systemd-resolved
+        # see https://github.com/slingamn/namespaced-openvpn/issues/7
+        # https://www.freedesktop.org/software/systemd/man/nss-resolve.html
+        cp nsswitch.conf /etc/netns/$NS_NAME/nsswitch.conf
         # OpenConnect requires smaller MTU
         $NS_EXEC ip link set dev $IN_IF mtu 1320
 
