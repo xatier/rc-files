@@ -115,7 +115,7 @@ start_vpn() {
 EOF
         # patch hosts for go links
         cat <<EOF >> /etc/netns/$NS_NAME/hosts
-        10.xxx.xxx.xxx go
+10.xxx.xxx.xxx go
 EOF
         # OpenConnect requires smaller MTU
         $NS_EXEC ip link set dev $IN_IF mtu 1320
