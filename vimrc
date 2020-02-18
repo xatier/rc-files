@@ -159,6 +159,10 @@ cmap w!! w !sudo tee %
 map q: :q
 
 
+" annoying Ex mode
+nmap Q <Nop>
+
+
 " open a new tab on gf
 map gf <c-w>gf
 
