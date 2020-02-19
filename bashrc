@@ -41,7 +41,7 @@ alias ll='ls -AlFh'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias rscp='rsync -avzPe ssh'
+alias rscp='rsync -avzzPhe ssh'
 alias wtf='man'
 alias bye='exit'
 alias cd..='cd ..'
