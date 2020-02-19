@@ -41,6 +41,8 @@
 	autocorrect = 30
 [merge]
 	tool = vimdiff
+[pull]
+	rebase = true
 [push]
 	default = simple
 [stash]
