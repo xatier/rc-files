@@ -27,6 +27,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set incsearch
+set gdefault
 set magic
 
 
