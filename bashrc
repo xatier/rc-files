@@ -362,6 +362,19 @@ golangci-lint() {
     docker run --rm -v "$(pwd):/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
 }
 
+dockerfile-lint() {
+    # https://github.com/hadolint/hadolint
+    # https://github.com/RedCoolBeans/dockerlint
+
+    if [ ! -e Dockerfile ]; then
+        echo "Dockerfile not found"
+        return 1
+    fi
+
+    podman run --rm -i hadolint/hadolint hadolint --ignore DL3007 - <Dockerfile
+    podman run -it --rm -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
