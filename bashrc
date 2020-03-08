@@ -78,7 +78,7 @@ alias ......="cd ../../../../.."
 
 # Environment variables
 # Perl libraries
-export PERL5LIB=$HOME/perl5/lib/perl5/
+export PERL5LIB="$HOME/perl5/lib/perl5/"
 
 # locale environment variables
 export LANG=en_US.UTF-8
@@ -90,8 +90,8 @@ export EDITOR=vim
 
 export LESS="-R"
 
-export GOPATH=$HOME/go
-export PATH=$HOME/bin:$HOME/go/bin:$PATH
+export GOPATH="$HOME/go"
+export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -102,7 +102,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # use brew apps and GNU coreutils on OS X
 if [[ "$(uname)" == "Darwin" ]]; then
-    export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH
+    export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:"$PATH"
     BREW_PREFIX="$(brew --prefix)"
 fi
 
@@ -182,7 +182,7 @@ CHECKSUM=0
 while [[ -n "$STR_HOST" ]]; do
     CHAR=${STR_HOST:0:1}
     N=$(printf "%d" "'$CHAR")
-    CHECKSUM=$(expr $CHECKSUM + "$N")
+    CHECKSUM=$(expr "$CHECKSUM" + "$N")
     STR_HOST=${STR_HOST:1}
 done
 
@@ -359,13 +359,13 @@ wormhole-kill() {
 
 diffoscope() {
     local pwd
-    pwd="$(pwd)"
+    pwd="$PWD"
     podman run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" docker.pkg.github.com/xatier/diffoscope-arch/diffoscope-arch:latest "$1" "$2"
 }
 
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
-    podman run --rm -v "$(pwd):/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
+    podman run --rm -v "$PWD:/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
 }
 
 dockerfile-lint() {
