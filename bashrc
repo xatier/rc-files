@@ -348,18 +348,18 @@ wormhole-kill() {
 
 shell-check() {
     # https://github.com/koalaman/shellcheck
-    docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
+    podman run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
 }
 
 diffoscope() {
     local pwd
     pwd="$(pwd)"
-    docker run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" docker.pkg.github.com/xatier/diffoscope-arch/diffoscope-arch:latest "$1" "$2"
+    podman run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" docker.pkg.github.com/xatier/diffoscope-arch/diffoscope-arch:latest "$1" "$2"
 }
 
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
-    docker run --rm -v "$(pwd):/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
+    podman run --rm -v "$(pwd):/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
 }
 
 dockerfile-lint() {
