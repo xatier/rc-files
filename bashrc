@@ -279,6 +279,17 @@ system-audit() {
     sudo rkhunter --check
 }
 
+# shell tools
+shell-check() {
+    # https://github.com/koalaman/shellcheck
+    podman run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
+}
+
+shellharden-diff() {
+    # https://github.com/anordal/shellharden
+    vimdiff <(shellharden --transform "$1") "$1"
+}
+
 shfmt-diff() {
     # https://github.com/mvdan/sh
     # GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
@@ -344,11 +355,6 @@ wormhole-kill() {
     # delete magic-wormhole venv
     deactivate
     rm -rf "$venv_name"
-}
-
-shell-check() {
-    # https://github.com/koalaman/shellcheck
-    podman run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
 }
 
 diffoscope() {
