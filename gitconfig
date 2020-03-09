@@ -45,6 +45,8 @@
 	rebase = true
 [push]
 	default = simple
+[rebase]
+	stat = true
 [stash]
 	showPatch = true
 [status]
