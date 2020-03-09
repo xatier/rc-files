@@ -385,3 +385,11 @@ screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
 }
+
+jwtinfo() {
+    # inspired by https://github.com/lmammino/jwtinfo
+    # ignore base64 error since JWT payload may not have proper '=' paddings
+    # https://jwt.io/introduction/
+    echo "$1" | cut -d'.' -f 2 | base64 -di 2>/dev/null
+}
+
