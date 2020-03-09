@@ -1,6 +1,8 @@
 {
+    "diffEditor.ignoreTrimWhitespace": false,
     "editor.find.autoFindInSelection": "always",
     "editor.fontSize": 16,
+    "editor.renderWhitespace": "all",
     "editor.suggestSelection": "first",
     "files.trimFinalNewlines": true,
     "go.autocompleteUnimportedPackages": true,
