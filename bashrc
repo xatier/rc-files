@@ -393,3 +393,9 @@ jwtinfo() {
     echo "$1" | cut -d '.' -f 2 | base64 -di 2>/dev/null
 }
 
+exif-remove() {
+    # Delete all meta information from an image
+    exiftool -all= "$1"
+    exiftool "$1"
+}
+
