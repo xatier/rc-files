@@ -80,6 +80,9 @@ alias ......="cd ../../../../.."
 # Perl libraries
 export PERL5LIB="$HOME/perl5/lib/perl5/"
 
+# python startup
+export PYTHONSTARTUP=$HOME/.pythonrc.py
+
 # locale environment variables
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
