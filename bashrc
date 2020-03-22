@@ -391,6 +391,11 @@ dockerfile-lint() {
     podman run -it --rm -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint
 }
 
+consider-lint() {
+    # https://github.com/mroth/consider
+    podman run -t --rm -v "$PWD:/mnt:ro" xatier/consider:latest
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
