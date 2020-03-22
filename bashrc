@@ -375,7 +375,8 @@ diffoscope() {
 
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
-    podman run --rm -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -v
+    local extra='goconst,gosec,bodyclose,misspell,unconvert,unparam,whitespace'
+    podman run -t --rm -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -E "$extra" -v
 }
 
 dockerfile-lint() {
