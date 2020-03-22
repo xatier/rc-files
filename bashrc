@@ -333,6 +333,13 @@ pylint-check() {
     deactivate
 }
 
+vint-check() {
+    # pip install vim-vint
+    source "$HOME/work/pip/bin/activate"
+    vint --color --style-problem "$1"
+    deactivate
+}
+
 upgrade-pips() {
     command -v pip
     pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
