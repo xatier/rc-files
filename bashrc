@@ -285,7 +285,7 @@ system-audit() {
 # shell tools
 shell-check() {
     # https://github.com/koalaman/shellcheck
-    podman run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable "$@"
+    podman run --rm -v "$PWD:/mnt:ro" koalaman/shellcheck:stable "$@"
 }
 
 shellharden-diff() {
@@ -368,7 +368,7 @@ diffoscope() {
 
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
-    podman run --rm -v "$PWD:/app" -w /app golangci/golangci-lint:latest golangci-lint run -v
+    podman run --rm -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -v
 }
 
 dockerfile-lint() {
