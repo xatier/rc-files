@@ -67,6 +67,8 @@ set tabpagemax=99
 set undofile
 set undodir=~/.vim/undo
 
+set diffopt+=algorithm:histogram
+
 
 "###########################################################################
 " color settings
