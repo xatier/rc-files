@@ -74,6 +74,20 @@ set complete+=d
 set diffopt+=algorithm:histogram,indent-heuristic
 
 
+" diffmode settings
+if &diff
+    " jump to next/previous change
+    nnoremap ] ]c
+    nnoremap [ [c
+
+    " diff highlight
+    highlight DiffAdd    cterm=bold ctermfg=green ctermbg=17
+    highlight DiffDelete cterm=bold ctermfg=red ctermbg=17
+    highlight DiffChange cterm=bold ctermfg=green ctermbg=17
+    highlight DiffText   cterm=bold ctermfg=green ctermbg=88
+endif
+
+
 "###########################################################################
 " color settings
 "###########################################################################
@@ -91,14 +105,6 @@ highlight ColorColumn ctermbg=red
 " highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
 au BufNewFile,BufRead * highlight ExtraWhitespace ctermbg=red
 au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
-
-
-" diff highlight
-highlight DiffAdd    cterm=bold ctermfg=green ctermbg=17
-highlight DiffDelete cterm=bold ctermfg=red ctermbg=17
-highlight DiffChange cterm=bold ctermfg=green ctermbg=17
-highlight DiffText   cterm=bold ctermfg=green ctermbg=88
-
 
 
 "###########################################################################
