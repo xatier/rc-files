@@ -146,7 +146,7 @@ au FileType python nnoremap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR
 
 
 " Ctrl-L clear search results highlighting
-nnoremap <silent><c-l> :nohl<cr><c-l>
+nnoremap <silent><c-l> :nohlsearch<cr><c-l>
 
 
 " start an external command with a single bang
@@ -195,7 +195,7 @@ au FileType c,cpp,perl,python setlocal list listchars=tab:>>
 
 
 " yaml
-au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 
 " remove trailing whitespace before saving codes
