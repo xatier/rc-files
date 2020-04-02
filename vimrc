@@ -66,6 +66,10 @@ set undofile
 set undodir=~/.vim/undo
 
 
+" include defined name or macro
+set complete+=d
+
+
 " better vimdiff behavior
 set diffopt+=algorithm:histogram,indent-heuristic
 
