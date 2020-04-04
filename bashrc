@@ -397,6 +397,11 @@ consider-lint() {
     podman run -t --rm -v "$PWD:/mnt:ro" xatier/consider:latest
 }
 
+write-good-check() {
+    # https://github.com/btford/write-good
+    podman run --rm -v "$PWD:/app:ro" xatier/write-good:latest "$@"
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
