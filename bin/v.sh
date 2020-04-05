@@ -42,7 +42,6 @@ CACHE=$(sudo -u $REGULAR_USER mktemp -d)
 CHROMIUM_FLAGS="--disable-sync-preferences --incognito --disk-cache-dir=$CACHE --user-data-dir=$PROFILE --disable-reading-from-canvas"
 # ---------------------------------------------
 
-
 set -ueo pipefail
 
 if [ "$USER" != "root" ]; then
@@ -76,7 +75,7 @@ start_vpn() {
 
     # Configure the nameserver to use inside the namespace
     mkdir -p /etc/netns/$NS_NAME
-    echo 'nameserver 8.8.8.8' > /etc/netns/$NS_NAME/resolv.conf
+    echo 'nameserver 8.8.8.8' >/etc/netns/$NS_NAME/resolv.conf
 
     # IPv4 NAT
     echo "[+] Setting IPv4 NAT on $NS_NAME"
@@ -88,7 +87,7 @@ start_vpn() {
     $NS_EXEC ping -c 3 www.google.com
 
     if [ "$VPN" = "ovpn" ]; then
-        if [ -n "$OPENVPN_CONFIG" ] ; then
+        if [ -n "$OPENVPN_CONFIG" ]; then
             cp $OPENVPN_CONFIG $NS_NAME.ovpn
         else
             # select a server from vpngate project
@@ -99,7 +98,7 @@ start_vpn() {
         $NS_EXEC openvpn --config $NS_NAME.ovpn &
 
         # wait for the tunnel interface to come up
-        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1 ; do
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1; do
             sleep .5
         done
 
@@ -111,10 +110,10 @@ start_vpn() {
     elif [ "$VPN" = "openconnect" ]; then
 
         # patch resolv.conf with private nameservers
-        cat <<EOF >> /etc/netns/$NS_NAME/resolv.conf
+        cat <<EOF >>/etc/netns/$NS_NAME/resolv.conf
 EOF
         # patch hosts for go links
-        cat <<EOF >> /etc/netns/$NS_NAME/hosts
+        cat <<EOF >>/etc/netns/$NS_NAME/hosts
 10.xxx.xxx.xxx go
 EOF
         # copy nsswitch.conf inside network namespace to avoid using systemd-resolved
@@ -128,10 +127,10 @@ EOF
         read -rp "VPN Password: " VPN_PASS
 
         # start OpenConnect in the namespace
-        echo -e "${VPN_PASS}\ny" |  $NS_EXEC /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
+        echo -e "${VPN_PASS}\ny" | $NS_EXEC /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
 
         # wait for the tunnel interface to come up
-        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1 ; do
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1; do
             sleep .5
         done
     else
@@ -171,8 +170,6 @@ stop_vpn() {
     ip link delete $OUT_IF
 }
 
-
-
 if [ "$1" = "start" ]; then
     echo "[+] Starting VPN"
     start_vpn "$2"
@@ -183,4 +180,3 @@ else
     echo "Usage: sudo v.sh start ss|ovpn|openconnect"
     echo "       sudo v.sh stop"
 fi
-
