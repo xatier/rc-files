@@ -125,7 +125,7 @@ EOF
         $NS_EXEC ip link set dev $IN_IF mtu 1320
 
         # read VPN password
-        read -p "VPN Password: " VPN_PASS
+        read -rp "VPN Password: " VPN_PASS
 
         # start OpenConnect in the namespace
         echo -e "${VPN_PASS}\ny" |  $NS_EXEC /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
