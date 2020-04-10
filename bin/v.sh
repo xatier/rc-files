@@ -58,8 +58,8 @@ start_vpn() {
     ip netns add "$NS_NAME"
 
     # Start the loopback interface in the namespace
-    "$NS_EXEC" ip addr add 127.0.0.1/8 dev lo
-    "$NS_EXEC" ip link set lo up
+    $NS_EXEC ip addr add 127.0.0.1/8 dev lo
+    $NS_EXEC ip link set lo up
 
     # Create virtual network interfaces that will let OpenVPN (in the
     # namespace) access the real network, and configure the interface in the
@@ -70,8 +70,8 @@ start_vpn() {
     ip link set "$IN_IF" netns "$NS_NAME" up
 
     ip addr add "$NS_SUBNET".1/24 dev "$OUT_IF"
-    "$NS_EXEC" ip addr add "$NS_SUBNET".2/24 dev "$IN_IF"
-    "$NS_EXEC" ip route add default via "$NS_SUBNET".1 dev "$IN_IF"
+    $NS_EXEC ip addr add "$NS_SUBNET".2/24 dev "$IN_IF"
+    $NS_EXEC ip route add default via "$NS_SUBNET".1 dev "$IN_IF"
 
     # Configure the nameserver to use inside the namespace
     mkdir -p "/etc/netns/$NS_NAME"
@@ -84,27 +84,27 @@ start_vpn() {
     sysctl -q net.ipv4.ip_forward=1
 
     # Check our VPN@NS is working
-    "$NS_EXEC" ping -c 3 www.google.com
+    $NS_EXEC ping -c 3 www.google.com
 
     if [ "$VPN" = "ovpn" ]; then
         if [ -n "$OPENVPN_CONFIG" ]; then
             cp "$OPENVPN_CONFIG" "$NS_NAME".ovpn
         else
             # select a server from vpngate project
-            "$NS_EXEC" "$VPNGATE" "$NS_NAME"
+            $NS_EXEC "$VPNGATE" "$NS_NAME"
         fi
 
         # start OpenVPN in the namespace
-        "$NS_EXEC" openvpn --config "$NS_NAME".ovpn &
+        $NS_EXEC openvpn --config "$NS_NAME".ovpn &
 
         # wait for the tunnel interface to come up
-        while ! "$NS_EXEC" ip link show dev tun0 >/dev/null 2>&1; do
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1; do
             sleep .5
         done
 
     elif [ "$VPN" = "ss" ]; then
         # start shadowdocks in the namespace
-        "$NS_EXEC" sudo -u "$REGULAR_USER" sslocal -c "$SHADOWSOCKS_CONFIG" &
+        $NS_EXEC sudo -u "$REGULAR_USER" sslocal -c "$SHADOWSOCKS_CONFIG" &
         CHROMIUM_FLAGS="--proxy-server=$PROXY_SERVER $CHROMIUM_FLAGS"
 
     elif [ "$VPN" = "openconnect" ]; then
@@ -121,16 +121,16 @@ EOF
         # https://www.freedesktop.org/software/systemd/man/nss-resolve.html
         cp nsswitch.conf "/etc/netns/$NS_NAME/nsswitch.conf"
         # OpenConnect requires smaller MTU
-        "$NS_EXEC" ip link set dev "$IN_IF" mtu 1320
+        $NS_EXEC ip link set dev "$IN_IF" mtu 1320
 
         # read VPN password
         read -rp "VPN Password: " VPN_PASS
 
         # start OpenConnect in the namespace
-        echo -e "$VPN_PASS\ny" | "$NS_EXEC" /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
+        echo -e "$VPN_PASS\ny" | $NS_EXEC /usr/sbin/openconnect --interface tun0 "$OC_VPN_ENDPOINT" -u "$OC_VPN_USER" --passwd-on-stdin &
 
         # wait for the tunnel interface to come up
-        while ! "$NS_EXEC" ip link show dev tun0 >/dev/null 2>&1; do
+        while ! $NS_EXEC ip link show dev tun0 >/dev/null 2>&1; do
             sleep .5
         done
     else
@@ -138,7 +138,7 @@ EOF
     fi
 
     # start chromium
-    "$NS_EXEC" sudo -u "$REGULAR_USER" chromium $CHROMIUM_FLAGS &
+    $NS_EXEC sudo -u "$REGULAR_USER" chromium $CHROMIUM_FLAGS &
 }
 
 stop_vpn() {
