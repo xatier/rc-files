@@ -144,7 +144,14 @@ if [[ -n "$BREW_PREFIX" && -d "$BREW_PREFIX/opt/fzf/" ]]; then
     source "$BREW_PREFIX/opt/fzf/shell/completion.bash"
 fi
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_DEFAULT_OPTS='--border --layout=reverse --prompt="(´・ω・`) "'
+export FZF_DEFAULT_OPTS='
+--border
+--multi
+--header="(∩ ◕_▩ )⊃━☆ﾟExplosion！"
+--layout=reverse
+--pointer="つ"
+--prompt="(´・ω・`) "
+'
 
 # search history using up/down keys
 bind '"\e[A":history-search-backward'
