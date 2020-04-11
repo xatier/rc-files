@@ -1,9 +1,19 @@
 {
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.intelliSenseMode": "clang-x64",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.find.autoFindInSelection": "always",
     "editor.fontSize": 16,
+    "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
-    "editor.suggestSelection": "first",
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.maxVisibleSuggestions": 15,
+    "editor.tabCompletion": "on",
+    "editor.rulers": [
+        79,
+        119
+    ],
     "files.exclude": {
         "**/*.pyc": true
     },
