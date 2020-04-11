@@ -152,8 +152,8 @@ stop_vpn() {
     echo "[+] Killing applications"
 
     NS_PIDS="ip netns pids $NS_NAME"
-    while [ -n "$("$NS_PIDS" | xargs)" ]; do
-        "$NS_PIDS" | xargs -rd'\n' kill
+    while [ -n "$($NS_PIDS | xargs)" ]; do
+        $NS_PIDS | xargs -rd'\n' kill
         sleep .5
     done
 
