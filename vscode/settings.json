@@ -55,5 +55,6 @@
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
-    "workbench.editor.highlightModifiedTabs": true
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.titleScrollbarSizing": "large"
 }
