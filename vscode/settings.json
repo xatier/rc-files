@@ -56,5 +56,6 @@
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.editor.titleScrollbarSizing": "large"
+    "workbench.editor.titleScrollbarSizing": "large",
+    "xo.enable": true
 }
