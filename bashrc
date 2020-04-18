@@ -1,6 +1,7 @@
 # If not running interactively, don't do anything
 [[ -z "$PS1" ]] && return
 
+# Shell history settings
 HISTCONTROL=ignoredups:ignorespace
 
 # append to the history file, don't overwrite it
@@ -11,16 +12,15 @@ shopt -s histreedit
 HISTSIZE=500000
 HISTFILESIZE=500000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# Bash shell options
 shopt -s autocd
 shopt -s cdspell
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s cmdhist
 shopt -s dirspell
 shopt -s extglob
-shopt -s cmdhist
 shopt -s lithist
-shopt -s checkhash
 
 # feels good in emacs
 stty -ixon
@@ -37,33 +37,34 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # some more ls aliases
-alias ll='ls -AlFh'
-alias la='ls -A'
 alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -AlFh'
 
-alias rscp='rsync -avzzPhe ssh'
-alias wtf='man'
+alias a='alsamixer'
 alias bye='exit'
 alias cd..='cd ..'
-alias taiwan='TZ=Asia/Taipei date'
-alias ta='tmux attach -d'
-alias a='alsamixer'
 alias d='deactivate'
 alias gerp='grep'
-alias gti='git'
 alias gi='git'
 alias gt='git'
+alias gti='git'
+alias ipy='ipython'
+alias ivm='vim'
 alias open='xdg-open'
 alias py='python'
-alias ipy='ipython'
 alias r='ranger'
+alias rscp='rsync -avzzPhe ssh'
+alias ta='tmux attach -d'
+alias taiwan='TZ=Asia/Taipei date'
+alias type='type -a'
 alias u='urxvt'
 alias uc='urxvtc'
 alias v='vim'
-alias vi='vim'
 alias vd='vimdiff'
-alias ivm='vim'
+alias vi='vim'
 alias vmi='vim'
+alias wtf='man'
 # pip install pyyaml
 alias y2j='python3 -c "import yaml,sys,json; print json.dump(yaml.safe_load(sys.stdin), sys.stdout)"'
 alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read()))"'
