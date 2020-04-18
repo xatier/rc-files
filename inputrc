@@ -2,23 +2,26 @@
 set bell-style none
 
 # handle the meta key
-set meta-flag on
-set input-meta on
-set output-meta on
 set convert-meta off
+set input-meta on
+set meta-flag on
+set output-meta on
 
 # complete like ls -F
-set visible-stats on
+set colored-stats on
 set mark-symlinked-directories on
+set visible-stats on
 
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
 
 # completion
-set completion-ignore-case on
-set completion-map-case on
 TAB:menu-complete
 "\e[Z": menu-complete-backward
+set colored-completion-prefix on
+set completion-ignore-case on
+set completion-map-case on
+set menu-complete-display-prefix on
 
 
 # fix emacs mode for some consoles
