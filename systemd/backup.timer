@@ -1,0 +1,9 @@
+# backup.timer
+[Unit]
+Description=Timer for backup.service
+
+[Timer]
+OnCalendar=*-*-* 05:00:00
+
+[Install]
+WantedBy=timers.target
