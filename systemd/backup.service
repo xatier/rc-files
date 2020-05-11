@@ -1,0 +1,7 @@
+# backup.service
+[Unit]
+Description=Backup home (%h)
+
+[Service]
+Type=oneshot
+ExecStart=%h/backup_timer.sh
