@@ -42,7 +42,7 @@ CACHE=$(sudo -u "$REGULAR_USER" mktemp -d)
 CHROMIUM_FLAGS="--disable-sync-preferences --incognito --disk-cache-dir=$CACHE --user-data-dir=$PROFILE --disable-reading-from-canvas"
 # ---------------------------------------------
 
-set -ueo pipefail
+set -euo pipefail
 
 if [ "$USER" != "root" ]; then
     echo "[-] This must be run as root."
