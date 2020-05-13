@@ -22,9 +22,10 @@
 	ls = ls-files
 	m = merge
 	show-graph = log --all --graph --oneline --decorate
-	stash-unapply = !git stash show -p | git apply -R
 	st = status
-	unstage = reset HEAD --
+	stash-unapply = !git stash show -p | git apply -R
+	sw = switch
+	unstage = restore --staged
 [blame]
 	coloring = repeatedLines
 [color]
