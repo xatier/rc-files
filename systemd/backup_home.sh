@@ -16,7 +16,7 @@ echo "done"
 
 # upload to the Google drive with skicka
 # https://github.com/google/skicka
-skicka upload "$FILENAME.gpg" "$FILENAME.gpg"
+/home/xatier/go/bin/skicka upload "$FILENAME.gpg" "$FILENAME.gpg"
 
 # decrypt
 # gpg -o $FILENAME -d $FILENAME.gpg
