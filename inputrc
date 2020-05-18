@@ -21,7 +21,6 @@ TAB:menu-complete
 set colored-completion-prefix on
 set completion-ignore-case on
 set completion-map-case on
-set menu-complete-display-prefix on
 
 
 # fix emacs mode for some consoles
