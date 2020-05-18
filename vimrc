@@ -7,7 +7,7 @@
 "###########################################################################
 
 " syntax highlight
-syntax enable
+syntax on
 filetype plugin indent on
 
 
@@ -141,7 +141,7 @@ set backspace=indent,eol,start
 
 
 " F7 to close syntax high-lighting
-nnoremap <F7> :if exists("syntax_on") <BAR>
+nnoremap <F7> :if exists('g:syntax_on') <BAR>
 \ syntax off <BAR><CR>
 \ else <BAR>
 \ syntax enable <BAR>
