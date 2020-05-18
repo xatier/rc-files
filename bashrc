@@ -384,7 +384,7 @@ diffoscope() {
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
     local extra='goconst,gosec,bodyclose,misspell,unconvert,unparam,whitespace'
-    podman run -t --rm -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -E "$extra" -v
+    podman run --rm -t -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -E "$extra" -v
 }
 
 dockerfile-lint() {
@@ -397,12 +397,12 @@ dockerfile-lint() {
     fi
 
     podman run --rm -i hadolint/hadolint hadolint --ignore DL3007 - <Dockerfile
-    podman run -it --rm -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint
+    podman run --rm -it -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint
 }
 
 consider-lint() {
     # https://github.com/mroth/consider
-    podman run -t --rm -v "$PWD:/mnt:ro" xatier/consider:latest
+    podman run --rm -t -v "$PWD:/mnt:ro" xatier/consider:latest
 }
 
 write-good-check() {
