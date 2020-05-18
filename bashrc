@@ -65,6 +65,8 @@ alias vd='vimdiff'
 alias vi='vim'
 alias vmi='vim'
 alias wtf='man'
+alias vos='vim-open-search'
+alias vso='vim-open-search'
 # pip install pyyaml
 alias y2j='python3 -c "import yaml,sys,json; print json.dump(yaml.safe_load(sys.stdin), sys.stdout)"'
 alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read()))"'
@@ -348,6 +350,11 @@ vint-check() {
     deactivate
 }
 
+vim-open-search() {
+    # open search resault files
+    vim -p $(ag -l "$1") -c "/$1"
+}
+
 upgrade-pips() {
     command -v pip
     pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
@@ -427,4 +434,3 @@ exif-remove() {
     exiftool -all= "$1"
     exiftool "$1"
 }
-
