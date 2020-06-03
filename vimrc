@@ -32,6 +32,9 @@ set ignorecase
 set smartcase
 set incsearch
 set gdefault
+set grepprg=ag\ --vimgrep
+set grepformat^=%f:%l:%c:%m
+command! -nargs=+ Ag execute 'silent grep!' <q-args> | cwindow | redraw!
 
 
 " load built-in matchit plugin, % to jump between matched if-else pairs
