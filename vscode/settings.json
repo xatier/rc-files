@@ -1,7 +1,8 @@
 {
-    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cStandard": "c18",
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "C_Cpp.updateChannel": "Insiders",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.find.autoFindInSelection": "always",
     "editor.fontSize": 16,
@@ -15,6 +16,8 @@
         119
     ],
     "files.exclude": {
+        "**/*.o": true,
+        "**/*.so*": true,
         "**/*.pyc": true
     },
     "files.insertFinalNewline": true,
@@ -55,7 +58,11 @@
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
+    "workbench.colorTheme": "GitHub Dark",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.titleScrollbarSizing": "large",
+    "workbench.iconTheme": "vscode-icons",
     "xo.enable": true
 }
