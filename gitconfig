@@ -49,6 +49,7 @@
 	default = simple
 [rebase]
 	stat = true
+	autoStash = true
 [stash]
 	showPatch = true
 [status]
