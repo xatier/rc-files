@@ -94,9 +94,12 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=red
 
 
-" highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
-au BufNewFile,BufRead * highlight ExtraWhitespace ctermbg=red
-au BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+augroup HighlightTrailingWhitespace
+    " highlight trailing whitespace, [spaces]+[tab] and [tab]+[space]
+    autocmd!
+    autocmd BufNewFile,BufRead * highlight ExtraWhitespace ctermbg=red
+    autocmd BufNewFile,BufRead * match ExtraWhitespace /\s\+$\| \+\ze\t\|\t\+\ze /
+augroup END
 
 
 "###########################################################################
@@ -132,10 +135,13 @@ set cursorline
 set cursorcolumn
 highlight CursorLine term=none cterm=none ctermbg=none ctermbg=none
 highlight CursorColumn term=none cterm=none ctermbg=none ctermbg=none
-au InsertEnter * highlight CursorLine term=none cterm=underline
-au InsertEnter * highlight CursorColumn term=none ctermbg=darkblue
-au InsertLeave * highlight CursorLine term=none cterm=none ctermbg=none
-au InsertLeave * highlight CursorColumn term=none cterm=none ctermbg=none
+augroup HighlightCursorCross
+    autocmd!
+    autocmd InsertEnter * highlight CursorLine term=none cterm=underline
+    autocmd InsertEnter * highlight CursorColumn term=none ctermbg=darkblue
+    autocmd InsertLeave * highlight CursorLine term=none cterm=none ctermbg=none
+    autocmd InsertLeave * highlight CursorColumn term=none cterm=none ctermbg=none
+augroup END
 
 
 "###########################################################################
@@ -154,9 +160,12 @@ nnoremap <F7> :if exists('g:syntax_on') <BAR>
 \ endif <CR>
 
 
-" K to lookup current word in documentations
-au FileType perl nnoremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
-au FileType python nnoremap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
+augroup KeywordLookup
+    " K to lookup current word in documentations
+    autocmd!
+    autocmd FileType perl nnoremap K :!perldoc <cword> <bar><bar> perldoc -f <cword><CR><CR>
+    autocmd FileType python nnoremap K :!pydoc <cword> <bar><bar> pydoc -k <cword><CR><CR>
+augroup END
 
 
 " Ctrl-L clear search results highlighting
@@ -192,24 +201,23 @@ vnoremap < <gv
 cnoreabbrev terminal botright terminal
 
 
-" set no expandtab in Makefiles and Go
-au FileType make,go setlocal noexpandtab
+augroup SetLocal
+    autocmd!
+    " set no expandtab in Makefiles and Go
+    autocmd FileType make,go setlocal noexpandtab
 
+    " set spell in Markdown notes
+    autocmd FileType markdown setlocal spell
 
-" set spell in Markdown notes
-au FileType markdown setlocal spell
+    " set spell while git committing
+    autocmd BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
 
+    " highlight tabs
+    autocmd FileType c,cpp,perl,python setlocal list listchars=tab:>>
 
-" set spell while git committing
-au BufNewFile,BufRead COMMIT_EDITMSG setlocal spell
-
-
-" highlight tabs
-au FileType c,cpp,perl,python setlocal list listchars=tab:>>
-
-
-" yaml
-au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+    " yaml
+    autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+augroup END
 
 
 " remove trailing whitespace before saving codes
@@ -219,7 +227,10 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-au FileType c,cpp,perl,python,go au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+augroup StripTrailingWhitespacesCmd
+    autocmd!
+    autocmd FileType c,cpp,perl,python,go au BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+augroup END
 
 "###########################################################################
 " multi-encoding setting
@@ -253,7 +264,10 @@ cabbrev lint ALELint
 
 
 " flake8 settings
-au FileType python let b:ale_linters = ['flake8']
-au FileType python let b:ale_python_flake8_executable = '/home/xatier/work/pip/bin/flake8'
-au FileType python let b:ale_python_flake8_auto_pipenv = 1
-au FileType python let b:ale_python_flake8_options = '--ignore C408,D1 --show-source --import-order-style=google'
+augroup Flake8Settings
+    autocmd!
+    autocmd FileType python let b:ale_linters = ['flake8']
+    autocmd FileType python let b:ale_python_flake8_executable = '/home/xatier/work/pip/bin/flake8'
+    autocmd FileType python let b:ale_python_flake8_auto_pipenv = 1
+    autocmd FileType python let b:ale_python_flake8_options = '--ignore C408,D1 --show-source --import-order-style=google'
+augroup END
