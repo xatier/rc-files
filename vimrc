@@ -63,6 +63,9 @@ set novisualbell
 " increase tab page max
 set tabpagemax=99
 
+" open quickfix items into new tabs
+set switchbuf+=usetab,newtab
+
 
 " undo
 set undofile
