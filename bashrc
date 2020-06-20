@@ -352,7 +352,7 @@ vint-check() {
 
 vim-open-search() {
     # open search resault files
-    vim -p $(ag -l "$1") -c "/$1"
+    vim -q <(ag --vimgrep "$*") -c ':cwindow'
 }
 
 upgrade-pips() {
