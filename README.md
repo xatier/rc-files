@@ -195,6 +195,12 @@ vscodevim.vim@1.14.5
 Yukai.vscode-ptt@0.3.2
 ```
 
+- install extensions
+
+```bash
+code --install-extension <extension ID>
+```
+
 ## xinitrc
 
 - [HIME for input method](http://hime.luna.com.tw/)
