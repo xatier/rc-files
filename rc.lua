@@ -177,7 +177,7 @@ vicious.register(
     vicious.widgets.thermal,
     " $1°C", 2,
     {
-        "coretemp.0/hwmon/hwmon3",
+        "coretemp.0/hwmon/hwmon2",
         "core",
         "temp1_input"
     }
