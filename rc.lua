@@ -128,9 +128,11 @@ local function mypread(command)
     return lines
 end
 
--- return the command output for tooltips below
-local function tooltip_func_text(command)
-    return command .. " :\n\n" .. mypread(command)
+-- set command output for tooltips below
+local function async_set_text(command, tooltip)
+   awful.spawn.easy_async_with_shell(command, function(stdout)
+       tooltip:set_markup(command .. " :\n\n" .. stdout)
+   end)
 end
 
 -- network usage
@@ -144,8 +146,10 @@ vicious.register(netwidget, vicious.widgets.net,
 clockwidget = wibox.widget.textclock("%a %b %d %H:%M:%S %p ", 1)
 clockwidget_t = awful.tooltip({
     objects = { clockwidget },
-    timer_function = function (clockwidget_t)
-        return tooltip_func_text("cal -3")
+    timeout = 30,
+    timer_function = function ()
+        async_set_text("cal -3", clockwidget_t)
+        return 'loading'
     end
 })
 
@@ -156,8 +160,10 @@ clockTWwidget = wibox.widget.textbox()
 cpuwidget = wibox.widget.textbox()
 cpuwidget_t = awful.tooltip({
     objects = { cpuwidget },
+    timeout = 5,
     timer_function = function ()
-        return tooltip_func_text("top -b -c -o %CPU -n 1 | head -n 20")
+        async_set_text("top -b -c -o %CPU -n 1 | head -n 20", cpuwidget_t)
+        return 'loading'
     end
 })
 vicious.register(cpuwidget, vicious.widgets.cpu,
@@ -168,8 +174,10 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 thermalwidget  = wibox.widget.textbox()
 thermalwidget_t = awful.tooltip({
     objects = { thermalwidget },
+    timeout = 5,
     timer_function = function ()
-        return tooltip_func_text("sensors")
+        async_set_text("sensors", thermalwidget_t)
+        return 'loading'
     end
 })
 vicious.register(
@@ -187,8 +195,10 @@ vicious.register(
 memwidget = wibox.widget.textbox()
 memwidget_t = awful.tooltip({
     objects = { memwidget },
+    timeout = 5,
     timer_function = function ()
-        return tooltip_func_text("free -h")
+        async_set_text("free -h", memwidget_t)
+        return 'loading'
     end
 })
 vicious.register(memwidget, vicious.widgets.mem,
@@ -199,8 +209,10 @@ vicious.register(memwidget, vicious.widgets.mem,
 batwidget = wibox.widget.textbox()
 batwidget_t = awful.tooltip({
     objects = { batwidget },
+    timeout = 5,
     timer_function = function ()
-        return tooltip_func_text("acpi -V")
+        async_set_text("acpi -V", batwidget_t)
+        return 'loading'
     end
 })
 vicious.register(batwidget, vicious.widgets.bat, "$2% $3[$1]", 2, "BAT1")
@@ -218,8 +230,10 @@ batwidget:buttons(
 weatherwidget = wibox.widget.textbox()
 weatherwidget_t = awful.tooltip({
     objects = { weatherwidget },
+    timeout = 30,
     timer_function = function ()
-        return tooltip_func_text("bash /home/xatier/bin/weather")
+        async_set_text("bash /home/xatier/bin/weather", weatherwidget_t)
+        return 'loading'
     end
 })
 
@@ -252,8 +266,10 @@ mytimer:start()
 alsaboxwidget = wibox.widget.textbox()
 alsaboxwidget_t = awful.tooltip({
     objects = { alsaboxwidget },
+    timeout = 30,
     timer_function = function ()
-        return tooltip_func_text("amixer get Master")
+        async_set_text("amixer get Master", alsaboxwidget_t)
+        return 'loading'
     end
 })
 vicious.register(alsaboxwidget, vicious.widgets.volume, "$2 [$1%]", 1, "Master")
