@@ -24,4 +24,7 @@ systemctl --user status backup.service
 
 # on changes
 systemctl --user daemon-reload
+
+# checking logs
+journalctl --user -u backup --since '7d ago'
 ```
