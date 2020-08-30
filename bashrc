@@ -332,6 +332,9 @@ black-diff() {
 
 pep8-check() {
     # pip install flake8 flake8-annotations flake8-bugbear flake8-comprehensions flake8-docstrings flake8-import-order pep8-naming
+    # optionals:
+    # flake8-annotations-complexity flake8-annotations-coverage flake8-class-attributes-order
+    # flake8-commas flake8-expression-complexity flake8-variables-names
     source "$HOME/work/pip/bin/activate"
     flake8 --ignore C408,D1 --show-source --import-order-style=google "$1"
     deactivate
