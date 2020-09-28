@@ -342,6 +342,8 @@ pep8-check() {
 
 pylint-check() {
     # pip install pylint
+    # fetch https://google.github.io/styleguide/pylintrc to ~/.pylintrc
+    # patch `indent-string` to 4 spaces
     source "$HOME/work/pip/bin/activate"
     pylint "$1"
     deactivate
