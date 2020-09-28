@@ -363,6 +363,7 @@ vim-open-search() {
 
 upgrade-pips() {
     command -v pip
+    pip install --upgrade pip
     pip install -r <(pip freeze | sed 's/==/>=/') --upgrade
 }
 
