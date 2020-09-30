@@ -201,6 +201,10 @@ vnoremap < <gv
 cnoreabbrev terminal botright terminal
 
 
+" open file with fzf super power
+nnoremap <C-p> :tabnew <bar> :FZF<CR>
+
+
 augroup SetLocal
     autocmd!
     " set no expandtab in Makefiles and Go
