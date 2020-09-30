@@ -169,7 +169,7 @@ augroup END
 
 
 " Ctrl-L clear search results highlighting
-nnoremap <silent><c-l> :nohlsearch<cr><c-l>
+nnoremap <silent><c-l> :nohlsearch<CR><C-L>
 
 
 " start an external command with a single bang
