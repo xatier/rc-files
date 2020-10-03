@@ -202,7 +202,13 @@ cnoreabbrev terminal botright terminal
 
 
 " open file with fzf super power
-nnoremap <C-p> :tabnew <bar> :FZF<CR>
+" make `enter` open in a new tab as well
+let g:fzf_action = {
+  \ 'enter': 'tab split',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+nnoremap <silent><C-p> :FZF<CR>
 
 
 augroup SetLocal
