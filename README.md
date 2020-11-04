@@ -141,11 +141,12 @@ My vimrc, simple stuff
 
 ## VS Code
 
+- Recommend installing `visual-studio-code-bin` from AUR (Microsoft-branded release)
 - settings locations
 
 ```bash
 # Linux
-~/.config/Code\ -\ OSS/User/settings.json
+~/.config/Code/User/settings.json
 
 # Mac
 ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
