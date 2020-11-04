@@ -24,6 +24,12 @@
     "files.trimFinalNewlines": true,
     "go.autocompleteUnimportedPackages": true,
     "go.useLanguageServer": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.logLevel": "Warning",
+    "python.analysis.memory.keepLibraryAst": true,
+    "python.analysis.symbolsHierarchyDepthLimit": 20,
+    "python.analysis.typeCheckingMode": "strict",
     "python.autoComplete.addBrackets": true,
     "python.formatting.provider": "yapf",
     "python.formatting.yapfArgs": [
@@ -32,6 +38,7 @@
     ],
     "python.insidersChannel": "weekly",
     "python.jediEnabled": false,
+    "python.languageServer": "Microsoft",
     "python.linting.banditEnabled": true,
     "python.linting.enabled": true,
     "python.linting.flake8Args": [
@@ -58,11 +65,17 @@
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "vsintellicode.features.python.deepLearning": "enabled",
+    "vsicons.dontShowNewVersionMessage": true,
     "workbench.colorTheme": "GitHub Dark",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.titleScrollbarSizing": "large",
     "workbench.iconTheme": "vscode-icons",
-    "xo.enable": true
+    "xo.enable": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
