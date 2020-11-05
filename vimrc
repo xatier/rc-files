@@ -201,6 +201,10 @@ vnoremap < <gv
 cnoreabbrev terminal botright terminal
 
 
+" search the current word
+nnoremap S :Ag <cword><CR>
+
+
 " open file with fzf super power
 " make `enter` open in a new tab as well
 let g:fzf_action = {
