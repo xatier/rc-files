@@ -276,8 +276,17 @@ silent! helptags ALL
 let g:ale_lint_on_enter = 0
 cabbrev lint ALELint
 
+" ALE completion settings
+let g:ale_completion_autoimport = 1
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 
-" flake8 settings
+" ALE echo message format
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" ALE flake8 settings
 augroup Flake8Settings
     autocmd!
     autocmd FileType python let b:ale_linters = ['flake8']
