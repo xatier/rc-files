@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python ~/bin/metart.py > /tmp/foo.html && xdg-open /tmp/foo.html
