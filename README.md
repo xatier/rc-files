@@ -67,6 +67,14 @@ Global [git](https://git-scm.com/) config
 
 [MPV Media player](https://github.com/mpv-player/mpv)
 
+## python
+
+`PYTHONSTARTUP` is set to `$HOME/.pythonrc.py` in `bashrc`.
+
+`ipython profile create` to create default ipython config.
+
+Put `ipython_config.py` under `~/.ipython/profile_default/`.
+
 ## ranger
 
 [ranger file manager](https://github.com/ranger/ranger)
