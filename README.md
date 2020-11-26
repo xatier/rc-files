@@ -31,7 +31,7 @@ My collections of little programs
 
 - requirements
 
-```
+```bash
 pacman -S perl perl-libwww openvpn shadowsocks chromium openconnect
 ```
 
@@ -91,47 +91,47 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
 
 - add some widgets
 
-  + network usage
-  + text clock
-  + CPU usage
-  + memory usage
-  + and so on ...
+  - network usage
+  - text clock
+  - CPU usage
+  - memory usage
+  - and so on ...
 
 - Installation
 
-    + [vicious widgets](http://git.sysphere.org/vicious/log/)
+  - [vicious widgets](http://git.sysphere.org/vicious/log/)
 
-        ```
-        pacman -S vicious
-        ```
+    ```bash
+    pacman -S vicious
+    ```
 
-    + pick up a great wallpaper
+  - pick up a great wallpaper
 
-        ```
-        beautiful.wallpaper = "/home/xatierlike/Pictures/something.jpg"
-        ```
+    ```lua
+    beautiful.wallpaper = "/home/xatierlike/Pictures/something.jpg"
+    ```
 
-    + [urxvt terminal emulator](http://software.schmorp.de/pkg/rxvt-unicode.html)
+  - [urxvt terminal emulator](http://software.schmorp.de/pkg/rxvt-unicode.html)
 
-        ```
-        pacman -S rxvt-unicode urxvt-perl
-        ```
+    ```bash
+    pacman -S rxvt-unicode urxvt-perl
+    ```
 
-        - add `urxvtd -q -o -f` to your `.xinitrc`
+    - add `urxvtd -q -o -f` to your `.xinitrc`
 
-    + check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
+  - check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
-        To get the battery name (`BAT0` or `BAT1` for example)
+    To get the battery name (`BAT0` or `BAT1` for example)
 
-        ```
-        ls /sys/class/power_supply/
-        ```
+    ```bash
+    ls /sys/class/power_supply/
+    ```
 
-    + [shutter-project](http://shutter-project.org/)
+  - [shutter-project](http://shutter-project.org/)
 
-        ```
-        pacman -S shutter
-        ```
+    ```bash
+    pacman -S shutter
+    ```
 
 ## screenrc
 
