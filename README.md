@@ -17,7 +17,7 @@ Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html)
 
 # Config files
 
-## bashrc & inputrc
+## `bashrc`, `bash_profile`, and `inputrc`
 
 My settings and aliases for bash and readline.
 
@@ -146,6 +146,15 @@ Screen settings, didn't use screen for a long long while.
 ## vimrc
 
 My vimrc, simple stuff
+
+Suggest installing [fzf](https://github.com/junegunn/fzf) and [ale](https://github.com/dense-analysis/ale).
+
+```bash
+pacman -S fzf
+
+mkdir -p ~/.vim/pack/git-plugins/start
+git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/git-plugins/start/ale
+```
 
 ## VS Code
 
