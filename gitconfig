@@ -1,7 +1,8 @@
 [alias]
-	amend = commit --amend -v
+	amend = commit --amend
+	ap = add -p
 	br = branch
-	ci = commit -v
+	ci = commit
 	co = checkout
 	co-tracking-from-master = "!f() { git checkout -t -b ${1-patch} master; }; f"
 	dc = diff --cached
@@ -21,6 +22,7 @@
 	lp = log -p
 	ls = ls-files
 	m = merge
+	r = remote -v
 	show-graph = log --all --graph --oneline --decorate
 	st = status
 	stash-unapply = !git stash show -p | git apply -R
@@ -32,12 +34,13 @@
 	ui = auto
 [commit]
 	gpgSign = true
+	verbose = true
 [core]
+	attributesfile = /home/xatier/.gitattributes
 	excludesfile = ~/.gitignore
 	pager = less -x1,5
 	preloadindex = yes
 [diff]
-	# algorithm = patience
 	algorithm = histogram
 [help]
 	autocorrect = 30
@@ -48,8 +51,8 @@
 [push]
 	default = simple
 [rebase]
-	stat = true
 	autoStash = true
+	stat = true
 [stash]
 	showPatch = true
 [status]
