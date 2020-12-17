@@ -1,0 +1,39 @@
+* whitespace=!indent,trail,space
+*.[ch] whitespace=indent,trail,space diff=cpp
+*.sh whitespace=indent,trail,space eol=lf
+*.perl eol=lf diff=perl
+*.pl eof=lf diff=perl
+*.pm eol=lf diff=perl
+*.py eol=lf diff=python
+*.bat eol=crlf
+/Documentation/**/*.txt eol=lf
+/command-list.txt eol=lf
+/GIT-VERSION-GEN eol=lf
+/mergetools/* eol=lf
+/t/oid-info/* eol=lf
+/Documentation/git-merge.txt conflict-marker-size=32
+/Documentation/gitk.txt conflict-marker-size=32
+/Documentation/user-manual.txt conflict-marker-size=32
+/t/t????-*.sh conflict-marker-size=32
+
+*.c++   diff=cpp
+*.h++   diff=cpp
+*.cpp   diff=cpp
+*.hpp   diff=cpp
+*.cc    diff=cpp
+*.hh    diff=cpp
+*.m     diff=objc
+*.mm    diff=objc
+*.css   diff=css
+*.html  diff=html
+*.xhtml diff=html
+*.ex    diff=elixir
+*.exs   diff=elixir
+*.go    diff=golang
+*.php   diff=php
+*.md    diff=markdown
+*.rb    diff=ruby
+*.rake  diff=ruby
+*.rs    diff=rust
+*.lisp  diff=lisp
+*.el    diff=lisp
