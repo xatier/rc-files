@@ -18,10 +18,12 @@ xrdb ~/.Xresources
 urxvtd -q -o -f
 
 
-# hime &
+# albert &
 # chromium --disk-cache-dir=/tmp/cache &
-# pcmanx &
 # flameshot &
+# hime &
+# pcmanx &
+# telegram-desktop &
 # xscreensaver &
 
 exec awesome -a >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
