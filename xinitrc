@@ -17,13 +17,14 @@ xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
 urxvtd -q -o -f
 
-
 # albert &
-# chromium --disk-cache-dir=/tmp/cache &
 # flameshot &
 # hime &
 # pcmanx &
 # telegram-desktop &
+# whalebird &
 # xscreensaver &
+
+# chromium --disk-cache-dir=/tmp/cache &
 
 exec awesome -a >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
