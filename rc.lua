@@ -248,7 +248,7 @@ weatherwidget:buttons(
 )
 
 local update_TW = function()
-    return "[" .. string.gsub(mypread('TZ=Asia/Taipei date "+%R %p"'), "\n", "") .. "]"
+    return "[" .. string.gsub(mypread('TZ=Asia/Taipei date "+%m/%d %R %p"'), "\n", "") .. "]"
 end
 
 weatherwidget.text = "☀ "
