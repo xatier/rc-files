@@ -158,6 +158,10 @@ export FZF_DEFAULT_OPTS='
 --prompt="(´・ω・`) "
 '
 
+if [[ -f /usr/share/nvm/init-nvm.sh ]]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
+
 # search history using up/down keys
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
