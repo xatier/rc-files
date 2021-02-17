@@ -2,7 +2,7 @@
 [[ -z "$PS1" ]] && return
 
 # Shell history settings
-HISTCONTROL=ignoredups:ignorespace
+HISTCONTROL=erasedups:ignorespace
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -232,6 +232,9 @@ ret_code() {
     else
         echo "@_@ $ret "
     fi
+
+    # hack to sync history
+    history -a; history -c; history -r;
 }
 
 # show distrobution name
