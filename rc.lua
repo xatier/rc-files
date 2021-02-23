@@ -155,6 +155,18 @@ clockwidget_t = awful.tooltip({
 
 -- Taiwan time zone
 clockTWwidget = wibox.widget.textbox()
+clockTWwidget_t = awful.tooltip({
+    objects = { clockTWwidget },
+    timeout = 30,
+    timer_function = function ()
+        date_command = 'TZ=US/Pacific date "+%Z %m/%d %R %p"; ' ..
+        'TZ=US/Central date "+%Z %m/%d %R %p"; ' ..
+        'TZ=US/Eastern date "+%Z %m/%d %R %p"; ' ..
+        'TZ=UTC date "+%Z %m/%d %R %p"'
+        async_set_text(date_command, clockTWwidget_t)
+        return 'loading'
+    end
+})
 
 -- CPU usage
 cpuwidget = wibox.widget.textbox()
