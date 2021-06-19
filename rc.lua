@@ -138,8 +138,8 @@ end
 -- network usage
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
-                '<span color="#CC9090">⇩${enp5s0 down_mb}</span>' ..
-                '<span color="#7F9F7F">⇧${enp5s0 up_mb}</span> MB/s', 1)
+                '<span color="#CC9090">⇩${enp6s0 down_mb}</span>' ..
+                '<span color="#7F9F7F">⇧${enp6s0 up_mb}</span> MB/s', 1)
 
 
 -- clock
@@ -197,7 +197,7 @@ vicious.register(
     vicious.widgets.thermal,
     " $1°C", 2,
     {
-        "coretemp.0/hwmon/hwmon2",
+        "coretemp.0/hwmon/hwmon4",
         "core",
         "temp1_input"
     }
