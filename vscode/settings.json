@@ -1,20 +1,35 @@
 {
-    "C_Cpp.default.cStandard": "c18",
+    "C_Cpp.default.cStandard": "c17",
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "C_Cpp.updateChannel": "Insiders",
+    "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
+    "docker.dockerPath": "podman",
+    "docker.dockerodeOptions": {
+        "socketPath":"/run/user/1000/podman/podman.sock"
+    },
+    "docsYaml.telemetry.enableTelemetry": false,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "line",
     "editor.find.autoFindInSelection": "always",
     "editor.fontSize": 16,
+    "editor.inlineSuggest.enabled": true,
+    "editor.insertSpaces": false,
+    "editor.lineNumbers": "on",
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
-    "editor.suggest.localityBonus": true,
-    "editor.suggest.maxVisibleSuggestions": 15,
-    "editor.tabCompletion": "on",
     "editor.rulers": [
         79,
         119
     ],
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
+    "editor.wordBasedSuggestionsMode": "allDocuments",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
     "files.exclude": {
         "**/*.o": true,
         "**/*.so*": true,
@@ -24,6 +39,7 @@
     "files.trimFinalNewlines": true,
     "go.autocompleteUnimportedPackages": true,
     "go.useLanguageServer": true,
+    "prettier.semi": false,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
     "python.analysis.logLevel": "Warning",
@@ -37,9 +53,7 @@
         "{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}"
     ],
     "python.insidersChannel": "weekly",
-    "python.jediEnabled": false,
-    "python.languageServer": "Microsoft",
-    "python.linting.banditEnabled": true,
+    "python.languageServer": "Pylance",
     "python.linting.enabled": true,
     "python.linting.flake8Args": [
         "--ignore C408,D1",
@@ -57,25 +71,48 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
+    "redhat.telemetry.enabled": false,
+    "remote.containers.dockerPath": "podman",
     "search.collapseResults": "alwaysExpand",
     "search.showLineNumbers": true,
     "search.smartCase": true,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
     "vim.foldfix": true,
     "vim.gdefault": true,
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "vsintellicode.features.python.deepLearning": "enabled",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vsicons.dontShowNewVersionMessage": true,
+    "vsintellicode.features.python.deepLearning": "enabled",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.colorTheme": "GitHub Dark",
-    "workbench.editor.enablePreview": false,
+    "workbench.editor.decorations.badges": true,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.titleScrollbarSizing": "large",
+    "workbench.editor.wrapTabs": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
     "workbench.iconTheme": "vscode-icons",
-    "xo.enable": true,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
 }
