@@ -10,12 +10,13 @@
         "socketPath":"/run/user/1000/podman/podman.sock"
     },
     "docsYaml.telemetry.enableTelemetry": false,
+    "editor.bracketPairColorization.enabled": true,
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "line",
     "editor.find.autoFindInSelection": "always",
     "editor.fontSize": 16,
+    "editor.guides.bracketPairs": true,
     "editor.inlineSuggest.enabled": true,
-    "editor.insertSpaces": false,
     "editor.lineNumbers": "on",
     "editor.renderControlCharacters": true,
     "editor.renderWhitespace": "all",
@@ -37,8 +38,19 @@
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    },
     "go.autocompleteUnimportedPackages": true,
+    "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
     "prettier.semi": false,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
@@ -85,6 +97,7 @@
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "vsicons.dontShowNewVersionMessage": true,
     "vsintellicode.features.python.deepLearning": "enabled",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -110,9 +123,5 @@
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
     },
 }
