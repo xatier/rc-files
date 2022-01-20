@@ -238,9 +238,6 @@ ret_code() {
     else
         echo "@_@ $ret "
     fi
-
-    # hack to sync history
-    history -a; history -c; history -r;
 }
 
 # show distrobution name
