@@ -400,6 +400,11 @@ golangci-lint() {
     podman run --rm -t -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -E "$extra" -v
 }
 
+gosec-lint() {
+    # https://github.com/securego/gosec
+    podman run --rm -it -v "$PWD:/app:ro" securego/gosec /app/...
+}
+
 dockerfile-lint() {
     # https://github.com/hadolint/hadolint
     # https://github.com/RedCoolBeans/dockerlint
