@@ -190,11 +190,11 @@ COLOR_L_WHITE='\[\e[1;37m\]'
 
 # color set for hostname highlighting
 # it's better to choose colors that looks different
-HOST_COLORS=("$COLOR_L_CYAN"   \
-             "$COLOR_L_RED"    \
-             "$COLOR_L_GREEN"  \
-             "$COLOR_L_YELLOW" \
-             "$COLOR_L_PURPLE" )
+HOST_COLORS=("$COLOR_L_CYAN"
+    "$COLOR_L_RED"
+    "$COLOR_L_GREEN"
+    "$COLOR_L_YELLOW"
+    "$COLOR_L_PURPLE")
 
 # generate checksum from host name
 STR_HOST=$(hostname)
@@ -211,19 +211,17 @@ SELECTIONS=${#HOST_COLORS[@]}
 HOST_COLOR=${HOST_COLORS[$((CHECKSUM % SELECTIONS))]}
 
 # my bash prompt
-PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END           # date
-PS1+=$COLOR_YELLOW' \u '$COLOR_END                     # user
-PS1+=$COLOR_L_BLACK'@'$COLOR_END                       # @
-PS1+=$HOST_COLOR' \h '$COLOR_END                       # host
-PS1+='$(ret_code)'$COLOR_END                           # return code
-PS1+='$(__git_ps1 "[ ~> on %s ]")'                     # git info
-PS1+=$COLOR_L_BLACK'$(svn_info)'$COLOR_END             # svn info
-PS1+=$COLOR_YELLOW'$(venv_abspath)'$COLOR_END          # venv absolute path
-PS1+='\n'                                              # new line
-PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END               # work directory
-PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END  # distrobution name
-
-
+PS1='┌─'$COLOR_L_BLUE'[ \d-\t ]'$COLOR_END            # date
+PS1+=$COLOR_YELLOW' \u '$COLOR_END                    # user
+PS1+=$COLOR_L_BLACK'@'$COLOR_END                      # @
+PS1+=$HOST_COLOR' \h '$COLOR_END                      # host
+PS1+='$(ret_code)'$COLOR_END                          # return code
+PS1+='$(__git_ps1 "[ ~> on %s ]")'                    # git info
+PS1+=$COLOR_L_BLACK'$(svn_info)'$COLOR_END            # svn info
+PS1+=$COLOR_YELLOW'$(venv_abspath)'$COLOR_END         # venv absolute path
+PS1+='\n'                                             # new line
+PS1+='└─'$COLOR_L_CYAN'[\w]'$COLOR_END                # work directory
+PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END # distrobution name
 
 # df check every day!
 #perl $HOME/bin/dfCheckEveryday.pl
