@@ -300,10 +300,6 @@ system-audit() {
 }
 
 # shell tools
-shell-check() {
-    # https://github.com/koalaman/shellcheck
-    podman run --rm -v "$PWD:/mnt:ro" koalaman/shellcheck:stable "$@"
-}
 
 shellharden-diff() {
     # https://github.com/anordal/shellharden
