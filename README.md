@@ -9,23 +9,23 @@ git clone git@github.com:xatier/rc-files.git
 cp rc-files/xxx ~/.xxx
 ```
 
-# License(s)
+## License(s)
 
 All codes are under their own license(s) from the original projects.
 
-Other codes written by me are under [GPL](https://www.gnu.org/copyleft/gpl.html).
+Other codes written by myself are under [GPL](https://www.gnu.org/copyleft/gpl.html).
 
-# Config files
+## Config files
 
-## `bashrc`, `bash_profile`, and `inputrc`
+### `bashrc`, `bash_profile`, and `inputrc`
 
 My settings and aliases for bash and readline.
 
-## bin
+### bin
 
 My collections of little programs
 
-### vpngate and v.sh
+#### vpngate and v.sh
 
 - VPN scripts
 
@@ -35,7 +35,7 @@ My collections of little programs
 pacman -S perl perl-libwww openvpn shadowsocks chromium openconnect
 ```
 
-### srandr
+#### srandr
 
 Simple `xrandr`
 
@@ -47,27 +47,29 @@ Usage: `srandr [lvds|vga|lvds-vga|vga-lvds|mirror|debug]`
 
 - or like this => `srandr[l|v|lv|vl|m]`
 
-## conky.conf
+### conky.conf
 
-Conky configuration.
+Conky configuration (`~/.config/conky/conky.conf`).
 
-## emacs & prelude-modules.el
+### emacs & prelude-modules.el
 
-Emacs stuff
+Emacs stuff, probably outdated, didn't use `emacs` for a while.
 
-## gdbinit
+### gdbinit
 
 [GDB](https://www.gnu.org/software/gdb/) debugger settings
 
-## gitconfig
+### gitconfig & gitattributes
 
 Global [git](https://git-scm.com/) config
 
-## mpv
+Global [git attributes](https://git-scm.com/docs/gitattributes) config
 
-[MPV Media player](https://github.com/mpv-player/mpv)
+### mpv
 
-## python
+[MPV Media player](https://github.com/mpv-player/mpv) (`~/.config/mpv/mpv.conf`)
+
+### python
 
 `PYTHONSTARTUP` is set to `$HOME/.pythonrc.py` in `bashrc`.
 
@@ -75,15 +77,17 @@ Global [git](https://git-scm.com/) config
 
 Put `ipython_config.py` under `~/.ipython/profile_default/`.
 
-## ranger
+See [pip](pip/README.md) for user pip setup.
+
+### ranger
 
 [ranger file manager](https://github.com/ranger/ranger)
 
-## rc.lua
+### rc.lua
 
 Configuration file for the [awesome wm](https://awesomewm.org/)
 
-- awesome 4.0
+- awesome 4.3
 
 - disable some layouts
 
@@ -117,7 +121,7 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
     pacman -S rxvt-unicode urxvt-perl
     ```
 
-    - add `urxvtd -q -o -f` to your `.xinitrc`
+    - add `urxvtd -q -o -f` to `.xinitrc`
 
   - check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
@@ -133,17 +137,17 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
     pacman -S shutter
     ```
 
-## screenrc
+### screenrc
 
 Screen settings, didn't use screen for a long long while.
 
-## tmux.conf
+### tmux.conf
 
 - use `Ctrl-b` for prefix key
 - vi-like key bindings
 - use `Shift + <-/->` to switch windows
 
-## vimrc
+### vimrc
 
 My vimrc, simple stuff
 
@@ -156,7 +160,7 @@ mkdir -p ~/.vim/pack/git-plugins/start
 git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/git-plugins/start/ale
 ```
 
-## VS Code
+### VS Code
 
 - Recommend installing `visual-studio-code-bin` from AUR (Microsoft-branded release)
 - settings locations
@@ -235,7 +239,7 @@ vscodevim.vim@1.21.6
 code --install-extension <extension ID>
 ```
 
-## xinitrc
+### xinitrc
 
 - [HIME for input method](http://hime.luna.com.tw/)
 
@@ -245,7 +249,7 @@ code --install-extension <extension ID>
 
 - launch the awesome wm and keep logs
 
-## xmodmap
+### xmodmap
 
 Swap `CapsLock` and `Control\_L`
 
@@ -253,10 +257,10 @@ Usage:  `xmodmap ~/.xmodmap`
 
 - or run `bin/swapcaps`
 
-## Xresources
+### Xresources
 
 [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html) configurations
 
-## yamllint
+### yamllint
 
-[yamllint](https://github.com/adrienverge/yamllint) configurations
+[yamllint](https://github.com/adrienverge/yamllint) configurations (`~/.config/yamllint/config`)
