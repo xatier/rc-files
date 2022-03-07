@@ -45,6 +45,7 @@ alias a='alsamixer'
 alias bye='exit'
 alias cd..='cd ..'
 alias d='deactivate'
+alias delta='delta -sn'
 alias edge='microsoft-edge-dev'
 alias gerp='grep'
 alias gi='git'
@@ -97,6 +98,7 @@ export LC_ALL=en_US.UTF-8
 # vim rocks
 export EDITOR=vim
 
+[[ -x /usr/bin/lesspipe.sh ]] && eval "$(SHELL=/bin/sh lesspipe.sh)"
 export LESS="-R"
 
 export GOPATH="$HOME/go"
@@ -418,12 +420,12 @@ dockerfile-lint() {
 
 consider-lint() {
     # https://github.com/mroth/consider
-    podman run --rm -t -v "$PWD:/mnt:ro" xatier/consider:latest
+    podman run --rm -t -v "$PWD:/mnt:ro" ghcr.io/xatier/consider:latest
 }
 
 write-good-check() {
     # https://github.com/btford/write-good
-    podman run --rm -v "$PWD:/app:ro" xatier/write-good:latest "$@"
+    podman run --rm -v "$PWD:/app:ro" ghcr.io/xatier/write-good:latest "$@"
 }
 
 screenshot() {
