@@ -17,6 +17,17 @@ xmodmap ~/.Xmodmap
 xrdb ~/.Xresources
 urxvtd -q -o -f
 
+# dbus-update-activation-environment --systemd DISPLAY
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 # albert &
 # flameshot &
 # hime &
@@ -27,4 +38,4 @@ urxvtd -q -o -f
 
 # chromium --disk-cache-dir=/tmp/cache &
 
-exec awesome -a >> ~/.cache/awesome_stdout 2>> ~/.cache/awesome_stderr
+exec awesome -a >>~/.cache/awesome_stdout 2>>~/.cache/awesome_stderr
