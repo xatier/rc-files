@@ -42,6 +42,8 @@
 	preloadindex = yes
 [diff]
 	algorithm = histogram
+[fetch]
+	prune = true
 [help]
 	autocorrect = 30
 [merge]
