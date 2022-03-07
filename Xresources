@@ -15,12 +15,14 @@ URxvt.scrollWithBuffer:      true
 URxvt.scrollTtyKeypress:     true
 
 ! font
-URxvt.font:xft:Inconsolata:size=16,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono,xft:Noto Color Emoji
+URxvt.font:xft:Inconsolata:size=14,xft:Noto Sans CJK TC:style=Light,xft:DejaVu Sans Mono,xft:Noto Color Emoji
 URxvt.internalBorder:        1
+URxft.antialias:             true
 
 ! Extensions
 URxvt.perl-lib:              /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:       default,searchable-scrollback,clipboard,url-select,keyboard-select
+URxvt.perl-ext-common:       clipboard,default,keyboard-select,searchable-scrollback,url-select,selection-autotransform
+URxvt.selection-autotransform.0: s/ +$//gm
 
 ! misc
 URxvt.cursorBlink:           true
@@ -34,8 +36,8 @@ URxvt.modifier:              alt
 URxvt.keysym.Home:           \033[1~
 URxvt.keysym.End:            \033[4~
 URxvt.saveLines:             65535
-URxvt.url-launcher:          /usr/bin/chromium
-URxvt.url-select.launcher:   chromium
+URxvt.url-launcher:          /usr/bin/microsoft-edge-dev
+URxvt.url-select.launcher:   /usr/bin/microsoft-edge-dev
 URxvt.url-select.underline:  true
 ! }}}
 
