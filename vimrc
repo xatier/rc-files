@@ -201,6 +201,10 @@ vnoremap < <gv
 cnoreabbrev terminal botright terminal
 
 
+" open Split&Explore on the left
+cnoreabbrev sex Sexplore!
+
+
 " search the current word
 nnoremap S :Ag <cword><CR>
 
