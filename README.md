@@ -59,11 +59,13 @@ Emacs stuff, probably outdated, didn't use `emacs` for a while.
 
 [GDB](https://www.gnu.org/software/gdb/) debugger settings
 
-### gitconfig & gitattributes
+### gitconfig, gitattributes, and gitmessage
 
 Global [git](https://git-scm.com/) config
 
 Global [git attributes](https://git-scm.com/docs/gitattributes) config
+
+Global [commit.template](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
 
 ### mpv
 
