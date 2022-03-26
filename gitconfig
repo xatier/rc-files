@@ -34,6 +34,7 @@
 	ui = auto
 [commit]
 	gpgSign = true
+	template = /home/xatier/.gitmessage
 	verbose = true
 [core]
 	attributesfile = /home/xatier/.gitattributes

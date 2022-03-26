@@ -1,0 +1,21 @@
+
+
+# <type>(scope): <description>
+# Summary, imperative, don't end with a period
+#
+# [optional body]
+# Body: Explain *what* and *why* (not *how*). Include task ID (Jira issue).
+#                                                   72 chars is here:  #
+# [optional footer(s)]
+#
+# Conventional Commits: https://www.conventionalcommits.org/
+#
+# type: build chore ci docs feat fix perf refactor style test
+#
+# footers:
+#
+# BREAKING CHANGE: <description>
+# Co-authored-by: name <user@users.noreply.github.com>
+# Signed-off-by:
+# Acked-by:
+#
