@@ -205,6 +205,10 @@ cnoreabbrev terminal botright terminal
 cnoreabbrev sex Sexplore!
 
 
+" remap fzf to FZF, easier to type `fzf`
+cnoreabbrev fzf FZF
+
+
 " search the current word
 nnoremap S :Ag <cword><CR>
 
