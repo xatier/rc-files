@@ -219,6 +219,7 @@ PS1+=$COLOR_L_BLACK'@'$COLOR_END                      # @
 PS1+=$HOST_COLOR' \h '$COLOR_END                      # host
 PS1+='$(ret_code)'$COLOR_END                          # return code
 PS1+='$(__git_ps1 "[ ~> on %s ]")'                    # git info
+PS1+='$(git_origin_url)'                              # display git origin
 PS1+=$COLOR_L_BLACK'$(svn_info)'$COLOR_END            # svn info
 PS1+=$COLOR_YELLOW'$(venv_abspath)'$COLOR_END         # venv absolute path
 PS1+='\n'                                             # new line
@@ -243,6 +244,21 @@ ret_code() {
 # show distrobution name
 distro_name() {
     grep ^NAME= /etc/os-release | cut -c6- | tr -d '"'
+}
+
+# git origin url
+git_origin_url() {
+    # taken from git-prompt.sh
+    local repo_info
+    repo_info="$(git rev-parse --git-dir --is-inside-git-dir \
+        --is-bare-repository --is-inside-work-tree \
+        --short HEAD 2>/dev/null)"
+
+    if [ "$repo_info" = "" ]; then
+        echo ""
+    else
+        echo "[ o=$(git remote get-url origin) ]"
+    fi
 }
 
 # show svn info
