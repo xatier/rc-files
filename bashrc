@@ -204,7 +204,7 @@ CHECKSUM=0
 while [[ -n "$STR_HOST" ]]; do
     CHAR=${STR_HOST:0:1}
     N=$(printf "%d" "'$CHAR")
-    CHECKSUM=$(expr "$CHECKSUM" + "$N")
+    CHECKSUM=$(("$CHECKSUM" + "$N"))
     STR_HOST=${STR_HOST:1}
 done
 
@@ -332,7 +332,8 @@ shfmt-diff() {
 style-check() {
     # pip install yapf
     source "$HOME/work/pip/bin/activate"
-    local style='{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}'
+    local style
+    style='{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}'
     yapf --style="$style" "$1"
     deactivate
 }
@@ -412,7 +413,8 @@ diffoscope() {
 
 golangci-lint() {
     # https://github.com/golangci/golangci-lint
-    local extra='goconst,gosec,bodyclose,misspell,unconvert,unparam,whitespace'
+    local extra
+    extra='goconst,gosec,bodyclose,misspell,unconvert,unparam,whitespace'
     podman run --rm -t -v "$PWD:/app:ro" -w /app golangci/golangci-lint:latest golangci-lint run -E "$extra" -v
 }
 
