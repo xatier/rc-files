@@ -7,9 +7,9 @@
 # original script by PkmX
 # modified by xatier
 
-lvds=$(xrandr --query | grep " connected" | egrep -om1  '^LVDS[0-9]')
-vga=$(xrandr --query  | grep " connected" | egrep -om1 '^VGA[0-9]')
-hdmi=$(xrandr --query | grep " connected" | egrep -om1 '^HDMI-?[0-9]')
+lvds=$(xrandr --query | grep " connected" | grep -Eom1 '^LVDS[0-9]')
+vga=$(xrandr --query  | grep " connected" | grep -Eom1 '^VGA[0-9]')
+hdmi=$(xrandr --query | grep " connected" | grep -Eom1 '^HDMI-?[0-9]')
 
 eecho()
 {
