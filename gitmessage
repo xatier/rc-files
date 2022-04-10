@@ -10,7 +10,7 @@
 #
 # Conventional Commits: https://www.conventionalcommits.org/
 #
-# type: build chore ci docs feat fix perf refactor style test
+# type: build chore ci dep docs feat fix perf refactor style test
 #
 # footers:
 #
