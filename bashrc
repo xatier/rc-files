@@ -254,10 +254,15 @@ git_origin_url() {
         --is-bare-repository --is-inside-work-tree \
         --short HEAD 2>/dev/null)"
 
+    local origin
+    origin="$(git remote get-url origin 2>/dev/null)"
+
     if [ "$repo_info" = "" ]; then
         echo ""
+    elif [ "$origin" = "" ]; then
+        echo ""
     else
-        echo "[ o=$(git remote get-url origin) ]"
+        echo "[ o=$origin ]"
     fi
 }
 
