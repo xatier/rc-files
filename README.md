@@ -161,6 +161,7 @@ Screen settings, didn't use screen for a long long while.
 ```text
 map b Vomnibar.activateInNewTab
 map o Vomnibar.activateInNewTab
+map t Vomnibar.activateTabSelection
 ```
 
 #### Custom search engines
