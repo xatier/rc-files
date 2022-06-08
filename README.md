@@ -184,6 +184,7 @@ emoji: https://emojipedia.org/search/?q=%s&utm_source=opensearch  Emojipedia
 g: https://www.google.com/search?hl=zh-TW&lr=lang_en%7Clang_zh-TW%7Clang_ja&q=%s  Google(en)
 github: https://github.com/search?q=%s&ref=opensearch  GitHub
 lex: https://www.lexico.com/search?utf8=%E2%9C%93&filter=noad&dictionary=en&s=t&query=%s  lexico.com
+man: https://man.archlinux.org/search?q=%s&go=Go  man.archlinux.org
 pacman: https://archlinux.org/packages/?q=%s  Arch
 q: https://www.qwant.com/?r=US&sr=en&l=en_gb&h=0&s=0&a=1&b=1&vt=1&hc=0&smartNews=1&theme=0&i=1&q=%s  Qwant
 tw: https://itaigi.tw/k/%s  itaigi.tw
