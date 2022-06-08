@@ -85,7 +85,7 @@ set diffopt+=algorithm:histogram,indent-heuristic
 "###########################################################################
 
 " colorscheme
-colorscheme ron
+colorscheme default
 " using ':colo [tab]' to change colorscheme
 
 
