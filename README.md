@@ -13,7 +13,8 @@ cp rc-files/xxx ~/.xxx
 
 All codes are under their own license(s) from the original projects.
 
-Other codes written by myself are under [GPL](https://www.gnu.org/copyleft/gpl.html).
+Other codes written by myself are under
+[GPL](https://www.gnu.org/copyleft/gpl.html).
 
 ## Config files
 
@@ -76,7 +77,8 @@ game changer for my Macs!
 
 ### mpv
 
-[MPV Media player](https://github.com/mpv-player/mpv) (`~/.config/mpv/mpv.conf`)
+[MPV Media player](https://github.com/mpv-player/mpv)
+(`~/.config/mpv/mpv.conf`)
 
 ### python
 
@@ -132,7 +134,8 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
 
     - add `urxvtd -q -o -f` to `.xinitrc`
 
-  - check battery name in `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
+  - check battery name in
+  `vicious.register(batwidget, vicious.widgets.bat, '$2% $3[$1]', 2, 'BAT1')`
 
     To get the battery name (`BAT0` or `BAT1` for example)
 
