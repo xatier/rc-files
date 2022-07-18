@@ -67,6 +67,13 @@ Global [git attributes](https://git-scm.com/docs/gitattributes) config
 
 Global [commit.template](https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
 
+### hammerspoon
+
+[Hammerspoon](https://www.hammerspoon.org/) config `~/.hammerspoon/init.lua`.
+
+Try to port some of my AwesomeWM config (`rc.lua`) stuff to macOS. Totally a
+game changer for my Macs!
+
 ### mpv
 
 [MPV Media player](https://github.com/mpv-player/mpv) (`~/.config/mpv/mpv.conf`)
