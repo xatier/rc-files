@@ -14,9 +14,9 @@ gpg -r <your GPG key here> -e "$FILENAME"
 echo "done"
 
 
-# upload to the Google drive with skicka
-# https://github.com/google/skicka
-/home/xatier/go/bin/skicka upload "$FILENAME.gpg" "$FILENAME.gpg"
+# upload to the Google drive with rclone
+# https://github.com/rclone/rclone
+rclone copy -vvP "$FILENAME.gpg" "<remote>:/home"
 
 # decrypt
 # gpg -o $FILENAME -d $FILENAME.gpg
