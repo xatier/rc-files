@@ -182,6 +182,7 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
                  '<span color="#CC0000">$1% </span>[$2:$3:$4:$5:$6:$7:$8:$9]', 2)
 
 -- thermal widget
+-- find /sys/devices/platform/coretemp.0 -name temp1_input
 -- /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
 thermalwidget  = wibox.widget.textbox()
 thermalwidget_t = awful.tooltip({
