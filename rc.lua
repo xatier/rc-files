@@ -99,7 +99,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "open terminal", terminal },
                                     { "ranger", "urxvtc -e ranger" },
                                     { "alsamixer", "urxvtc -e alsamixer" },
-                                    { "www", "chromium" },
+                                    { "www", "microsoft-edge-dev" },
                                   }
                         })
 
