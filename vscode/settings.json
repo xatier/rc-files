@@ -14,11 +14,13 @@
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "line",
     "editor.find.autoFindInSelection": "always",
+    "editor.fontFamily": "Inconsolata,'Gen Jyuu Gothic Monospace','monospace', monospace",
     "editor.fontSize": 16,
     "editor.guides.bracketPairs": true,
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "on",
     "editor.renderControlCharacters": true,
+    "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "all",
     "editor.rulers": [
         79,
@@ -54,6 +56,8 @@
     "prettier.semi": false,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.logLevel": "Warning",
     "python.analysis.memory.keepLibraryAst": true,
     "python.analysis.symbolsHierarchyDepthLimit": 20,
@@ -64,7 +68,6 @@
         "--style",
         "{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}"
     ],
-    "python.insidersChannel": "weekly",
     "python.languageServer": "Pylance",
     "python.linting.enabled": true,
     "python.linting.flake8Args": [
@@ -96,11 +99,12 @@
     "vim.highlightedyank.enable": true,
     "vim.hlsearch": true,
     "vim.vimrc.enable": true,
-    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vsicons.dontShowNewVersionMessage": true,
     "vsintellicode.features.python.deepLearning": "enabled",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.zoomLevel": 3,
     "workbench.colorTheme": "GitHub Dark",
     "workbench.editor.decorations.badges": true,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
@@ -112,16 +116,19 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.iconTheme": "vscode-icons",
-    "[javascript]": {
+    "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    },
-    "[typescript]": {
+    "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    }
 }
