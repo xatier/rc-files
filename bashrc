@@ -46,18 +46,18 @@ alias bye='exit'
 alias cd..='cd ..'
 alias d='deactivate'
 alias delta='delta -sn'
-alias edge='microsoft-edge-dev'
+alias edge='/usr/bin/microsoft-edge-dev &'
 alias gerp='grep'
 alias gi='git'
 alias gt='git'
 alias gti='git'
+alias hx='helix'
 alias ipy='ipython'
 alias ivm='vim'
 alias open='xdg-open'
 alias pbcopy='xclip -selection clipboard'
 alias py='python'
 alias r='ranger'
-alias skicka-upload='skicka upload'
 alias rscp='rsync -avzzPhe ssh'
 alias ta='tmux attach -d'
 alias taiwan='TZ=Asia/Taipei date'
@@ -68,9 +68,9 @@ alias v='vim'
 alias vd='vimdiff'
 alias vi='vim'
 alias vmi='vim'
-alias wtf='man'
 alias vos='vim-open-search'
 alias vso='vim-open-search'
+alias wtf='man'
 # pip install pyyaml
 alias y2j='python3 -c "import yaml,sys,json; print json.dump(yaml.safe_load(sys.stdin), sys.stdout)"'
 alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read()))"'
@@ -467,4 +467,14 @@ exif-remove() {
     # Delete all meta information from an image
     exiftool -all= "$1"
     exiftool "$1"
+}
+
+rclone-copy() {
+    set -x
+    rclone copy -vvP "$1" "childish:$1"
+    set +x
+}
+
+unzip() {
+    atool --extract --explain "$1"
 }
