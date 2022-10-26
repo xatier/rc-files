@@ -430,7 +430,6 @@ gosec-lint() {
 
 dockerfile-lint() {
     # https://github.com/hadolint/hadolint
-    # https://github.com/RedCoolBeans/dockerlint
 
     if [ ! -e Dockerfile ]; then
         echo "Dockerfile not found"
@@ -438,7 +437,6 @@ dockerfile-lint() {
     fi
 
     podman run --rm -i hadolint/hadolint hadolint --ignore DL3007 - <Dockerfile
-    podman run --rm -it -v "$PWD/Dockerfile":/Dockerfile:ro redcoolbeans/dockerlint
 }
 
 consider-lint() {
