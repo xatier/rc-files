@@ -2,7 +2,7 @@ PyYAML==6.0
 black==22.12.0
 flake8-annotations-complexity==0.0.7
 flake8-annotations-coverage==0.0.6
-flake8-annotations==2.9.1
+flake8-annotations==3.0.0
 flake8-assertive==2.1.0
 # disable this for now
 # flake8-broken-line==0.6.0
