@@ -1,3 +1,4 @@
+import json
 import random
 import textwrap
 
@@ -5,18 +6,18 @@ import httpx
 
 URL_BASE = random.choice(
     [
-        'https://domai.com',
-        'https://eroticbeauty.com',
-        'https://errotica-archives.com',
-        'https://live.tv',
-        'https://metart.com',
-        'https://metartx.com',
-        'https://sexart.com',
-        'https://thelifeerotic.com',
-        'https://vivthomas.com',
+        'https://www.alsscan.com',
         'https://www.domai.com',
+        'https://www.eroticbeauty.com',
+        'https://www.errotica-archives.com',
         'https://www.goddessnudes.com',
+        'https://www.lovehairy.com',
+        'https://www.metart.com',
         'https://www.metartx.com',
+        'https://www.sexart.com',
+        'https://www.straplez.com',
+        'https://www.thelifeerotic.com',
+        'https://www.vivthomas.com',
     ],
 )
 
@@ -25,7 +26,10 @@ API_URL = f'{URL_BASE}/api/updates?tab=stream&page=1'
 
 
 def fetch() -> str:
-    j = httpx.get(API_URL).json()
+    try:
+        j = httpx.get(API_URL, follow_redirects=True).json()
+    except json.decoder.JSONDecodeError:
+        print(f'JSONDecodeError on fetching {URL_BASE}')
 
     content = ''
     for g in j.get('galleries'):
