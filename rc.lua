@@ -193,16 +193,19 @@ thermalwidget_t = awful.tooltip({
         return 'loading'
     end
 })
-vicious.register(
-    thermalwidget,
-    vicious.widgets.thermal,
-    " $1°C", 2,
-    {
-        "coretemp.0/hwmon/hwmon4",
-        "core",
-        "temp1_input"
-    }
-)
+hwmon_command = "find /sys/devices/platform/coretemp.0 -name temp1_input | awk '{print substr($0, 23, 23)}'"
+awful.spawn.easy_async_with_shell(hwmon_command, function(stdout)
+    vicious.register(
+        thermalwidget,
+        vicious.widgets.thermal,
+        " $1°C", 2,
+        {
+            stdout:gsub("%s+", ""),
+            "core",
+            "temp1_input"
+        }
+    )
+end)
 
 -- memory usage
 memwidget = wibox.widget.textbox()
