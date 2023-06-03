@@ -744,6 +744,15 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
+    -- Edge's Ctrl-Shift-A for tab searching
+    { rule_any = {
+        role = {
+            "bubble",
+        }
+    }, properties = {
+        floating = true, sticky = false, border_width = 0, skip_taskbar = true
+    }},
+
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = true }
