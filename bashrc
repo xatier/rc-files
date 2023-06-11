@@ -158,9 +158,11 @@ fi
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='
 --border
---multi
+--border-label="~(￣▽￣)~(＿△＿)~(￣▽￣)~(＿△＿)~(￣▽￣)~"
+--cycle
 --header="(∩ ◕_▩ )⊃━☆ﾟExplosion！"
 --layout=reverse
+--multi
 --pointer="つ"
 --prompt="(´・ω・`) "
 '
