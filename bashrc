@@ -104,6 +104,10 @@ export LESS="-R"
 export GOPATH="$HOME/go"
 export PATH="$HOME/bin:$HOME/go/bin:$PATH"
 
+# override VA-API driver with vdpau
+# https://wiki.archlinux.org/title/Hardware_video_acceleration#Configuring_VA-API
+export LIBVA_DRIVER_NAME=vdpau
+
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
