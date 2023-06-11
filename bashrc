@@ -479,6 +479,6 @@ rclone-copy() {
     set +x
 }
 
-unzip() {
+untar() {
     atool --extract --explain "$1"
 }
