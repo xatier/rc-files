@@ -2,13 +2,10 @@
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
-    "C_Cpp.updateChannel": "Insiders",
+    "dev.containers.dockerPath": "podman",
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
     "docker.dockerPath": "podman",
-    "docker.dockerodeOptions": {
-        "socketPath":"/run/user/1000/podman/podman.sock"
-    },
     "docsYaml.telemetry.enableTelemetry": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.cursorBlinking": "solid",
@@ -33,6 +30,7 @@
     "editor.wordBasedSuggestionsMode": "allDocuments",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "editor.wordWrap": "off",
+    "extensions.ignoreRecommendations": true,
     "files.exclude": {
         "**/*.o": true,
         "**/*.so*": true,
@@ -46,7 +44,6 @@
         "plaintext": true,
         "markdown": false
     },
-    "go.autocompleteUnimportedPackages": true,
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
     "notebook.cellToolbarLocation": {
@@ -59,10 +56,7 @@
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.logLevel": "Warning",
-    "python.analysis.memory.keepLibraryAst": true,
-    "python.analysis.symbolsHierarchyDepthLimit": 20,
     "python.analysis.typeCheckingMode": "strict",
-    "python.autoComplete.addBrackets": true,
     "python.formatting.provider": "yapf",
     "python.formatting.yapfArgs": [
         "--style",
@@ -82,17 +76,13 @@
         "--show-column-numbers"
     ],
     "python.linting.mypyEnabled": true,
-    "python.pythonPath": "${workspaceRoot}/venv/bin/python",
-    "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "redhat.telemetry.enabled": false,
-    "remote.containers.dockerPath": "podman",
     "search.collapseResults": "alwaysExpand",
     "search.showLineNumbers": true,
     "search.smartCase": true,
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "typescript.updateImportsOnFileMove.enabled": "always",
     "vim.foldfix": true,
     "vim.gdefault": true,
@@ -124,6 +114,9 @@
     },
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[python]": {
+        "editor.formatOnType": true,
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
