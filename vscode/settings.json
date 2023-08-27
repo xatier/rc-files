@@ -1,6 +1,6 @@
 {
-    "C_Cpp.default.cStandard": "c17",
-    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c23",
+    "C_Cpp.default.cppStandard": "c++23",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "dev.containers.dockerPath": "podman",
     "diffEditor.codeLens": true,
@@ -38,44 +38,49 @@
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "github.copilot.enable": {
-        "*": true,
-        "yaml": false,
-        "plaintext": true,
-        "markdown": false
-    },
-    "go.toolsManagement.autoUpdate": true,
-    "go.useLanguageServer": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
-    "prettier.semi": false,
-    "python.analysis.completeFunctionParens": true,
-    "python.analysis.diagnosticMode": "workspace",
-    "python.analysis.inlayHints.functionReturnTypes": true,
-    "python.analysis.inlayHints.variableTypes": true,
-    "python.analysis.logLevel": "Warning",
-    "python.analysis.typeCheckingMode": "strict",
-    "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": [
-        "--style",
-        "{dedent_closing_brackets: true, split_before_logical_operator: false, split_complex_comprehension: true}"
-    ],
-    "python.languageServer": "Pylance",
-    "python.linting.enabled": true,
-    "python.linting.flake8Args": [
+    "flake8.args": [
         "--ignore C408,D1",
         "--import-order-style=google"
     ],
-    "python.linting.flake8Enabled": true,
-    "python.linting.mypyArgs": [
+    "flake8.interpreter": [
+        "/home/xatier/work/pip/bin/python"
+    ],
+    "flake8.path": [
+        "/home/xatier/work/pip/bin/flake8"
+    ],
+    "github.copilot.enable": {
+        "*": true
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
+    "isort.args": [
+        "--profile",
+        "black"
+    ],
+    "languageToolLinter.external.apiKey": "",
+    "languageToolLinter.external.username": "",
+    "languageToolLinter.languageTool.disabledRules": "UPPERCASE_SENTENCE_START,MORFOLOGIK_RULE_EN_US",
+    "languageToolLinter.serviceType": "public",
+    "mypy-type-checker.args": [
         "--follow-imports=silent",
         "--ignore-missing-imports",
         "--no-strict-optional",
         "--show-column-numbers"
     ],
-    "python.linting.mypyEnabled": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "prettier.semi": false,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.downloadStubs": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.logLevel": "Warning",
+    "python.analysis.typeCheckingMode": "strict",
+    "python.languageServer": "Pylance",
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "redhat.telemetry.enabled": false,
@@ -115,8 +120,12 @@
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
     "[python]": {
-        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
