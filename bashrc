@@ -54,6 +54,7 @@ alias gti='git'
 alias hx='helix'
 alias ipy='ipython'
 alias ivm='vim'
+alias j='jagger'
 alias open='xdg-open'
 alias pbcopy='xclip -selection clipboard'
 alias py='python'
@@ -453,6 +454,11 @@ consider-lint() {
 write-good-check() {
     # https://github.com/btford/write-good
     podman run --rm -v "$PWD:/app:ro" ghcr.io/xatier/write-good:latest "$@"
+}
+
+jagger() {
+    # https://www.tkl.iis.u-tokyo.ac.jp/~ynaga/jagger/
+    echo "$@" | podman run --rm -i xatier/jagger:latest
 }
 
 screenshot() {
