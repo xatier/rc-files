@@ -21,4 +21,4 @@ mypy==1.5.1
 pep8-naming==0.13.3
 pylint==2.17.5
 vim-vint==0.3.21
-yapf==0.40.1
+yapf==0.40.2
