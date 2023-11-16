@@ -235,8 +235,10 @@ PS1+='-'$COLOR_PURPLE'[$(distro_name)] \$ '$COLOR_END # distrobution name
 
 # df check every day!
 #perl $HOME/bin/dfCheckEveryday.pl
-cal -3
-#fortune
+if [[ "$TERM" =~ "rxvt-256color" ]]; then
+    cal -3
+    #fortune
+fi
 
 # display return code of previous command
 ret_code() {
