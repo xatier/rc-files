@@ -149,6 +149,12 @@ Configuration file for the [awesome wm](https://awesomewm.org/)
     pacman -S shutter
     ```
 
+### ripgrep
+
+[ripgrep](https://github.com/BurntSushi/ripgrep) configurations (`~/.config/ripgrep/rc`)
+
+Ref: [GUIDE.md](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file)
+
 ### screenrc
 
 Screen settings, didn't use screen for a long long while.

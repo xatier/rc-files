@@ -112,6 +112,14 @@ export LIBVA_DRIVER_NAME=vdpau
 # disable the default virtualenv prompt change
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
+# load rg config
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rc
+
+# load ag completion file
+if [[ -d /usr/share/the_silver_searcher/ ]]; then
+    source /usr/share/the_silver_searcher/completions/ag.bashcomp.sh
+fi
+
 # load a key to ssh agent
 # eval `ssh-agent`
 # ssh-add ~/.ssh/<key to be added>
