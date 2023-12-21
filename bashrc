@@ -65,6 +65,8 @@ alias taiwan='TZ=Asia/Taipei date'
 alias type='type -a'
 alias u='urxvt'
 alias uc='urxvtc'
+alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.stdin.read()))"'
+alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read()))"'
 alias v='vim'
 alias vd='vimdiff'
 alias vi='vim'
@@ -74,8 +76,6 @@ alias vso='vim-open-search'
 alias wtf='man'
 # pip install pyyaml
 alias y2j='python3 -c "import yaml,sys,json; print json.dump(yaml.safe_load(sys.stdin), sys.stdout)"'
-alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote(sys.stdin.read()))"'
-alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.stdin.read()))"'
 
 # lazy cd
 alias ..="cd .."
