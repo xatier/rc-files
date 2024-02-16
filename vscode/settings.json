@@ -2,10 +2,13 @@
     "C_Cpp.default.cStandard": "c23",
     "C_Cpp.default.cppStandard": "c++23",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
+    "cmake.configureOnOpen": true,
+    "cmake.options.statusBarVisibility": "compact",
+    "cmake.showOptionsMovedNotification": false,
     "dev.containers.dockerPath": "podman",
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
-    "docker.dockerPath": "podman",
+    "docker.dockerPath": "/usr/bin/podman",
     "docsYaml.telemetry.enableTelemetry": false,
     "editor.bracketPairColorization.enabled": true,
     "editor.cursorBlinking": "solid",
@@ -16,6 +19,7 @@
     "editor.guides.bracketPairs": true,
     "editor.inlineSuggest.enabled": true,
     "editor.lineNumbers": "on",
+    "editor.occurrencesHighlight": "multiFile",
     "editor.renderControlCharacters": true,
     "editor.renderLineHighlight": "all",
     "editor.renderWhitespace": "all",
@@ -27,7 +31,7 @@
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "on",
     "editor.tabSize": 4,
-    "editor.wordBasedSuggestionsMode": "allDocuments",
+    "editor.wordBasedSuggestions": "allDocuments",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "editor.wordWrap": "off",
     "extensions.ignoreRecommendations": true,
@@ -38,6 +42,7 @@
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
     "flake8.args": [
         "--ignore C408,D1",
         "--import-order-style=google"
@@ -57,6 +62,7 @@
         "--profile",
         "black"
     ],
+    "javascript.referencesCodeLens.enabled": true,
     "languageToolLinter.external.apiKey": "",
     "languageToolLinter.external.username": "",
     "languageToolLinter.languageTool.disabledRules": "UPPERCASE_SENTENCE_START,MORFOLOGIK_RULE_EN_US",
@@ -72,10 +78,10 @@
         "jupyter-notebook": "left"
     },
     "prettier.semi": false,
+    "python.analysis.addImport.heuristics": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
-    "python.analysis.downloadStubs": true,
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.variableTypes": true,
     "python.analysis.logLevel": "Warning",
@@ -88,6 +94,7 @@
     "search.showLineNumbers": true,
     "search.smartCase": true,
     "telemetry.telemetryLevel": "off",
+    "typescript.referencesCodeLens.enabled": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "vim.foldfix": true,
     "vim.gdefault": true,
@@ -132,5 +139,8 @@
     },
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
-    }
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
 }
