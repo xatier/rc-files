@@ -30,6 +30,8 @@
 	unstage = restore --staged
 [blame]
 	coloring = repeatedLines
+[branch]
+	sort = -committerdate
 [color]
 	ui = auto
 [commit]
@@ -39,12 +41,15 @@
 [core]
 	attributesfile = /home/xatier/.gitattributes
 	excludesfile = ~/.gitignore
+	fsmonitor = true
 	pager = less -x1,5
 	preloadindex = yes
+	untrackedCache = true
 [diff]
 	algorithm = histogram
 [fetch]
 	prune = true
+	fsckobjects = true
 [help]
 	autocorrect = 30
 [merge]
@@ -56,10 +61,16 @@
 [rebase]
 	autoStash = true
 	stat = true
+[receive]
+	fsckObjects = true
+[rerere]
+	enable = true
 [stash]
 	showPatch = true
 [status]
 	showUntrackedFiles = all
+[transfer]
+	fsckobjects = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [user]
