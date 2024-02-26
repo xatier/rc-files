@@ -16,6 +16,10 @@ API_URL = "https://api.languagetoolplus.com/v2/check"
 LANG = 'en-US'
 USER = ""
 API_KEY = ""
+DISABLED_RULES = ",".join([
+    'DASH_RULE',
+    'MULTIPLICATION_SIGN',
+])
 LEVEL = "picky"
 VERBOSE = False
 
@@ -154,7 +158,7 @@ params = {
     "username": USER,
     "apiKey": API_KEY,
     "enabledRules": None,
-    "disabledRules": None,
+    "disabledRules": DISABLED_RULES,
     "level": LEVEL,
 }
 
