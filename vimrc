@@ -298,6 +298,7 @@ set omnifunc=ale#completion#OmniFunc
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
+let g:ale_virtualtext_cursor = 'disabled'
 
 " ALE flake8 settings
 augroup Flake8Settings
