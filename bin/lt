@@ -1,0 +1,205 @@
+#!/usr/bin/env python
+
+# ref: https://github.com/Findus23/pyLanguagetool
+
+from dataclasses import dataclass
+import pathlib
+import pprint
+import sys
+from typing import Self, TextIO
+
+import httpx
+
+# https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+API_URL = "https://api.languagetoolplus.com/v2/check"
+
+LANG = 'en-US'
+USER = ""
+API_KEY = ""
+LEVEL = "picky"
+VERBOSE = False
+
+COLOR_RED = '\033[1;31m'
+COLOR_GREEN = '\033[1;32m'
+COLOR_END = '\033[0m'
+TAB = '\t'
+
+GIT_MESSAGE_END_MARKS = [
+    '# <type>(scope): <description>',
+    '# Please enter the commit message for your changes.'
+]
+
+
+# API deserialization
+@dataclass
+class Context:
+    text: str
+    length: int
+    offset: int
+
+    def __init__(self: Self, context: dict) -> None:
+        self.text = context["text"]
+        self.length = context["length"]
+        self.offset = context["offset"]
+
+
+@dataclass
+class Replacement:
+    value: str
+
+    def __init__(self: Self, replacement: dict[str, str]) -> None:
+        self.value = replacement["value"]
+
+
+@dataclass
+class Category:
+    id: str
+    name: str
+
+    def __init__(self: Self, category: dict[str, str]) -> None:
+        self.id = category["id"]
+        self.name = category["name"]
+
+
+@dataclass
+class Rule:
+    category: Category
+    description: str
+    id: str
+    is_premium: bool
+    issue_type: str
+
+    def __init__(self: Self, rule: dict) -> None:
+        self.category = Category(rule["category"])
+        self.description = rule["description"]
+        self.id = rule["id"]
+        self.is_premium = rule["isPremium"]
+        self.issue_type = rule["issueType"]
+
+
+@dataclass
+class Match:
+    context: Context
+    message: str
+    replacements: list[Replacement]
+    rule: Rule
+    short_message: str
+    sentence: str
+
+    def __init__(self: Self, match: dict) -> None:
+        self.context = Context(match["context"])
+        self.message = match["message"]
+        self.replacements = [Replacement(r) for r in match["replacements"]]
+        self.rule = Rule(match["rule"])
+        self.short_message = match["shortMessage"]
+        self.sentence = match["sentence"]
+
+
+@dataclass
+class Software:
+    name: str
+    version: str
+    build_date: str
+    api_version: int
+    status: str
+    premium: bool
+
+    def __init__(self: Self, software: dict) -> None:
+        self.name = software["name"]
+        self.version = software["version"]
+        self.build_date = software["buildDate"]
+        self.api_version = software["apiVersion"]
+        self.status = software["status"]
+        self.premium = software["premium"]
+
+    def __str__(self: Self) -> str:
+        return (
+            f'{self.name} {"Premium" if self.premium else ""} '
+            f'({self.version}@{self.build_date})'
+        )
+
+
+def get_input_text() -> str:
+
+    def collect_lines(file: TextIO) -> list[str]:
+        return [line.strip() for line in file.readlines() if line.strip()]
+
+    # pipeline
+    if not sys.stdin.isatty():
+        return "\n".join(collect_lines(sys.stdin))
+
+    # regular file
+    if pathlib.Path(sys.argv[1]).is_file():
+        with open(sys.argv[1]) as f:
+            if f.name.endswith('COMMIT_EDITMSG'):
+                lines: list[str] = []
+                for line in f.readlines():
+                    # only need to take real commit messages
+                    if any(
+                        line.startswith(mark) for mark in GIT_MESSAGE_END_MARKS
+                    ):
+                        break
+                    if line.strip():
+                        lines.append(line.strip())
+                return "\n".join(lines)
+
+        return "\n".join(collect_lines(f))
+
+    return sys.argv[1].strip()
+
+
+params = {
+    "text": get_input_text(),
+    "language": LANG,
+    "username": USER,
+    "apiKey": API_KEY,
+    "enabledRules": None,
+    "disabledRules": None,
+    "level": LEVEL,
+}
+
+if VERBOSE:
+    pprint.pprint(params)
+r = httpx.post(API_URL, data=params)
+if r.status_code != httpx.codes.OK:
+    raise ValueError(r.text)
+j = r.json()
+
+if VERBOSE:
+    pprint.pprint(j)
+
+matches = j["matches"]
+version = str(Software(j["software"]))
+
+for match in matches:
+    e = Match(match)
+
+    text: str = e.context.text
+    length: int = e.context.length
+    offset: int = e.context.offset
+    rule: Rule = e.rule
+
+    end: int = offset + length
+    print(f"{e.short_message}: {e.message}")
+
+    print(
+        f"{TAB}{text[:offset]}"
+        f"{COLOR_RED}{text[offset:end]}{COLOR_END}"
+        f"{text[end:]}"
+    )
+
+    if e.replacements:
+        for replacement in e.replacements[:5]:
+            print(
+                f"{TAB}{text[:offset]}"
+                f"{COLOR_GREEN}{replacement.value}{COLOR_END}"
+                f"{text[end:]}"
+            )
+    if rule:
+        print(
+            f"[{rule.category.id} {rule.category.name}]: "
+            f"{rule.description}({rule.id})"
+        )
+    print()
+
+print(f"Text checked by {API_URL} ({version})")

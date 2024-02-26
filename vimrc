@@ -213,6 +213,11 @@ cnoreabbrev fzf FZF
 nnoremap S :Ag <cword><CR>
 
 
+" invoke `lt` script for LanguageTool grammar check
+" remap the built-in `:ltag`
+cnoreabbrev lt !lt %
+
+
 " open file with fzf super power
 " make `enter` open in a new tab as well
 let g:fzf_action = {
