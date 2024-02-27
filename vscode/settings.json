@@ -106,6 +106,7 @@
     "vsicons.dontShowNewVersionMessage": true,
     "vsintellicode.features.python.deepLearning": "enabled",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.titleBarStyle": "custom",
     "window.zoomLevel": 3,
     "workbench.colorTheme": "GitHub Dark",
     "workbench.editor.decorations.badges": true,
