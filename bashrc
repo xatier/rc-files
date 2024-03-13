@@ -156,9 +156,8 @@ GIT_PS1_SHOWCOLORHINTS=1
 complete -cf sudo
 
 # fzf completion and bindings
-if [[ -d /usr/share/fzf/ ]]; then
-    source /usr/share/fzf/key-bindings.bash
-    source /usr/share/fzf/completion.bash
+if [[ -x /usr/bin/fzf ]]; then
+    eval "$(fzf --bash)"
 fi
 if [[ -n "$BREW_PREFIX" && -d "$BREW_PREFIX/opt/fzf/" ]]; then
     source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
