@@ -32,8 +32,6 @@
 	coloring = repeatedLines
 [branch]
 	sort = -committerdate
-[color]
-	ui = auto
 [commit]
 	gpgSign = true
 	template = /home/xatier/.gitmessage
