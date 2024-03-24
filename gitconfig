@@ -59,6 +59,7 @@
 [rebase]
 	autoStash = true
 	stat = true
+	updateRefs = true
 [receive]
 	fsckObjects = true
 [rerere]
