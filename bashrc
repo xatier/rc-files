@@ -470,6 +470,11 @@ jagger() {
     echo "$@" | podman run --rm -i xatier/jagger:latest
 }
 
+sudachi() {
+    # https://github.com/WorksApplications/Sudachi
+    echo "$@" | podman run --rm -i xatier/sudachi:latest
+}
+
 screenshot() {
     # https://github.com/lupoDharkael/flameshot
     flameshot gui -d 3000
