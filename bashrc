@@ -429,7 +429,7 @@ wormhole-kill() {
 diffoscope() {
     local pwd
     pwd="$PWD"
-    podman run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" docker.pkg.github.com/xatier/diffoscope-arch/diffoscope-arch:latest "$1" "$2"
+    podman run --rm -t -w "$pwd" -v "$pwd:$pwd:ro" ghcr.io/xatier/diffoscope-arch:latest "$1" "$2"
 }
 
 golangci-lint() {
