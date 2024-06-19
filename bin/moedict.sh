@@ -13,7 +13,7 @@ urlencode() {
 
 lookup="$(echo -n "$1" | urlencode)"
 api="$(curl -Ss "https://www.moedict.tw/a/${lookup}.json")"
-if [[ "$api" == *"404"* ]]; then
+if [[ "$api" == *"404 Not Found"* ]]; then
     # single character not found
     if [[ ${#1} -eq 1 ]]; then
         (echo >&2 "$1 not found in moedict")
@@ -39,4 +39,12 @@ else
     #   some character has "（`讀音~）" prefix, e.g., https://www.moedict.tw/a/%E5%98%9B.json
     bopomofo="$(echo "$api" | jq -r '.h[0].b' | awk '{gsub("　", "-");print}')"
     echo "$1 $bopomofo"
+    bopomofo="$(echo "$api" | jq -r '.h[1].b' | awk '{gsub("　", "-");print}')"
+    if [[ "$bopomofo" != 'null' ]]; then
+        echo "$1 ($bopomofo)"
+    fi
+    bopomofo="$(echo "$api" | jq -r '.h[2].b' | awk '{gsub("　", "-");print}')"
+    if [[ "$bopomofo" != 'null' ]]; then
+        echo "$1 ($bopomofo)"
+    fi
 fi
