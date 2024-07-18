@@ -42,8 +42,10 @@ alias la='ls -A'
 alias ll='ls -AlFh'
 
 alias a='alsamixer'
+alias black='black --line-length 80'
 alias bye='exit'
 alias cd..='cd ..'
+alias copy='xclip -selection clipboard'
 alias d='deactivate'
 alias delta='delta -sn'
 alias edge='/usr/bin/microsoft-edge-dev &'
@@ -51,10 +53,10 @@ alias gerp='grep'
 alias gi='git'
 alias gt='git'
 alias gti='git'
-alias hx='helix'
 alias ipy='ipython'
 alias ivm='vim'
-alias j='jagger'
+alias j='sudachi'
+alias jj='jagger'
 alias open='xdg-open'
 alias pbcopy='xclip -selection clipboard'
 alias py='python'
@@ -98,6 +100,9 @@ export LC_ALL=en_US.UTF-8
 
 # vim rocks
 export EDITOR=vim
+
+# for xdg-open
+export BROWSER="/usr/bin/microsoft-edge-dev"
 
 [[ -x /usr/bin/lesspipe.sh ]] && eval "$(SHELL=/bin/sh lesspipe.sh)"
 export LESS="-R"
@@ -426,6 +431,13 @@ wormhole-kill() {
     rm -rf "$venv_name"
 }
 
+# fast dev env
+archbox() {
+    set -x
+    podman run --rm -it ghcr.io/xatier/arch-dev bash
+    set +x
+}
+
 diffoscope() {
     local pwd
     pwd="$PWD"
@@ -484,7 +496,10 @@ jwtinfo() {
     # inspired by https://github.com/lmammino/jwtinfo
     # ignore base64 error since JWT payload may not have proper '=' paddings
     # https://jwt.io/introduction/
-    echo "$1" | cut -d '.' -f 2 | base64 -di 2>/dev/null
+    # header
+    echo "$1" | cut -d '.' -f 1 | base64 -di | jq 2>/dev/null
+    # payload
+    echo "$1" | cut -d '.' -f 2 | base64 -di | jq 2>/dev/null
 }
 
 exif-remove() {
