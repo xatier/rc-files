@@ -39,5 +39,6 @@ jobs:
           pylint --version
           mypy --version
           vint --version
-          wormhole --version
+          # disabled: https://github.com/magic-wormhole/magic-wormhole/pull/527
+          # wormhole --version
           set +x
