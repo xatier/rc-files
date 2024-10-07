@@ -1,5 +1,5 @@
 PyYAML==6.0.2
-black==24.8.0
+black==24.10.0
 flake8-annotations-complexity==0.0.8
 flake8-annotations-coverage==0.0.6
 flake8-annotations==3.1.1
