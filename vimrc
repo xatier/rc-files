@@ -167,6 +167,13 @@ nnoremap <F7> :if exists('g:syntax_on') <BAR>
 \ syntax enable <BAR>
 \ endif <CR>
 
+augroup FixSyntaxHighlighting
+    " always highlight from start of file (only on small files)
+    autocmd!
+    autocmd BufEnter * if getfsize(expand("%")) < 100000 | :syntax sync fromstart | endif
+augroup END
+
+
 
 augroup KeywordLookup
     " K to lookup current word in documentations
