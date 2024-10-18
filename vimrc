@@ -74,10 +74,18 @@ set undodir=~/.vim/undo
 
 " include defined name or macro
 set complete+=d
+" include thesaurus
+set complete+=s
+" enable fuzzy complete
+set completeopt+=fuzzy,preview
 
 
 " better vimdiff behavior
 set diffopt+=algorithm:histogram,indent-heuristic
+
+
+" load thesaurus dictionary (i_CTRL-X_CTRL-T completion)
+set thesaurus=~/.vim/thesaurus/english.txt
 
 
 "###########################################################################
