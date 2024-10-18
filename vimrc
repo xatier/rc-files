@@ -207,6 +207,7 @@ vnoremap < <gv
 
 " open terminal on bottom right
 cnoreabbrev terminal botright terminal
+cnoreabbrev Q! q!
 
 
 " open Split&Explore on the left
