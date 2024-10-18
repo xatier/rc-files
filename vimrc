@@ -135,7 +135,7 @@ set laststatus=2
 set statusline=\ %F%m%r%y[%{strlen(&fenc)?&fenc:&enc}]%h%w%=[%l,%3v]\ --%p%%--\ \  
 highlight  statusline ctermfg=darkmagenta ctermbg=darkcyan
 set wildmenu
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,.venv
 set wildignorecase
 
 
