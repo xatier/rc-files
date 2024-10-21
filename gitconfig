@@ -51,6 +51,7 @@
 [help]
 	autocorrect = 30
 [merge]
+	conflictstyle = diff3
 	tool = vimdiff
 [pull]
 	rebase = true
