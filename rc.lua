@@ -174,7 +174,7 @@ cpuwidget_t = awful.tooltip({
     objects = { cpuwidget },
     timeout = 5,
     timer_function = function ()
-        async_set_text("top -b -c -o %CPU -n 1 | head -n 20", cpuwidget_t)
+        async_set_text("top -b -c -o %CPU -n 1 -w 150 | head -n 20", cpuwidget_t)
         return 'loading'
     end
 })
