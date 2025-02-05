@@ -95,6 +95,7 @@ set thesaurus=~/.vim/thesaurus/english.txt
 " colorscheme
 colorscheme default
 " using ':colo [tab]' to change colorscheme
+set background=dark
 
 
 " line break
