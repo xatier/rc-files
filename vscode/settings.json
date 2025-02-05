@@ -4,7 +4,10 @@
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "cmake.configureOnOpen": true,
     "cmake.options.statusBarVisibility": "compact",
-    "cmake.showOptionsMovedNotification": false,
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
     "dev.containers.dockerPath": "podman",
     "diffEditor.codeLens": true,
     "diffEditor.ignoreTrimWhitespace": false,
@@ -34,15 +37,23 @@
     "editor.wordBasedSuggestions": "allDocuments",
     "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
     "editor.wordWrap": "off",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
     "extensions.ignoreRecommendations": true,
     "files.exclude": {
         "**/*.o": true,
+        "**/*.pyc": true,
         "**/*.so*": true,
-        "**/*.pyc": true
+        "**/node_modules": true,
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/node_modules/**": true,
+    },
     "flake8.args": [
         "--ignore C408,D1",
         "--import-order-style=google"
@@ -78,7 +89,6 @@
         "jupyter-notebook": "left"
     },
     "prettier.semi": false,
-    "python.analysis.addImport.heuristics": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.diagnosticMode": "workspace",
@@ -91,6 +101,10 @@
     "python.testing.unittestEnabled": false,
     "redhat.telemetry.enabled": false,
     "search.collapseResults": "alwaysExpand",
+    "search.exclude": {
+        "**/dist": true,
+        "**/node_modules": true,
+    },
     "search.showLineNumbers": true,
     "search.smartCase": true,
     "telemetry.telemetryLevel": "off",
@@ -104,7 +118,6 @@
     "vscode-neovim.neovimExecutablePaths.darwin": "/usr/local/bin/nvim",
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vsicons.dontShowNewVersionMessage": true,
-    "vsintellicode.features.python.deepLearning": "enabled",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.titleBarStyle": "custom",
     "window.zoomLevel": 3,
@@ -119,6 +132,9 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.iconTheme": "vscode-icons",
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -140,8 +156,5 @@
     },
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
-    },
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
     },
 }
