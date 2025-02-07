@@ -16,6 +16,9 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "line",
+    "editor.experimental.preferTreeSitter": [
+        "typescript"
+    ],
     "editor.find.autoFindInSelection": "always",
     "editor.fontFamily": "Inconsolata,'Gen Jyuu Gothic Monospace','monospace', monospace",
     "editor.fontSize": 16,
@@ -67,6 +70,7 @@
     "github.copilot.enable": {
         "*": true
     },
+    "gitlens.telemetry.enabled": false,
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
     "isort.args": [
