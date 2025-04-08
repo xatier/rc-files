@@ -32,6 +32,8 @@
 	coloring = repeatedLines
 [branch]
 	sort = -committerdate
+[column]
+	ui = auto
 [commit]
 	gpgSign = true
 	template = /home/xatier/.gitmessage
@@ -45,30 +47,36 @@
 	untrackedCache = true
 [diff]
 	algorithm = histogram
+	colorMoved = plain
 [fetch]
-	prune = true
 	fsckobjects = true
+	prune = true
+	pruneTags = true
 [help]
 	autocorrect = 30
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	tool = vimdiff
 [pull]
 	rebase = true
 [push]
 	default = simple
 [rebase]
+	autoSquash = true
 	autoStash = true
 	stat = true
 	updateRefs = true
 [receive]
 	fsckObjects = true
 [rerere]
+	autoupdate = true
 	enable = true
 [stash]
 	showPatch = true
 [status]
 	showUntrackedFiles = all
+[tag]
+	sort = version:refname
 [transfer]
 	fsckobjects = true
 [url "git@github.com:"]
