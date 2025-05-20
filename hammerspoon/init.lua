@@ -48,19 +48,27 @@ local function showFocusWindow()
     hs.alert.show(win:application():name())
 end
 
-local function moveMouseAndClick(screen)
-    local rect = screen:fullFrame()
-    local center = hs.geometry.rectMidPoint(rect)
-    hs.mouse.setAbsolutePosition(center)
-    hs.eventtap.leftClick(center)
+local function moveMouseAndFocus(screen)
+    -- move the mouse to the center of the screen
+    local center = screen:fullFrame().center
+    hs.mouse.absolutePosition(center)
+
+    -- find the window under the mouse and make it focus
+    local windowUnderMouse = hs.fnutils.find(
+        hs.window.orderedWindows(), function(w)
+            return screen == w:screen() and center:inside(w:frame())
+        end)
+    if windowUnderMouse then
+        windowUnderMouse:focus()
+    end
 end
 
 hs.hotkey.bind(keys.mod4_ctrl, 'j', function()
-    moveMouseAndClick(hs.mouse.getCurrentScreen():next())
+    moveMouseAndFocus(hs.mouse.getCurrentScreen():next())
     showFocusWindow()
 end)
 hs.hotkey.bind(keys.mod4_ctrl, 'k', function()
-    moveMouseAndClick(hs.mouse.getCurrentScreen():previous())
+    moveMouseAndFocus(hs.mouse.getCurrentScreen():previous())
     showFocusWindow()
 end)
 
@@ -69,7 +77,7 @@ end)
 hs.hotkey.bind(keys.mod4, 'o', function()
     local nextScreen = hs.mouse.getCurrentScreen():next()
     local win = hs.window.focusedWindow()
-    moveMouseAndClick(nextScreen)
+    moveMouseAndFocus(nextScreen)
     win:moveToScreen(nextScreen)
     win:focus()
     showFocusWindow()
