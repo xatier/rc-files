@@ -1,0 +1,30 @@
+theme = "rxvt-unicode"
+#theme = "Dark Pastel"
+foreground = green
+background = black
+cursor-color = green
+cursor-style = block
+bold-is-bright = true
+window-colorspace = display-p3
+gtk-titlebar = false
+
+font-family = Inconsolata
+font-family = Noto Sans CJK TC Light
+font-family = jf-openhuninn-2.1
+font-family = DejaVu Sans Mono
+font-family = Noto Color Emoji
+font-family = Twemoji
+font-family = Symbola
+font-size = 22
+
+keybind = alt+c=copy_to_clipboard
+keybind = alt+v=paste_from_clipboard
+keybind = shift+left=unbind
+keybind = shift+right=unbind
+# keybind = global:cmd+g=toggle_quick_terminal
+
+confirm-close-surface = false
+window-inherit-working-directory = true
+
+shell-integration = bash
+scrollback-limit = 20000000
