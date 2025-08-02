@@ -17,7 +17,7 @@ flake8-return==1.2.0
 flake8-simplify==0.22.0
 flake8==7.3.0
 magic-wormhole==0.18.0
-mypy==1.16.1
+mypy==1.17.0
 pep8-naming==0.15.1
 pylint==3.3.7
 vim-vint==0.3.21
