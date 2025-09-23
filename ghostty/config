@@ -4,9 +4,10 @@ foreground = green
 background = black
 cursor-color = green
 cursor-style = block
-bold-is-bright = true
+bold-color = bright
 window-colorspace = display-p3
 gtk-titlebar = false
+custom-shader = ./shaders/ghostty-shaders/cursor_blaze.glsl
 
 font-family = Inconsolata
 font-family = Noto Sans CJK TC Light
