@@ -38,8 +38,12 @@ $if mode=emacs
 "\e[5D": backward-word
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+# ctrl + right/left arrow
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
+# alt + right/left arrow
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
 
 # for rxvt
 "\e[8~": end-of-line
