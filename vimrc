@@ -72,12 +72,16 @@ set undofile
 set undodir=~/.vim/undo
 
 
+" enable builtin auto-completion
+set autocomplete
 " include defined name or macro
 set complete+=d
 " include thesaurus
 set complete+=s
 " enable fuzzy complete
-set completeopt+=fuzzy,preview
+set completeopt+=fuzzy,preview,popup
+inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 " better vimdiff behavior
