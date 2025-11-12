@@ -26,6 +26,12 @@ set autoindent
 set smartindent
 
 
+" substitute lhs with rhs in command line mode
+function! Subs(lhs, rhs) abort
+    execute 'cnoreabbrev <expr> ' . a:lhs . " (getcmdtype() !=# '/' && getcmdtype() !=# '?') && getcmdline() =~# '^" . a:lhs . "' ? '" . a:rhs . "' : '" . a:lhs . "'"
+endfunction
+
+
 " highlight search results and ignore case
 set hlsearch
 set ignorecase
@@ -35,6 +41,8 @@ set gdefault
 set grepprg=ag\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 command! -nargs=+ Ag execute 'silent grep!' <q-args> | cwindow | redraw!
+call Subs('ag', 'Ag')
+call Subs('grep', 'Ag')
 
 
 " load built-in matchit plugin, % to jump between matched if-else pairs
@@ -218,16 +226,16 @@ vnoremap < <gv
 
 
 " open terminal on bottom right
-cnoreabbrev terminal botright terminal
-cnoreabbrev Q! q!
+call Subs('terminal', 'botright terminal')
+call Subs('Q!', 'q!')
 
 
 " open Split&Explore on the left
-cnoreabbrev sex Sexplore!
+call Subs('sex', 'Sexplore!')
 
 
 " remap fzf to FZF, easier to type `fzf`
-cnoreabbrev fzf FZF
+call Subs('fzf', 'FZF')
 
 
 " search the current word
@@ -236,7 +244,7 @@ nnoremap S :Ag <cword><CR>
 
 " invoke `lt` script for LanguageTool grammar check
 " remap the built-in `:ltag`
-cnoreabbrev lt !lt %
+call Subs('lt', '!lt %')
 
 
 " open file with fzf super power
@@ -308,7 +316,7 @@ silent! helptags ALL
 
 " run ALE manually with :lint
 let g:ale_lint_on_enter = 0
-cabbrev lint ALELint
+call Subs('lint', 'ALELint')
 
 " ALE completion settings
 let g:ale_completion_autoimport = 1
