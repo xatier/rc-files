@@ -19,5 +19,9 @@ magic-wormhole==0.22.0
 mypy==1.19.1
 pep8-naming==0.15.1
 pylint==4.0.4
+# pkg_resources is removed from setuptools 82 which is required by vim-vint
+# pin setuptools to 81 for now
+# https://github.com/Vimjas/vint/issues/394
+setuptools==81.0.0
 vim-vint==0.3.21
 yapf==0.43.0
