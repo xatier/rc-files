@@ -16,7 +16,7 @@ flake8-return==1.2.0
 flake8-simplify==0.30.0
 flake8==7.3.0
 magic-wormhole==0.23.0
-mypy==1.20.0
+mypy==1.20.1
 pep8-naming==0.15.1
 pylint==4.0.5
 # pkg_resources is removed from setuptools 82 which is required by vim-vint
