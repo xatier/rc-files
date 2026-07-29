@@ -13,28 +13,30 @@ import httpx2
 # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
 API_URL = "https://api.languagetoolplus.com/v2/check"
 
-LANG = 'en-US'
+LANG = "en-US"
 USER = ""
 API_KEY = ""
-DISABLED_RULES = ",".join([
-    'DASH_RULE',
-    'ELLIPSIS',
-    'EN_QUOTES',
-    'MULTIPLICATION_SIGN',
-    'PROFANITY',
-    'PROFANITY_XML',
-])
+DISABLED_RULES = ",".join(
+    [
+        "DASH_RULE",
+        "ELLIPSIS",
+        "EN_QUOTES",
+        "MULTIPLICATION_SIGN",
+        "PROFANITY",
+        "PROFANITY_XML",
+    ]
+)
 LEVEL = "picky"
 VERBOSE = False
 
-COLOR_RED = '\033[1;31m'
-COLOR_GREEN = '\033[1;32m'
-COLOR_END = '\033[0m'
-TAB = '\t'
+COLOR_RED = "\033[1;31m"
+COLOR_GREEN = "\033[1;32m"
+COLOR_END = "\033[0m"
+TAB = "\t"
 
 GIT_MESSAGE_END_MARKS = [
-    '# <type>(scope): <description>',
-    '# Please enter the commit message for your changes.'
+    "# <type>(scope): <description>",
+    "# Please enter the commit message for your changes.",
 ]
 
 
@@ -123,7 +125,7 @@ class Software:
     def __str__(self: Self) -> str:
         return (
             f'{self.name} {"Premium" if self.premium else ""} '
-            f'({self.version}@{self.build_date})'
+            f"({self.version}@{self.build_date})"
         )
 
 
@@ -139,7 +141,7 @@ def get_input_text() -> str:
     # regular file
     if pathlib.Path(sys.argv[1]).is_file():
         with open(sys.argv[1]) as f:
-            if f.name.endswith('COMMIT_EDITMSG'):
+            if f.name.endswith("COMMIT_EDITMSG"):
                 lines: list[str] = []
                 for line in f.readlines():
                     # only need to take real commit messages
