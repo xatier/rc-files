@@ -18,7 +18,11 @@ USER = ""
 API_KEY = ""
 DISABLED_RULES = ",".join([
     'DASH_RULE',
+    'ELLIPSIS',
+    'EN_QUOTES',
     'MULTIPLICATION_SIGN',
+    'PROFANITY',
+    'PROFANITY_XML',
 ])
 LEVEL = "picky"
 VERBOSE = False
