@@ -2,7 +2,7 @@ import json
 import random
 import textwrap
 
-import httpx
+import httpx2
 
 URL_BASE = random.choice(
     [
@@ -27,7 +27,7 @@ API_URL = f'{URL_BASE}/api/updates?tab=stream&page=1'
 
 def fetch() -> str:
     try:
-        j = httpx.get(API_URL, follow_redirects=True).json()
+        j = httpx2.get(API_URL, follow_redirects=True).json()
     except json.decoder.JSONDecodeError:
         print(f'JSONDecodeError on fetching {URL_BASE}')
 
