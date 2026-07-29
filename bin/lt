@@ -170,7 +170,7 @@ params = {
 
 if VERBOSE:
     pprint.pprint(params)
-r = httpx2.post(API_URL, data=params)
+r = httpx2.post(API_URL, timeout=10, data=params)
 if r.status_code != httpx2.codes.OK:
     raise ValueError(r.text)
 j = r.json()
