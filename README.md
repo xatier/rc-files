@@ -175,7 +175,7 @@ Screen settings, didn't use screen for a long long while.
 [here](https://github.com/philc/vimium/blob/master/background_scripts/commands.js#L284).
 
 ```text
-map b Vomnibar.activateInNewTab
+map b Vomnibar.activateBookmarksInNewTab
 map o Vomnibar.activateInNewTab
 map t Vomnibar.activateTabSelection
 ```
@@ -191,7 +191,7 @@ anime: https://ani.gamer.com.tw/search.php?kw=%s  ani.gamer.com.tw
 aur: https://aur.archlinux.org/packages/?O=0&K=%s  aur.archlinux.org
 ccc: https://camelcamelcamel.com/search?sq=%s  camelcamelcamel.com
 code: https://cs.github.com?q=%s  GitHub
-ddg: https://duckduckgo.com/?q=%s&kg=p&kp=-2&kl=tw-tzh&k1=-1&kz=1&kc=1&kav=1&kn=1&kh=1&kg=p  DuckDuckGo
+ddg: https://noai.duckduckgo.com/?q=%s&kg=p&kp=-2&kah=us-en%2Ctw-tzh&kl=us-en&kad=zh_TW&k1=-1&kz=-1&kc=1&kav=1&kn=1&kh=1&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=d&&kbg=-1&kbe=0  DuckDuckGo
 dmhy: http://share.dmhy.org/topics/list?keyword=%s  动漫花园
 doc: https://devdocs.io/#q=%s  DevDocs
 docs: https://devdocs.io/#q=%s  DevDocs
@@ -209,6 +209,10 @@ w: https://<whoogle>/search?q=%s  Whoogle
 wolf: https://www.wolframalpha.com/input/?i=%s  Wolfram|Alpha
 youtube: https://www.youtube.com/results?search_query=%s&page=&utm_source=opensearch  YouTube
 ```
+
+#### Scroll step size
+
+Set to `120` px.
 
 ### vimrc
 
