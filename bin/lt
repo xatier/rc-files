@@ -8,7 +8,7 @@ import pprint
 import sys
 from typing import Self, TextIO
 
-import httpx
+import httpx2
 
 # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
 API_URL = "https://api.languagetoolplus.com/v2/check"
@@ -164,8 +164,8 @@ params = {
 
 if VERBOSE:
     pprint.pprint(params)
-r = httpx.post(API_URL, data=params)
-if r.status_code != httpx.codes.OK:
+r = httpx2.post(API_URL, data=params)
+if r.status_code != httpx2.codes.OK:
     raise ValueError(r.text)
 j = r.json()
 
