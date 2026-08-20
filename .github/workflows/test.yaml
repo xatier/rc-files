@@ -38,6 +38,6 @@ jobs:
           black --version
           pylint --version
           mypy --version
-          vint --version
+          # vint --version
           wormhole --version
           set +x
