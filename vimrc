@@ -133,6 +133,8 @@ augroup END
 
 if &diff
     " jump to next/previous change
+    set timeout
+    set timeoutlen=10
     nnoremap ] ]c
     nnoremap [ [c
 
