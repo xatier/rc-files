@@ -220,6 +220,10 @@ nnoremap q: :q
 nnoremap Q <Nop>
 
 
+" substitute :Q to :q
+call Subs('Q', 'q')
+
+
 " open a new tab on gf
 nnoremap gf <c-w>gf
 
