@@ -84,8 +84,11 @@ set undodir=~/.vim/undo
 set autocomplete
 " include defined name or macro
 set complete+=d
-" include thesaurus
+" include dictionary and thesaurus
+set complete+=k
 set complete+=s
+" include omnifunc (ALE's LSP)
+set complete+=o
 " enable fuzzy complete
 set completeopt+=fuzzy,preview,popup
 inoremap <silent><expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -96,7 +99,8 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set diffopt+=algorithm:histogram,indent-heuristic
 
 
-" load thesaurus dictionary (i_CTRL-X_CTRL-T completion)
+" load system dictionary and thesaurus dictionary (i_CTRL-X_CTRL-T completion)
+set dictionary+=/usr/share/dict/words
 set thesaurus=~/.vim/thesaurus/english.txt
 
 
@@ -273,6 +277,9 @@ augroup SetLocal
 
     " yaml
     autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
+    " omnifunc
+    autocmd FileType c,cpp,perl,python,go setlocal omnifunc=ale#completion#OmniFunc
 augroup END
 
 
@@ -317,23 +324,34 @@ silent! helptags ALL
 " run ALE manually with :lint
 let g:ale_lint_on_enter = 0
 call Subs('lint', 'ALELint')
+call Subs('ref', 'ALEFindReferences -tab')
+call Subs('def', 'ALEGoToDefinition -tab')
+call Subs('typedef', 'ALEGoToTypeDefinition -tab')
+call Subs('impl', 'ALEGoToImplementation -tab')
+call Subs('hover', 'ALEHover')
+call Subs('rename', 'ALERename')
+call Subs('search', 'ALESymbolSearch')
 
 " ALE completion settings
 let g:ale_completion_autoimport = 1
 let g:ale_completion_enabled = 1
-set omnifunc=ale#completion#OmniFunc
+let g:ale_lsp_suggestions = 1
+
 
 " ALE echo message format
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_linters = {
+    \ 'python': ['flake8', 'pyright'],
+    \ 'go': ['gopls'] }
+
 
 " ALE flake8 settings
 augroup Flake8Settings
     autocmd!
-    autocmd FileType python let b:ale_linters = ['flake8']
     autocmd FileType python let b:ale_python_flake8_executable = '/home/xatier/work/pip/bin/flake8'
     autocmd FileType python let b:ale_python_flake8_auto_pipenv = 1
-    autocmd FileType python let b:ale_python_flake8_options = '--ignore C408,D1 --show-source --import-order-style=google'
+    autocmd FileType python let b:ale_python_flake8_options = '--ignore C408,W503,E203,D1 --show-source --import-order-style=google'
 augroup END
