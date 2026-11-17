@@ -48,6 +48,7 @@ call Subs('grep', 'Ag')
 " load built-in matchit plugin, % to jump between matched if-else pairs
 " make < and  > as a pair, useful in C++
 runtime macros/matchit.vim
+set runtimepath+=/opt/homebrew/opt/fzf
 set showmatch
 set matchpairs+=<:>
 

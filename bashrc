@@ -131,8 +131,23 @@ fi
 
 # use brew apps and GNU coreutils on OS X
 if [[ "$(uname)" == "Darwin" ]]; then
-    export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:"$PATH"
-    BREW_PREFIX="$(brew --prefix)"
+    export HOMEBREW_PREFIX="/opt/homebrew";
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+    export HOMEBREW_REPOSITORY="/opt/homebrew";
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+    export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+    export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+    export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+    export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+    export PATH="/opt/homebrew/opt/ed/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+    export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/binutils/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/binutils/include"
+    export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 fi
 
 # git completion
@@ -142,11 +157,9 @@ if [[ -d /usr/share/git/completion/ ]]; then
     source /usr/share/git/completion/git-prompt.sh
 fi
 
-# OS X from ${BREW_PREFIX}/etc/bash_completion.d/
-if [[ -n "$BREW_PREFIX" && -d "$BREW_PREFIX/etc/bash_completion.d/" ]]; then
-    export BASH_COMPLETION_COMPAT_DIR="$BREW_PREFIX/etc/bash_completion.d"
-    source "$BREW_PREFIX/share/bash-completion/bash_completion"
-fi
+# OS X from ${HOMEBREW_PREFIX}/etc/bash_completion.d/
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
+
 
 # GIT_PS1 controls, used in __git_ps1 below
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -164,9 +177,8 @@ complete -cf sudo
 if [[ -x /usr/bin/fzf ]]; then
     eval "$(fzf --bash)"
 fi
-if [[ -n "$BREW_PREFIX" && -d "$BREW_PREFIX/opt/fzf/" ]]; then
-    source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
-    source "$BREW_PREFIX/opt/fzf/shell/completion.bash"
+if [[ -n "$HOMEBREW_PREFIX" && -d "$HOMEBREW_PREFIX/opt/fzf/" ]]; then
+    eval "$(fzf --bash)"
 fi
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='
@@ -516,4 +528,9 @@ rclone-copy() {
 
 untar() {
     atool --extract --explain "$1"
+}
+
+myip() {
+    curl ipinfo.io
+    echo
 }
